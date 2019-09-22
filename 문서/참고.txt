@@ -1,0 +1,1 @@
+https://docs.microsoft.com/ko-kr/windows/win32/direct3d12/porting-from-direct3d-11-to-direct3d-12

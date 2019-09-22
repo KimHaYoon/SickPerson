@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="01. Core">
+      <UniqueIdentifier>{b50775c6-a658-4905-aed8-409796d9846c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Core\01. Math">
+      <UniqueIdentifier>{7e53a5ee-256d-4f48-ba02-610259ab7718}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Core\02. File">
+      <UniqueIdentifier>{6883c064-d83b-4645-9902-a6a24b5c7ba7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Core\03. Timer">
+      <UniqueIdentifier>{f2f81c36-dcb1-407b-9a7a-472abbc7dfb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Core\04. Input">
+      <UniqueIdentifier>{4c85c1fa-e4f5-43d1-9deb-67923fa97e6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Device">
+      <UniqueIdentifier>{399279ea-8cd6-4702-9847-cdb92a199369}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="EngineMatrix.cpp">
+      <Filter>01. Core\01. Math</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineVector2.cpp">
+      <Filter>01. Core\01. Math</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineVector3.cpp">
+      <Filter>01. Core\01. Math</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineVector4.cpp">
+      <Filter>01. Core\01. Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\PathManager.cpp">
+      <Filter>01. Core\02. File</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Timer.cpp">
+      <Filter>01. Core\03. Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\TimerManager.cpp">
+      <Filter>01. Core\03. Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Input.cpp">
+      <Filter>01. Core\04. Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Obj.cpp">
+      <Filter>01. Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core.cpp">
+      <Filter>01. Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Device.cpp">
+      <Filter>02. Device</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Flag.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Macro.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineMath.h">
+      <Filter>01. Core\01. Math</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineMatrix.h">
+      <Filter>01. Core\01. Math</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineVector2.h">
+      <Filter>01. Core\01. Math</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineVector3.h">
+      <Filter>01. Core\01. Math</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineVector4.h">
+      <Filter>01. Core\01. Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\PathManager.h">
+      <Filter>01. Core\02. File</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Timer.h">
+      <Filter>01. Core\03. Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\TimerManager.h">
+      <Filter>01. Core\03. Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Input.h">
+      <Filter>01. Core\04. Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Obj.h">
+      <Filter>01. Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.h">
+      <Filter>01. Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Device.h">
+      <Filter>02. Device</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

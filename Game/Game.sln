@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2016
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01. Client", "01. Client", "{A5473788-9285-4156-87EB-431D5FF01C51}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02. Engine", "02. Engine", "{F55B83F8-F231-44F9-BBAE-CC57C9AA70AA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03. Server", "03. Server", "{30D37310-183C-48B3-8199-686B4667C8F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04. Tool", "04. Tool", "{9C7C27B3-F966-4FF6-82E8-5BDFF913A0ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00. 문서", "00. 문서", "{9D483F37-CA4E-4046-9F91-0287EC91ABFD}"
+	ProjectSection(SolutionItems) = preProject
+		EngineCopy.bat = EngineCopy.bat
+		..\문서\참고.txt = ..\문서\참고.txt
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Client", "Client\Include\Client.vcxproj", "{1808397A-11EB-43C5-AF4E-5FD02EA6706F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngine", "Engine\Include\GameEngine.vcxproj", "{52D69C32-74FC-4373-95BD-277B42471E21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1808397A-11EB-43C5-AF4E-5FD02EA6706F}.Debug|x64.ActiveCfg = Debug|x64
+		{1808397A-11EB-43C5-AF4E-5FD02EA6706F}.Debug|x64.Build.0 = Debug|x64
+		{1808397A-11EB-43C5-AF4E-5FD02EA6706F}.Debug|x86.ActiveCfg = Debug|Win32
+		{1808397A-11EB-43C5-AF4E-5FD02EA6706F}.Debug|x86.Build.0 = Debug|Win32
+		{1808397A-11EB-43C5-AF4E-5FD02EA6706F}.Release|x64.ActiveCfg = Release|x64
+		{1808397A-11EB-43C5-AF4E-5FD02EA6706F}.Release|x64.Build.0 = Release|x64
+		{1808397A-11EB-43C5-AF4E-5FD02EA6706F}.Release|x86.ActiveCfg = Release|Win32
+		{1808397A-11EB-43C5-AF4E-5FD02EA6706F}.Release|x86.Build.0 = Release|Win32
+		{52D69C32-74FC-4373-95BD-277B42471E21}.Debug|x64.ActiveCfg = Debug|x64
+		{52D69C32-74FC-4373-95BD-277B42471E21}.Debug|x64.Build.0 = Debug|x64
+		{52D69C32-74FC-4373-95BD-277B42471E21}.Debug|x86.ActiveCfg = Debug|Win32
+		{52D69C32-74FC-4373-95BD-277B42471E21}.Debug|x86.Build.0 = Debug|Win32
+		{52D69C32-74FC-4373-95BD-277B42471E21}.Release|x64.ActiveCfg = Release|x64
+		{52D69C32-74FC-4373-95BD-277B42471E21}.Release|x64.Build.0 = Release|x64
+		{52D69C32-74FC-4373-95BD-277B42471E21}.Release|x86.ActiveCfg = Release|Win32
+		{52D69C32-74FC-4373-95BD-277B42471E21}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1808397A-11EB-43C5-AF4E-5FD02EA6706F} = {A5473788-9285-4156-87EB-431D5FF01C51}
+		{52D69C32-74FC-4373-95BD-277B42471E21} = {F55B83F8-F231-44F9-BBAE-CC57C9AA70AA}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2B181EA2-9E5C-4B2B-AD7F-CB10287776E3}
+	EndGlobalSection
+EndGlobal
