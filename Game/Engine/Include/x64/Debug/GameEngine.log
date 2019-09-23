@@ -1,0 +1,200 @@
+﻿  Core.cpp
+d:\01.kpu\sickperson\game\engine\include\enginevector2.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT2'이(가) DLL 인터페이스 struct 'Engine::_tagVector2'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(497): note: 'DirectX::XMFLOAT2' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector2.h(8): note: 'Engine::_tagVector2' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginevector3.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT3'이(가) DLL 인터페이스 struct 'Engine::_tagVector3'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(568): note: 'DirectX::XMFLOAT3' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector3.h(8): note: 'Engine::_tagVector3' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginevector4.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT4'이(가) DLL 인터페이스 struct 'Engine::_tagVector4'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(642): note: 'DirectX::XMFLOAT4' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector4.h(8): note: 'Engine::_tagVector4' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginematrix.h(9): warning C4251: 'Engine::_tagMatrix::mat': struct 'DirectX::XMMATRIX'에서는 union 'Engine::_tagMatrix'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(432): note: 'DirectX::XMMATRIX' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\types.h(438): warning C4251: 'Engine::_tagRendererCBuffer::strName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'에서는 struct 'Engine::_tagRendererCBuffer'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(4373): note: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\obj.h(15): warning C4251: 'Engine::CObj::m_strTag': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'에서는 class 'Engine::CObj'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(4373): note: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\obj.h(16): warning C4251: 'Engine::CObj::m_strTypeName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'에서는 class 'Engine::CObj'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(4373): note: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\core\timermanager.h(10): warning C4251: 'Engine::CTimerManager::m_mapTimer': class 'std::unordered_map<std::string,Engine::CTimer *,std::hash<_Kty>,std::equal_to<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>'에서는 class 'Engine::CTimerManager'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+          with
+          [
+              _Kty=std::string,
+              _Ty=Engine::CTimer *
+          ]
+  d:\01.kpu\sickperson\game\engine\include\core\timermanager.h(10): note: 'std::unordered_map<std::string,Engine::CTimer *,std::hash<_Kty>,std::equal_to<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' 선언을 참조하십시오.
+          with
+          [
+              _Kty=std::string,
+              _Ty=Engine::CTimer *
+          ]
+d:\01.kpu\sickperson\game\engine\include\core.cpp(192): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+  PathManager.cpp
+d:\01.kpu\sickperson\game\engine\include\enginevector2.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT2'이(가) DLL 인터페이스 struct 'Engine::_tagVector2'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(497): note: 'DirectX::XMFLOAT2' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector2.h(8): note: 'Engine::_tagVector2' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginevector3.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT3'이(가) DLL 인터페이스 struct 'Engine::_tagVector3'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(568): note: 'DirectX::XMFLOAT3' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector3.h(8): note: 'Engine::_tagVector3' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginevector4.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT4'이(가) DLL 인터페이스 struct 'Engine::_tagVector4'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(642): note: 'DirectX::XMFLOAT4' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector4.h(8): note: 'Engine::_tagVector4' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginematrix.h(9): warning C4251: 'Engine::_tagMatrix::mat': struct 'DirectX::XMMATRIX'에서는 union 'Engine::_tagMatrix'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(432): note: 'DirectX::XMMATRIX' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\types.h(438): warning C4251: 'Engine::_tagRendererCBuffer::strName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'에서는 struct 'Engine::_tagRendererCBuffer'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(4373): note: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\core\pathmanager.h(9): warning C4251: 'Engine::CPathManager::m_mapPath': class 'std::unordered_map<std::string,std::wstring,std::hash<_Kty>,std::equal_to<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>'에서는 class 'Engine::CPathManager'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+          with
+          [
+              _Kty=std::string,
+              _Ty=std::wstring
+          ]
+  d:\01.kpu\sickperson\game\engine\include\core\pathmanager.h(9): note: 'std::unordered_map<std::string,std::wstring,std::hash<_Kty>,std::equal_to<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' 선언을 참조하십시오.
+          with
+          [
+              _Kty=std::string,
+              _Ty=std::wstring
+          ]
+d:\01.kpu\sickperson\game\engine\include\core\pathmanager.h(10): warning C4251: 'Engine::CPathManager::m_strFindPath': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'에서는 class 'Engine::CPathManager'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(4373): note: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' 선언을 참조하십시오.
+  Timer.cpp
+d:\01.kpu\sickperson\game\engine\include\enginevector2.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT2'이(가) DLL 인터페이스 struct 'Engine::_tagVector2'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(497): note: 'DirectX::XMFLOAT2' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector2.h(8): note: 'Engine::_tagVector2' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginevector3.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT3'이(가) DLL 인터페이스 struct 'Engine::_tagVector3'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(568): note: 'DirectX::XMFLOAT3' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector3.h(8): note: 'Engine::_tagVector3' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginevector4.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT4'이(가) DLL 인터페이스 struct 'Engine::_tagVector4'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(642): note: 'DirectX::XMFLOAT4' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector4.h(8): note: 'Engine::_tagVector4' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginematrix.h(9): warning C4251: 'Engine::_tagMatrix::mat': struct 'DirectX::XMMATRIX'에서는 union 'Engine::_tagMatrix'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(432): note: 'DirectX::XMMATRIX' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\types.h(438): warning C4251: 'Engine::_tagRendererCBuffer::strName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'에서는 struct 'Engine::_tagRendererCBuffer'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(4373): note: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\obj.h(15): warning C4251: 'Engine::CObj::m_strTag': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'에서는 class 'Engine::CObj'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(4373): note: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\obj.h(16): warning C4251: 'Engine::CObj::m_strTypeName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'에서는 class 'Engine::CObj'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(4373): note: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' 선언을 참조하십시오.
+  TimerManager.cpp
+d:\01.kpu\sickperson\game\engine\include\enginevector2.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT2'이(가) DLL 인터페이스 struct 'Engine::_tagVector2'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(497): note: 'DirectX::XMFLOAT2' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector2.h(8): note: 'Engine::_tagVector2' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginevector3.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT3'이(가) DLL 인터페이스 struct 'Engine::_tagVector3'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(568): note: 'DirectX::XMFLOAT3' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector3.h(8): note: 'Engine::_tagVector3' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginevector4.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT4'이(가) DLL 인터페이스 struct 'Engine::_tagVector4'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(642): note: 'DirectX::XMFLOAT4' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector4.h(8): note: 'Engine::_tagVector4' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginematrix.h(9): warning C4251: 'Engine::_tagMatrix::mat': struct 'DirectX::XMMATRIX'에서는 union 'Engine::_tagMatrix'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(432): note: 'DirectX::XMMATRIX' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\types.h(438): warning C4251: 'Engine::_tagRendererCBuffer::strName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'에서는 struct 'Engine::_tagRendererCBuffer'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(4373): note: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\core\timermanager.h(10): warning C4251: 'Engine::CTimerManager::m_mapTimer': class 'std::unordered_map<std::string,Engine::CTimer *,std::hash<_Kty>,std::equal_to<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>'에서는 class 'Engine::CTimerManager'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+          with
+          [
+              _Kty=std::string,
+              _Ty=Engine::CTimer *
+          ]
+  d:\01.kpu\sickperson\game\engine\include\core\timermanager.h(10): note: 'std::unordered_map<std::string,Engine::CTimer *,std::hash<_Kty>,std::equal_to<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' 선언을 참조하십시오.
+          with
+          [
+              _Kty=std::string,
+              _Ty=Engine::CTimer *
+          ]
+d:\01.kpu\sickperson\game\engine\include\obj.h(15): warning C4251: 'Engine::CObj::m_strTag': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'에서는 class 'Engine::CObj'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(4373): note: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\obj.h(16): warning C4251: 'Engine::CObj::m_strTypeName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'에서는 class 'Engine::CObj'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(4373): note: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' 선언을 참조하십시오.
+  Device.cpp
+d:\01.kpu\sickperson\game\engine\include\enginevector2.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT2'이(가) DLL 인터페이스 struct 'Engine::_tagVector2'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(497): note: 'DirectX::XMFLOAT2' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector2.h(8): note: 'Engine::_tagVector2' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginevector3.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT3'이(가) DLL 인터페이스 struct 'Engine::_tagVector3'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(568): note: 'DirectX::XMFLOAT3' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector3.h(8): note: 'Engine::_tagVector3' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginevector4.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT4'이(가) DLL 인터페이스 struct 'Engine::_tagVector4'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(642): note: 'DirectX::XMFLOAT4' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector4.h(8): note: 'Engine::_tagVector4' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginematrix.h(9): warning C4251: 'Engine::_tagMatrix::mat': struct 'DirectX::XMMATRIX'에서는 union 'Engine::_tagMatrix'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(432): note: 'DirectX::XMMATRIX' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\types.h(438): warning C4251: 'Engine::_tagRendererCBuffer::strName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'에서는 struct 'Engine::_tagRendererCBuffer'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(4373): note: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\device.cpp(200): warning C4244: '=': 'float'에서 'UINT8'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\device.cpp(226): warning C4244: '=': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\device.cpp(227): warning C4244: '=': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  EngineMatrix.cpp
+d:\01.kpu\sickperson\game\engine\include\enginevector4.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT4'이(가) DLL 인터페이스 struct 'Engine::_tagVector4'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(642): note: 'DirectX::XMFLOAT4' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector4.h(8): note: 'Engine::_tagVector4' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginematrix.h(9): warning C4251: 'Engine::_tagMatrix::mat': struct 'DirectX::XMMATRIX'에서는 union 'Engine::_tagMatrix'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(432): note: 'DirectX::XMMATRIX' 선언을 참조하십시오.
+  EngineVector2.cpp
+d:\01.kpu\sickperson\game\engine\include\enginevector2.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT2'이(가) DLL 인터페이스 struct 'Engine::_tagVector2'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(497): note: 'DirectX::XMFLOAT2' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector2.h(8): note: 'Engine::_tagVector2' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginevector2.cpp(28): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector2.cpp(29): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector2.cpp(40): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector2.cpp(41): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector2.cpp(75): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector2.cpp(76): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  EngineVector3.cpp
+d:\01.kpu\sickperson\game\engine\include\enginevector3.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT3'이(가) DLL 인터페이스 struct 'Engine::_tagVector3'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(568): note: 'DirectX::XMFLOAT3' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector3.h(8): note: 'Engine::_tagVector3' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginevector4.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT4'이(가) DLL 인터페이스 struct 'Engine::_tagVector4'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(642): note: 'DirectX::XMFLOAT4' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector4.h(8): note: 'Engine::_tagVector4' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginematrix.h(9): warning C4251: 'Engine::_tagMatrix::mat': struct 'DirectX::XMMATRIX'에서는 union 'Engine::_tagMatrix'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(432): note: 'DirectX::XMMATRIX' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginevector3.cpp(42): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector3.cpp(43): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector3.cpp(44): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector3.cpp(56): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector3.cpp(57): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector3.cpp(58): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector3.cpp(96): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector3.cpp(97): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector3.cpp(98): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  EngineVector4.cpp
+d:\01.kpu\sickperson\game\engine\include\enginevector4.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT4'이(가) DLL 인터페이스 struct 'Engine::_tagVector4'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(642): note: 'DirectX::XMFLOAT4' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector4.h(8): note: 'Engine::_tagVector4' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginevector4.cpp(42): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector4.cpp(43): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector4.cpp(44): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector4.cpp(45): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector4.cpp(58): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector4.cpp(59): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector4.cpp(60): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector4.cpp(61): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector4.cpp(102): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector4.cpp(103): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector4.cpp(104): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\sickperson\game\engine\include\enginevector4.cpp(105): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Obj.cpp
+d:\01.kpu\sickperson\game\engine\include\enginevector2.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT2'이(가) DLL 인터페이스 struct 'Engine::_tagVector2'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(497): note: 'DirectX::XMFLOAT2' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector2.h(8): note: 'Engine::_tagVector2' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginevector3.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT3'이(가) DLL 인터페이스 struct 'Engine::_tagVector3'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(568): note: 'DirectX::XMFLOAT3' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector3.h(8): note: 'Engine::_tagVector3' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginevector4.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT4'이(가) DLL 인터페이스 struct 'Engine::_tagVector4'의 기본으로 사용되었습니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(642): note: 'DirectX::XMFLOAT4' 선언을 참조하십시오.
+  d:\01.kpu\sickperson\game\engine\include\enginevector4.h(8): note: 'Engine::_tagVector4' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\enginematrix.h(9): warning C4251: 'Engine::_tagMatrix::mat': struct 'DirectX::XMMATRIX'에서는 union 'Engine::_tagMatrix'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(432): note: 'DirectX::XMMATRIX' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\types.h(438): warning C4251: 'Engine::_tagRendererCBuffer::strName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'에서는 struct 'Engine::_tagRendererCBuffer'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(4373): note: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\obj.h(15): warning C4251: 'Engine::CObj::m_strTag': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'에서는 class 'Engine::CObj'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(4373): note: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' 선언을 참조하십시오.
+d:\01.kpu\sickperson\game\engine\include\obj.h(16): warning C4251: 'Engine::CObj::m_strTypeName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'에서는 class 'Engine::CObj'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(4373): note: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' 선언을 참조하십시오.
+  코드를 생성하고 있습니다...
+     ../Bin64_Debug/GameEngine64_Debug.lib 라이브러리 및 ../Bin64_Debug/GameEngine64_Debug.exp 개체를 생성하고 있습니다.
+  GameEngine.vcxproj -> D:\01.KPU\SickPerson\Game\Engine\Include\../Bin64_Debug/GameEngine64_Debug.dll
+  0개 파일이 복사되었습니다.
+  파일을 찾을 수 없습니다-*.inl
+  0개 파일이 복사되었습니다.
+  0개 파일이 복사되었습니다.
+  0개 파일이 복사되었습니다.

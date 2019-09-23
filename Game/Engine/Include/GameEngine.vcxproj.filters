@@ -54,9 +54,6 @@
     <ClCompile Include="Core\TimerManager.cpp">
       <Filter>01. Core\03. Timer</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Input.cpp">
-      <Filter>01. Core\04. Input</Filter>
-    </ClCompile>
     <ClCompile Include="Obj.cpp">
       <Filter>01. Core</Filter>
     </ClCompile>
@@ -103,9 +100,6 @@
     </ClInclude>
     <ClInclude Include="Core\TimerManager.h">
       <Filter>01. Core\03. Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Input.h">
-      <Filter>01. Core\04. Input</Filter>
     </ClInclude>
     <ClInclude Include="Obj.h">
       <Filter>01. Core</Filter>

@@ -1,7 +1,10 @@
 #include "Core.h"
 #include "Device.h"
+#include "Core/Timer.h"
+#include "Core/TimerManager.h"
 
 Engine_USING
+
 DEFINITION_SINGLE( CCore )
 
 bool CCore::m_bLoop = true;
@@ -19,6 +22,7 @@ CCore::CCore()
 
 CCore::~CCore()
 {
+	DESTROY_SINGLE( CTimerManager );
 	DESTROY_SINGLE( CDevice );
 #ifdef _DEBUG
 	//FreeConsole();
@@ -31,7 +35,7 @@ HWND CCore::GetWindowHandle() const
 	return m_hWnd;
 }
 
-bool CCore::Init( HINSTANCE hInst, TCHAR * pTitle, TCHAR * pClass, int iIconID,
+bool CCore::Init( HINSTANCE hInst, const TCHAR * pTitle, const TCHAR * pClass, int iIconID,
 	UINT iWidth, UINT iHeight, bool bWindowMode, bool bOnMouseRenderer )
 {
 	m_hInst = hInst;
@@ -70,8 +74,8 @@ bool CCore::Init( HINSTANCE hInst, HWND hWnd, UINT iWidth,
 	//if ( !GET_SINGLE( CInput )->Init( m_hWnd, bOnMouseRenderer ) )
 	//	return false;
 
-	//if ( !GET_SINGLE( CTimerManager )->Init() )
-	//	return false;
+	if ( !GET_SINGLE( CTimerManager )->Init() )
+		return false;
 
 	//if ( !GET_SINGLE( CCollisionManager )->Init() )
 	//	return false;
@@ -117,85 +121,43 @@ int CCore::RunTool()
 
 void CCore::Logic()
 {
-	/*CTimer*	pTimer = GET_SINGLE( CTimerManager )->FindTimer( "MainTimer" );
+	CTimer*	pTimer = GET_SINGLE( CTimerManager )->FindTimer( "MainThread" );
 
 	pTimer->Update();
 
 	float fTime = pTimer->GetDeltaTime();
 
 	SAFE_RELEASE( pTimer );
-
-	GET_SINGLE( CScheduler )->Update( fTime );
-
-	Input( fTime );
-
-	if ( Update( fTime ) == SC_CHANGE )
-	{
-		GET_SINGLE( CInput )->ClearWheel();
-		return;
-	}
-
-	if ( LateUpdate( fTime ) == SC_CHANGE )
-	{
-		GET_SINGLE( CInput )->ClearWheel();
-		return;
-	}
-
-	Collision( fTime );
-
-	Render( fTime );*/
+	Render( fTime );
 }
 
 void CCore::Input( float fTime )
 {
-	/*GET_SINGLE( CInput )->Update( fTime );
-
-	CGameObject*	pMouseObj = GET_SINGLE( CInput )->GetMouseObj();
-	pMouseObj->Input( fTime );
-	SAFE_RELEASE( pMouseObj );
-
-	GET_SINGLE( CSceneManager )->Input( fTime );*/
 }
 
 int CCore::Update( float fTime )
 {
-	/*CGameObject*	pMouseObj = GET_SINGLE( CInput )->GetMouseObj();
-	pMouseObj->Update( fTime );
-	SAFE_RELEASE( pMouseObj );
-
-	return GET_SINGLE( CSceneManager )->Update( fTime );*/
+	return 0;
 }
 
 int CCore::LateUpdate( float fTime )
 {
-	/*CGameObject*	pMouseObj = GET_SINGLE( CInput )->GetMouseObj();
-	pMouseObj->LateUpdate( fTime );
-	SAFE_RELEASE( pMouseObj );
-
-	return GET_SINGLE( CSceneManager )->LateUpdate( fTime );*/
+	return 0;
 }
 
 void CCore::Collision( float fTime )
 {
-	/*GET_SINGLE( CSceneManager )->Collision( fTime );
-
-	GET_SINGLE( CCollisionManager )->Collision( fTime );*/
 }
 
 void CCore::Render( float fTime )
 {
+	GET_SINGLE( CDevice )->CmdReset();
 	GET_SINGLE( CDevice )->ClearTarget();
 
-	//GET_SINGLE( CSceneManager )->Render( fTime );
-
-	//GET_SINGLE( CRenderManager )->Render( fTime );
-
 	GET_SINGLE( CDevice )->Present();
-
-	//GET_SINGLE( CInput )->ClearWheel();
 }
 
-ATOM CCore::WindowRegisterClass( TCHAR * pClass, int iIconID )
+ATOM CCore::WindowRegisterClass( const TCHAR * pClass, int iIconID )
 {
 	WNDCLASSEXW wcex;
 
@@ -216,7 +178,7 @@ ATOM CCore::WindowRegisterClass( TCHAR * pClass, int iIconID )
 	return RegisterClassExW( &wcex );
 }
 
-BOOL CCore::InitWindow( TCHAR * pClass, TCHAR * pTitle, UINT iWidth, UINT iHeight )
+BOOL CCore::InitWindow( const TCHAR * pClass, const TCHAR * pTitle, UINT iWidth, UINT iHeight )
 {
 	HWND hWnd = CreateWindowW( pClass, pTitle, WS_OVERLAPPEDWINDOW,
 		300, 0, iWidth, iHeight, nullptr, nullptr, m_hInst, nullptr );
@@ -261,9 +223,6 @@ LRESULT CCore::WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 			break;
 		}
 		break;
-	//case WM_MOUSEWHEEL: // HIWORD 는 32비트에서 상위 16비트를 구하는 매크로함수
-	//	GET_SINGLE( CInput )->SetWheel( HIWORD( wParam ) );
-	//	break;
 	case WM_DESTROY:
 	{
 		m_bLoop = false;

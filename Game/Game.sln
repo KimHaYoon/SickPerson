@@ -18,6 +18,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00. 문서", "00. 문서", 
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Client", "Client\Include\Client.vcxproj", "{1808397A-11EB-43C5-AF4E-5FD02EA6706F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{52D69C32-74FC-4373-95BD-277B42471E21} = {52D69C32-74FC-4373-95BD-277B42471E21}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngine", "Engine\Include\GameEngine.vcxproj", "{52D69C32-74FC-4373-95BD-277B42471E21}"
 EndProject

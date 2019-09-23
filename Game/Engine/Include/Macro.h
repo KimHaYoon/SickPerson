@@ -39,7 +39,7 @@
 #define	DESTROY_SINGLE(Type)	Type::DestroyInst()
 
 #define	DEVICE		GET_SINGLE(CDevice)->GetDevice()
-//#define	CONTEXT		GET_SINGLE(CDevice)->GetContext()
+#define	CMDLIST		GET_SINGLE(CDevice)->GetCmdList()
 #define	SWAPCHAIN	GET_SINGLE(CDevice)->GetSwapChain()
 #define	DEVICE_RESOLUTION	GET_SINGLE(CDevice)->GetResolution()
 

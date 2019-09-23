@@ -11,7 +11,7 @@
 #include <functional>
 #include "Types.h"
 
-#pragma comment(lib, "DirectXTex")
+//#pragma comment(lib, "DirectXTex")
 
 
 #define	PI	3.141592f
