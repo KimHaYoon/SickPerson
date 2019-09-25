@@ -26,9 +26,11 @@ CDevice::CDevice() :
 
 	for ( int i = 0; i < 2; ++i )
 	{
-		m_pBackBuffer[i] = NULL;
+		m_pRTVBuffer[i] = NULL;
 		m_iFenceValues[i] = 0;
 	}
+
+	memset( &m_tResourceBarrier, 0, sizeof( D3D12_RESOURCE_BARRIER ));
 }
 
 CDevice::~CDevice()
@@ -45,7 +47,7 @@ CDevice::~CDevice()
 	SAFE_RELEASE(m_pSwapChain);
 
 	for ( int i = 0; i < 2; ++i )
-		SAFE_RELEASE( m_pBackBuffer[i] );
+		SAFE_RELEASE( m_pRTVBuffer[i] );
 	SAFE_RELEASE( m_pCmdQueue );
 	SAFE_RELEASE( m_pCmdAlloc );
 	SAFE_RELEASE( m_pCmdList );
@@ -166,19 +168,15 @@ bool CDevice::Init(HWND hWnd, UINT iWidth, UINT iHeight,
 	m_iDSVSize = m_pDevice->GetDescriptorHandleIncrementSize( D3D12_DESCRIPTOR_HEAP_TYPE_DSV );			// 깊이-스텐실 서술자 힙의 원소의 크기를 저장
 
 	// 백버퍼를 얻어온다.
-	//ID3D12Resource*	pBackBuffer = NULL;
-
 	auto pRTVHeap = m_pRTView->GetCPUDescriptorHandleForHeapStart();
 	for ( int i = 0; i < 2; ++i )
 	{
-		m_pSwapChain->GetBuffer( 0, __uuidof( ID3D12Resource ), ( void** )&m_pBackBuffer[i] );
+		m_pSwapChain->GetBuffer( i, __uuidof( ID3D12Resource ), ( void** )&m_pRTVBuffer[i] );
 
 		// 얻어온 백버퍼를 이용해서 렌더링 타겟 뷰를 만들어준다.
-		m_pDevice->CreateRenderTargetView( m_pBackBuffer[i], NULL, pRTVHeap );
+		m_pDevice->CreateRenderTargetView( m_pRTVBuffer[i], NULL, pRTVHeap );
 		pRTVHeap.ptr += m_iRTVSize;
 	}
-
-	//SAFE_RELEASE(pBackBuffer);
 
 	// 깊이버퍼용 텍스쳐를 만든다.
 	D3D12_RESOURCE_DESC 	tDepthDesc = {};
@@ -189,8 +187,8 @@ bool CDevice::Init(HWND hWnd, UINT iWidth, UINT iHeight,
 	tDepthDesc.MipLevels = 1;
 	tDepthDesc.DepthOrArraySize = 1;
 	tDepthDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-	tDepthDesc.SampleDesc.Quality = 0;
 	tDepthDesc.SampleDesc.Count = 1;
+	tDepthDesc.SampleDesc.Quality = 0;
 	tDepthDesc.Layout = D3D12_TEXTURE_LAYOUT_UNKNOWN;
 	tDepthDesc.Flags = D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL;
 
@@ -207,7 +205,7 @@ bool CDevice::Init(HWND hWnd, UINT iWidth, UINT iHeight,
 	tHeapProperties.VisibleNodeMask = 1;
 
 	if (FAILED(m_pDevice->CreateCommittedResource(&tHeapProperties, D3D12_HEAP_FLAG_NONE,
-		&tDepthDesc, D3D12_RESOURCE_STATE_COMMON, &tClearValue, __uuidof( ID3D12Resource ), (void** )&m_pDepthBuffer)))
+		&tDepthDesc, D3D12_RESOURCE_STATE_DEPTH_WRITE, &tClearValue, __uuidof( ID3D12Resource ), (void** )&m_pDepthBuffer)))
 		return false;
 
 	// 생성한 깊이버퍼를 이용해서 DepthStencilView를 만들어준다.
@@ -216,19 +214,19 @@ bool CDevice::Init(HWND hWnd, UINT iWidth, UINT iHeight,
 
 	// 위에서 생성한 렌더타겟뷰와 깊이스텐실뷰를 렌더링 파이프라인의
 	// 출력병합기 단계에 묶어준다.
-	pRTVHeap = m_pRTView->GetCPUDescriptorHandleForHeapStart();
-	pDSView = m_pDSView->GetCPUDescriptorHandleForHeapStart();
-	m_pCmdList->OMSetRenderTargets(1, &pRTVHeap, TRUE, &pDSView );
+	//pRTVHeap = m_pRTView->GetCPUDescriptorHandleForHeapStart();
+	//pDSView = m_pDSView->GetCPUDescriptorHandleForHeapStart();
+	//m_pCmdList->OMSetRenderTargets(1, &pRTVHeap, TRUE, &pDSView );
 
 	// 뷰포트 설정. 
-	D3D12_VIEWPORT	tVP = {};
+	//D3D12_VIEWPORT	tVP = {};
 
-	tVP.Width = iWidth;
-	tVP.Height = iHeight;
-	tVP.MaxDepth = 1.f;
+	//tVP.Width = iWidth;
+	//tVP.Height = iHeight;
+	//tVP.MaxDepth = 1.f;
 
-	m_pCmdList->	RSSetViewports(1, &tVP);
-
+	//m_pCmdList->	RSSetViewports(1, &tVP);
+	
 	return true;
 }
 
@@ -258,6 +256,10 @@ void CDevice::Present()
 	WaitForGpuComplete();
 
 	m_pSwapChain->Present(0, 0);
+
+	m_iSwapChainIdx = m_pSwapChain->GetCurrentBackBufferIndex();
+
+	WaitForGpuComplete();
 }
 
 Vector2 CDevice::GetWindowDeviceResolution() const
@@ -286,19 +288,28 @@ void CDevice::CmdReset()
 
 	/*현재 렌더 타겟에 대한 프리젠트가 끝나기를 기다린다. 프리젠트가 끝나면 렌더 타겟 버퍼의 상태는 프리젠트 상태 (D3D12_RESOURCE_STATE_PRESENT)에서 
 	렌더 타겟 상태(D3D12_RESOURCE_STATE_RENDER_TARGET)로 바뀔 것이다.*/
-	
 	m_tResourceBarrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
 	m_tResourceBarrier.Flags = D3D12_RESOURCE_BARRIER_FLAG_NONE;
-	m_tResourceBarrier.Transition.pResource = m_pBackBuffer[m_iSwapChainIdx];
+	m_tResourceBarrier.Transition.pResource = m_pRTVBuffer[m_iSwapChainIdx];
 	m_tResourceBarrier.Transition.StateBefore = D3D12_RESOURCE_STATE_PRESENT;
 	m_tResourceBarrier.Transition.StateAfter = D3D12_RESOURCE_STATE_RENDER_TARGET;
 	m_tResourceBarrier.Transition.Subresource = D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES;
 	m_pCmdList->ResourceBarrier( 1, &m_tResourceBarrier );
 
+	D3D12_VIEWPORT	tVP = {};
+
+	tVP.Width = m_tRS.iWidth;
+	tVP.Height = m_tRS.iHeight;
+	tVP.MaxDepth = 1.f;
+
+	m_pCmdList->RSSetViewports( 1, &tVP );
+
+	D3D12_RECT m_RCcissorRect = { 0,0,m_tRS.iWidth, m_tRS.iHeight };
+	m_pCmdList->RSSetScissorRects( 1, &m_RCcissorRect );
 
 	//현재의 렌더 타겟에 해당하는 서술자의 CPU 주소(핸들)를 계산한다.
 	D3D12_CPU_DESCRIPTOR_HANDLE pRTVHeap = m_pRTView->GetCPUDescriptorHandleForHeapStart();
-	pRTVHeap.ptr += ( 2 * m_iRTVSize );
+	pRTVHeap.ptr += ( m_iSwapChainIdx * m_iRTVSize );
 }
 
 void CDevice::WaitForGpuComplete()
