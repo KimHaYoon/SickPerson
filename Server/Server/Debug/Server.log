@@ -1,0 +1,9 @@
+﻿  iocp_server.cpp
+c:\users\leedeukyu\desktop\깃허브\sickperson\server\server\iocp_server.cpp(38): warning C4996: 'gethostbyname': Use getaddrinfo() or GetAddrInfoW() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\winsock2.h(2219): note: 'gethostbyname' 선언을 참조하십시오.
+c:\users\leedeukyu\desktop\깃허브\sickperson\server\server\iocp_server.cpp(39): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(133): note: 'strcpy' 선언을 참조하십시오.
+c:\users\leedeukyu\desktop\깃허브\sickperson\server\server\iocp_server.cpp(99): error C2664: 'BOOL GetQueuedCompletionStatus(HANDLE,LPDWORD,PULONG_PTR,LPOVERLAPPED *,DWORD)': 인수 3을(를) 'unsigned __int64 *'에서 'PULONG_PTR'(으)로 변환할 수 없습니다.
+  c:\users\leedeukyu\desktop\깃허브\sickperson\server\server\iocp_server.cpp(99): note: 가리킨 형식이 관련이 없습니다. 변환하려면 reinterpret_cast, C 스타일 캐스트 또는 함수 스타일 캐스트가 필요합니다.
+c:\users\leedeukyu\desktop\깃허브\sickperson\server\server\iocp_server.cpp(107): warning C4244: '인수': 'unsigned __int64'에서 'const unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\leedeukyu\desktop\깃허브\sickperson\server\server\iocp_server.cpp(108): warning C4244: '인수': 'unsigned __int64'에서 'const unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
