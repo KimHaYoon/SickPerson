@@ -12,6 +12,7 @@
 #include <cstdlib>
 
 using namespace std;
+using namespace chrono;
 
 // enum ¹®
 #include "types.h"

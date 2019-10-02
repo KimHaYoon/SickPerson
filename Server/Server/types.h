@@ -2,5 +2,9 @@
 
 enum EVENT_TYPE {
 	EV_RECV,
-	EV_SEND
+	EV_SEND,
+	EV_MOVE,
+	EV_CHASE,
+	EV_REVIVAL,
+	EV_ATTACK
 };

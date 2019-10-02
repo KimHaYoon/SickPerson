@@ -116,6 +116,164 @@ void iocp_server::Do_WokerThread()
 
 void iocp_server::Do_AcceptThread()
 {
+	// Winsock Start - windock.dll 로드
+	WSADATA WSAData;
+	if (WSAStartup(MAKEWORD(2, 2), &WSAData) != 0)
+	{
+		cout << "Error - Can not load 'winsock.dll' file\n";
+		return;
+	}
+
+	// 1. 소켓생성  
+	SOCKET listenSocket = WSASocketW(AF_INET, SOCK_STREAM, 0, NULL, 0, WSA_FLAG_OVERLAPPED);
+	if (listenSocket == INVALID_SOCKET)
+	{
+		cout << "Error - Invalid socket\n";
+		return;
+	}
+
+	// 서버정보 객체설정
+	SOCKADDR_IN serverAddr;
+	memset(&serverAddr, 0, sizeof(SOCKADDR_IN));
+	serverAddr.sin_family = PF_INET;
+	serverAddr.sin_port = htons(SERVER_PORT);
+	serverAddr.sin_addr.S_un.S_addr = htonl(INADDR_ANY);
+
+	// 2. 소켓설정
+	if (::bind(listenSocket, (struct sockaddr*)&serverAddr, sizeof(SOCKADDR_IN)) == SOCKET_ERROR)
+	{
+		cout << "Error - Fail bind\n";
+		// 6. 소켓종료
+		closesocket(listenSocket);
+		// Winsock End
+		WSACleanup();
+		return;
+	}
+
+	// 3. 수신대기열생성
+	if (listen(listenSocket, 5) == SOCKET_ERROR)
+	{
+		cout << "Error - Fail listen\n";
+		// 6. 소켓종료
+		closesocket(listenSocket);
+		// Winsock End
+		WSACleanup();
+		return;
+	}
+
+	SOCKADDR_IN clientAddr;
+	int addrLen = sizeof(SOCKADDR_IN);
+	memset(&clientAddr, 0, addrLen);
+	SOCKET clientSocket;
+	DWORD flags;
+
+	while (true)
+	{
+		clientSocket = accept(listenSocket, (struct sockaddr *)&clientAddr, &addrLen);
+		if (clientSocket == INVALID_SOCKET)
+		{
+			cout << "Error - Accept Failure\n";
+			return;
+		}
+
+		// 로그인
+		//char ID[10];
+		//char ID_Buf[10];
+		//// recv 받고
+		//int retval = recv(clientSocket, ID_Buf, sizeof(ID_Buf), 0);
+		//if (retval == SOCKET_ERROR) {
+		//	cout << "Recv Error\n";
+		//}
+		//ID_Buf[retval - 1] = '\0';
+		//strcpy(ID, ID_Buf);
+
+		//int new_id = atoi(ID);
+		////int new_id = get_new_id();
+
+		//if (true == clients[new_id].connected) {
+		//	cout << "이미 접속하여있는 플레이어 입니다." << endl;
+		//	closesocket(clientSocket);
+		//	continue;
+		//}
+
+		//new_id = ConnectDB(new_id);
+
+		//if (-1 == new_id) {
+		//	cout << "존재하지 않는 플레이어 입니다.\n";
+		//	cout << "아이디를 생성합니다.\n";
+		//	new_id = CreateDB(atoi(ID));
+		//	new_id = ConnectDB(new_id);
+		//	//closesocket(clientSocket);
+		//	//continue;
+		//}
+
+		//clients[new_id].socket = clientSocket;
+		//clients[new_id].over.dataBuffer.len = MAX_BUFFER;
+		//clients[new_id].over.dataBuffer.buf =
+		//	clients[clientSocket].over.messageBuffer;
+		//clients[new_id].over.event = EV_RECV;//수정 된 부분 확인
+		////clients[new_id].x = START_X;
+		////clients[new_id].y = START_Y;
+		//clients[new_id].viewlist.clear();
+		//clients[new_id].prev_size = 0;
+		//ZeroMemory(&clients[new_id].over.overlapped, sizeof(WSAOVERLAPPED));
+		//flags = 0;
+
+		//clients[new_id].attack = false;
+		//clients[new_id].damage = clients[new_id].level * 15;
+
+		//CreateIoCompletionPort(reinterpret_cast<HANDLE>(clientSocket), g_iocp, new_id, 0);
+		//clients[new_id].connected = true;
+
+		//send_login_ok_packet(new_id);
+
+		// 시야처리
+
+		/*for (int i = 0; i < MAX_USER; ++i) {
+			if (false == clients[i].connected) continue;
+			if (i == new_id) continue;
+			clients[i].v_lock.lock();
+			if (true == is_near_object(i, new_id, VIEW_RADIUS)) {
+				clients[i].viewlist.insert(new_id);
+				clients[i].v_lock.unlock();
+				send_add_object_pacekt(i, new_id);
+			}
+			else
+				clients[i].v_lock.unlock();
+		}
+
+		for (int i = 0; i < MAX_USER; ++i) {
+			if (false == clients[i].connected) continue;
+			if (i == new_id) continue;
+			if (true == is_near_object(i, new_id, VIEW_RADIUS)) {
+				clients[new_id].viewlist.insert(i);
+				send_add_object_pacekt(new_id, i);
+			}
+		}
+
+		for (int i = 0; i < NUM_NPC; ++i) {
+			int npc_id = i + NPC_ID_START;
+			if (true == is_near_object(npc_id, new_id, VIEW_RADIUS)) {
+				if (true == clients[npc_id].connected) {
+					wake_up_NPC(npc_id);
+					clients[new_id].viewlist.insert(npc_id);
+					send_add_object_pacekt(new_id, npc_id);
+				}
+			}
+		}*/
+		/*for (int i = 0; i < NUM_ITEM; ++i) {
+			int item_id = i + ITEM_ID_START;
+			if (true == is_near_object(item_id, new_id, VIEW_RADIUS)) {
+				if (true == clients[item_id].connected) {
+					clients[new_id].viewlist.insert(item_id);
+					send_add_object_pacekt(new_id, item_id);
+				}
+			}
+		}*/
+		//send_add_object_pacekt(new_id, new_id);
+
+		//do_recv(new_id);
+	}
 }
 
 void iocp_server::Do_TimerThread()
