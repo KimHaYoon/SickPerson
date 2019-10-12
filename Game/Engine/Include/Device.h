@@ -50,6 +50,7 @@ public:
 	void Present();
 	void CmdReset();
 	void WaitForGpuComplete();
+	void MoveToNextFrame();
 
 public:
 	Vector2 GetWindowDeviceResolution()	const;

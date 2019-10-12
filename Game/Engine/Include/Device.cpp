@@ -233,6 +233,7 @@ bool CDevice::Init(HWND hWnd, UINT iWidth, UINT iHeight,
 void CDevice::ClearTarget()
 {
 	auto pRTVHeap = m_pRTView->GetCPUDescriptorHandleForHeapStart();
+	pRTVHeap.ptr += ( m_iSwapChainIdx * m_iRTVSize );
 	m_pCmdList->ClearRenderTargetView( pRTVHeap, m_fClearColor, 0, NULL);
 	auto pDSVHeap= m_pDSView->GetCPUDescriptorHandleForHeapStart();
 	m_pCmdList->ClearDepthStencilView( pDSVHeap,
@@ -259,7 +260,7 @@ void CDevice::Present()
 
 	m_iSwapChainIdx = m_pSwapChain->GetCurrentBackBufferIndex();
 
-	WaitForGpuComplete();
+	MoveToNextFrame();
 }
 
 Vector2 CDevice::GetWindowDeviceResolution() const
@@ -320,6 +321,21 @@ void CDevice::WaitForGpuComplete()
 	if ( m_pFence->GetCompletedValue() < nFenceValue )
 	{
 		//펜스의 현재 값이 설정한 값보다 작으면 펜스의 현재 값이 설정한 값이 될 때까지 기다린다. 
+		hResult = m_pFence->SetEventOnCompletion( nFenceValue, m_hFenceEvent );
+		::WaitForSingleObject( m_hFenceEvent, INFINITE );
+	}
+}
+
+void CDevice::MoveToNextFrame()
+{
+	m_iSwapChainIdx = m_pSwapChain->GetCurrentBackBufferIndex();
+	//m_nSwapChainBufferIndex = (m_nSwapChainBufferIndex + 1) % m_nSwapChainBuffers;
+
+	UINT64 nFenceValue = ++m_iFenceValues[m_iSwapChainIdx];
+	HRESULT hResult = m_pCmdQueue->Signal( m_pFence, nFenceValue );
+
+	if ( m_pFence->GetCompletedValue() < nFenceValue )
+	{
 		hResult = m_pFence->SetEventOnCompletion( nFenceValue, m_hFenceEvent );
 		::WaitForSingleObject( m_hFenceEvent, INFINITE );
 	}
