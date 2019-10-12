@@ -3,29 +3,28 @@
 
 Engine_BEGIN
 
-class Engine_DLL CRenderState :
-	public CObj
+class Engine_DLL CRenderState : public CObj
 {
 protected:
 	friend class CRenderManager;
 
 protected:
 	CRenderState();
-	virtual ~CRenderState();
+	~CRenderState();
 
 protected:
-	ID3D11DeviceChild*	m_pState;
-	ID3D11DeviceChild*	m_pOldState;
+	ID3D12DeviceChild*		m_pState;
+	ID3D12DeviceChild*		m_pOldState;
 	RENDERSTATE_TYPE	m_eType;
-	string				m_strKey;
+	string								m_strKey;
 
 public:
-	RENDERSTATE_TYPE GetType()	const;
-	string GetKey()	const;
+	RENDERSTATE_TYPE	GetType()	const;
+	string								GetKey()	const;
 
 public:
-	virtual void SetState() = 0;
-	virtual void ResetState() = 0;
+	virtual	void		SetState() = 0;
+	virtual	void		ResetState() = 0;
 };
 
 Engine_END

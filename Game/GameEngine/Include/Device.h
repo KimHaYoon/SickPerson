@@ -9,25 +9,29 @@ class Engine_DLL CDevice
 private:
 	IDXGIFactory4*									m_pFactory;
 	ID3D12Device*										m_pDevice;
+
 	ID3D12GraphicsCommandList*		m_pCmdList;
 	ID3D12CommandQueue*					m_pCmdQueue;
 	ID3D12CommandAllocator*				m_pCmdAlloc;
+
 	IDXGISwapChain3*								m_pSwapChain;
+	UINT														m_iSwapChainIdx;
+
+	ID3D12Resource*									m_pRTVBuffer[2];
 	ID3D12DescriptorHeap*						m_pRTView;
+	UINT														m_iRTVSize;
+
 	ID3D12Resource*									m_pDepthBuffer;
 	ID3D12DescriptorHeap*						m_pDSView;
-	float	m_fClearColor[4];
-	RESOLUTION				m_tRS;
-	HWND					m_hWnd;
+	UINT														m_iDSVSize;
 
-	ID3D12Debug*				m_pDebug;
-	ID3D12Resource*			m_pBackBuffer[2];
-	UINT				m_iRTVSize;
-	UINT				m_iDSVSize;
-	UINT				m_iSwapChainIdx;
+	float														m_fClearColor[4];
+	RESOLUTION											m_tRS;
+	HWND														m_hWnd;
 
-	D3D12_RESOURCE_BARRIER		m_tResourceBarrier;
+	ID3D12Debug*										m_pDebug;
 
+	D3D12_RESOURCE_BARRIER				m_tResourceBarrier;
 
 	ID3D12Fence*	m_pFence;
 	UINT64				m_iFenceValues[2];
@@ -46,6 +50,7 @@ public:
 	void Present();
 	void CmdReset();
 	void WaitForGpuComplete();
+	void MoveToNextFrame();
 
 public:
 	Vector2 GetWindowDeviceResolution()	const;

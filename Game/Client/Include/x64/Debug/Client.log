@@ -1,15 +1,1 @@
-﻿  main.cpp
-d:\01.kpu\sickperson\game\gameengine\include\enginevector2.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT2'이(가) DLL 인터페이스 struct 'Engine::_tagVector2'의 기본으로 사용되었습니다.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(497): note: 'DirectX::XMFLOAT2' 선언을 참조하십시오.
-  d:\01.kpu\sickperson\game\gameengine\include\enginevector2.h(8): note: 'Engine::_tagVector2' 선언을 참조하십시오.
-d:\01.kpu\sickperson\game\gameengine\include\enginevector3.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT3'이(가) DLL 인터페이스 struct 'Engine::_tagVector3'의 기본으로 사용되었습니다.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(568): note: 'DirectX::XMFLOAT3' 선언을 참조하십시오.
-  d:\01.kpu\sickperson\game\gameengine\include\enginevector3.h(8): note: 'Engine::_tagVector3' 선언을 참조하십시오.
-d:\01.kpu\sickperson\game\gameengine\include\enginevector4.h(10): warning C4275: DLL 인터페이스가 아닌 struct 'DirectX::XMFLOAT4'이(가) DLL 인터페이스 struct 'Engine::_tagVector4'의 기본으로 사용되었습니다.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(642): note: 'DirectX::XMFLOAT4' 선언을 참조하십시오.
-  d:\01.kpu\sickperson\game\gameengine\include\enginevector4.h(8): note: 'Engine::_tagVector4' 선언을 참조하십시오.
-d:\01.kpu\sickperson\game\gameengine\include\enginematrix.h(9): warning C4251: 'Engine::_tagMatrix::mat': struct 'DirectX::XMMATRIX'에서는 union 'Engine::_tagMatrix'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmath.h(432): note: 'DirectX::XMMATRIX' 선언을 참조하십시오.
-d:\01.kpu\sickperson\game\gameengine\include\types.h(438): warning C4251: 'Engine::_tagRendererCBuffer::strName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'에서는 struct 'Engine::_tagRendererCBuffer'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
-  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(4373): note: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' 선언을 참조하십시오.
-  Client.vcxproj -> D:\01.KPU\SickPerson\Game\Client\Include\../Bin64_Debug/Client64_Debug.exe
+﻿  Client.vcxproj -> D:\01.KPU\SickPerson.git\trunk\Game\Client\Include\../Bin64_Debug/Client64_Debug.exe
