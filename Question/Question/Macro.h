@@ -30,6 +30,7 @@
 #define	DEVICE		GET_SINGLE(CDevice)->GetDevice()
 #define	CMDLIST		GET_SINGLE(CDevice)->GetCmdList()
 #define	SWAPCHAIN	GET_SINGLE(CDevice)->GetSwapChain()
+#define	FENCE	GET_SINGLE(CDevice)->GetFence()
 #define	DEVICE_RESOLUTION	GET_SINGLE(CDevice)->GetResolution()
 
 #define	KEYDOWN(key)	CInput::GetInst()->KeyDown(key)

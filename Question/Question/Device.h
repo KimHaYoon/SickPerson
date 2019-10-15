@@ -38,8 +38,11 @@ private:
 public:
 	ID3D12Device* GetDevice()	const;
 	ID3D12GraphicsCommandList* GetCmdList()	const;
-	IDXGISwapChain* GetSwapChain()	const;
+	IDXGISwapChain3* GetSwapChain()	const;
 	RESOLUTION GetResolution()	const;
+
+	ID3D12DescriptorHeap* GetRTVHeap() const;
+	ID3D12Fence*	GetFence() const;
 
 public:
 	bool Init(HWND hWnd, UINT iWidth, UINT iHeight,

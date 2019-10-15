@@ -2,8 +2,6 @@
 #include "../Core/PathManager.h"
 #include "../Device.h"
 
-Engine_USING
-
 CShader::CShader():
 	m_pVSBlob( NULL ),
 	m_pPSBlob( NULL ),
@@ -52,7 +50,7 @@ D3D12_SHADER_BYTECODE CShader::GetGeoShader() const
 	return m_tGSByteCode;
 }
 
-bool CShader::LoadShader( const string & strKey, TCHAR * pFileName, char * pEntry[ST_MAX], const string & strPathKey )
+bool CShader::LoadShader( const string & strKey, wchar_t* pFileName, char * pEntry[ST_MAX], const string & strPathKey )
 {
 	m_strKey = strKey;
 
@@ -71,7 +69,7 @@ bool CShader::LoadShader( const string & strKey, TCHAR * pFileName, char * pEntr
 	return true;
 }
 
-bool CShader::LoadVertexShader( const string & strKey, TCHAR * pFileName, char * pEntry, const string & strPathKey )
+bool CShader::LoadVertexShader( const string & strKey, wchar_t* pFileName, char * pEntry, const string & strPathKey )
 {
 	UINT	iFlag = 0;
 
@@ -101,7 +99,7 @@ bool CShader::LoadVertexShader( const string & strKey, TCHAR * pFileName, char *
 	return true;
 }
 
-bool CShader::LoadPixelShader( const string & strKey, TCHAR * pFileName, char * pEntry, const string & strPathKey )
+bool CShader::LoadPixelShader( const string & strKey, wchar_t * pFileName, char * pEntry, const string & strPathKey )
 {
 	UINT	iFlag = 0;
 
@@ -131,7 +129,7 @@ bool CShader::LoadPixelShader( const string & strKey, TCHAR * pFileName, char * 
 	return true;
 }
 
-bool CShader::LoadGeometryShader( const string & strKey, TCHAR * pFileName, char * pEntry, const string & strPathKey )
+bool CShader::LoadGeometryShader( const string & strKey, wchar_t * pFileName, char * pEntry, const string & strPathKey )
 {
 	UINT	iFlag = 0;
 

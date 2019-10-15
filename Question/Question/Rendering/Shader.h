@@ -1,9 +1,7 @@
 #pragma once
 #include "../Obj.h"
 
-Engine_BEGIN
-
-class Engine_DLL CShader :
+class CShader :
 	public CObj
 {
 private:
@@ -35,21 +33,19 @@ public:
 	D3D12_SHADER_BYTECODE	GetGeoShader()	const;
 
 public:
-	bool LoadShader( const string& strKey, TCHAR* pFileName,
+	bool LoadShader( const string& strKey, wchar_t* pFileName,
 		char* pEntry[ST_MAX],
 		const string& strPathKey = SHADER_PATH );
-	bool LoadVertexShader( const string& strKey, TCHAR* pFileName,
+	bool LoadVertexShader( const string& strKey, wchar_t* pFileName,
 		char* pEntry,
 		const string& strPathKey = SHADER_PATH );
-	bool LoadPixelShader( const string& strKey, TCHAR* pFileName,
+	bool LoadPixelShader( const string& strKey, wchar_t* pFileName,
 		char* pEntry,
 		const string& strPathKey = SHADER_PATH );
-	bool LoadGeometryShader( const string& strKey, TCHAR* pFileName,
+	bool LoadGeometryShader( const string& strKey, wchar_t* pFileName,
 		char* pEntry,
 		const string& strPathKey = SHADER_PATH );
 
 public:
 	void SetShader( ID3D12PipelineState * pPipeline);
 };
-
-Engine_END

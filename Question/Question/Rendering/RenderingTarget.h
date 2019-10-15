@@ -11,26 +11,28 @@ private:
 	~CRenderingTarget();
 
 private:
-	ID3D12Texture2D*			m_pTargetTex;
-	ID3D12RenderTargetView*		m_pTargetView;
-	ID3D12ShaderResourceView*	m_pTargetSRV;
-	ID3D12Texture2D*			m_pDepthTex;
-	ID3D12DepthStencilView*		m_pDepthView;
+	ID3D12Resource*					m_pTargetTex[2];
+	ID3D12DescriptorHeap*		m_pTargetView;			// ·»´õ Å¸°Ù ºä
+	ID3D12DescriptorHeap*		m_pTargetSRV;
+	ID3D12Resource*					m_pDepthTex;
+	ID3D12DescriptorHeap*		m_pDepthView;
+	UINT										m_iDSVSize;
+	UINT										m_iRTVSize;
 
-	ID3D12RenderTargetView*		m_pOldTargetView;
-	ID3D12DepthStencilView*		m_pOldDepth;
+	ID3D12DescriptorHeap*		m_pOldTargetView;
+	ID3D12DescriptorHeap*		m_pOldDepth;
 	float		m_fClearColor[4];
 	Vector3		m_vPos;
 	Vector3		m_vScale;
 	bool		m_bDebug;
 	class CMesh*	m_pMesh;
 	class CShader*	m_pShader;
-	ID3D12InputLayout*	m_pLayout;
+	D3D12_INPUT_LAYOUT_DESC*	m_pLayout;
 
 public:
-	ID3D12RenderTargetView* GetRenderTargetView()	const;
-	ID3D12DepthStencilView* GetDepthStencilView()	const;
-	ID3D12ShaderResourceView*	GetShaderResourceView() const;
+	ID3D12DescriptorHeap* GetRenderTargetView()	const;
+	ID3D12DescriptorHeap* GetDepthStencilView()	const;
+	ID3D12DescriptorHeap*	GetShaderResourceView() const;
 	bool GetDebugEnable()	const;
 
 public:

@@ -2,9 +2,7 @@
 
 #include "../Engine.h"
 
-Engine_BEGIN
-
-class Engine_DLL CShaderManager
+class  CShaderManager
 {
 private:
 	unordered_map<string, class CShader*>	m_mapShader;
@@ -39,5 +37,3 @@ private:
 
 	DECLARE_SINGLE( CShaderManager )
 };
-
-Engine_END

@@ -2,8 +2,6 @@
 #include "Shader.h"
 #include "../Device.h"
 
-Engine_USING
-
 DEFINITION_SINGLE( CShaderManager )
 
 CShaderManager::CShaderManager()
@@ -397,21 +395,21 @@ void CShaderManager::UpdateCBuffer( const string & strKey, void * pData,
 
 	D3D12_MAPPED_SUBRESOURCE	tMap = {};
 
-	CMLIST->Map( pBuffer->pBuffer, 0, D3D12_MAP_WRITE_DISCARD,
+	FENCE->Map( pBuffer->pBuffer, 0, D3D12_MAP_WRITE_DISCARD,
 		0, &tMap );
 
 	memcpy( tMap.pData, pData, pBuffer->iSize );
 
-	CMLIST->Unmap( pBuffer->pBuffer, 0 );
+	CMDLIST->Unmap( pBuffer->pBuffer, 0 );
 
 	if ( iShaderConstantType & SCT_VERTEX )
-		CMLIST->VSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
+		CMDLIST->VSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
 
 	if ( iShaderConstantType & SCT_PIXEL )
-		CMLIST->PSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
+		CMDLIST->PSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
 
 	if ( iShaderConstantType & SCT_GEOMETRY )
-		CMLIST->GSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
+		CMDLIST->GSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
 }
 
 PCONSTANTBUFFER CShaderManager::FindCBuffer( const string & strKey )

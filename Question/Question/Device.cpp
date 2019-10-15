@@ -64,7 +64,7 @@ ID3D12GraphicsCommandList * CDevice::GetCmdList() const
 	return m_pCmdList;
 }
 
-IDXGISwapChain * CDevice::GetSwapChain() const
+IDXGISwapChain3 * CDevice::GetSwapChain() const
 {
 	return m_pSwapChain;
 }
@@ -72,6 +72,16 @@ IDXGISwapChain * CDevice::GetSwapChain() const
 RESOLUTION CDevice::GetResolution() const
 {
 	return m_tRS;
+}
+
+ID3D12DescriptorHeap * CDevice::GetRTVHeap() const
+{
+	return m_pRTView;
+}
+
+ID3D12Fence * CDevice::GetFence() const
+{
+	return m_pFence;
 }
 
 bool CDevice::Init( HWND hWnd, UINT iWidth, UINT iHeight,
@@ -151,7 +161,7 @@ bool CDevice::Init( HWND hWnd, UINT iWidth, UINT iHeight,
 
 	m_iSwapChainIdx = m_pSwapChain->GetCurrentBackBufferIndex();
 
-	// 렌더 타겟 서술자와 깊이-스텐실 서술자 힙을 생성하고 원소의 크기를 저장
+	// 렌더 타겟 서술자 힙을 생성하고 원소의 크기를 저장
 	D3D12_DESCRIPTOR_HEAP_DESC		tDescriptorDesc = {};
 	tDescriptorDesc.NumDescriptors = 2;																																					// 서술자의 개수 = 스왑체인 버퍼의 개수
 	tDescriptorDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_RTV;
@@ -160,6 +170,8 @@ bool CDevice::Init( HWND hWnd, UINT iWidth, UINT iHeight,
 	if ( FAILED( m_pDevice->CreateDescriptorHeap( &tDescriptorDesc, __uuidof( ID3D12DescriptorHeap ), ( void** )&m_pRTView ) ) )			// 렌더 타겟 서술자 힙을 생성																																															
 		return false;
 	m_iRTVSize = m_pDevice->GetDescriptorHandleIncrementSize( D3D12_DESCRIPTOR_HEAP_TYPE_RTV );			// 렌더 타겟 서술자 힙의 원소의 크기를 저장
+
+	// 깊이-스텐실 서술자 힙 생성하고 원소의 크기를 저장
 	tDescriptorDesc.NumDescriptors = 1;
 	tDescriptorDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_DSV;
 	if ( FAILED( m_pDevice->CreateDescriptorHeap( &tDescriptorDesc, __uuidof( ID3D12DescriptorHeap ), ( void** )&m_pDSView ) ) )
