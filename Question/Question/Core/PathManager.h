@@ -1,9 +1,7 @@
 #pragma once
 #include "../Engine.h"
 
-Engine_BEGIN
-
-class Engine_DLL CPathManager
+class  CPathManager
 {
 private:
 	unordered_map<string, wstring>	m_mapPath;
@@ -11,12 +9,10 @@ private:
 
 public:
 	bool Init();
-	bool AddPath(const string& strKey, const TCHAR* pPath,
+	bool AddPath(const string& strKey, const wchar_t* pPath,
 		const string& strBaseKey = BASE_PATH);
 	const wchar_t* FindPath(const string& strKey);
 	const char* FindPathToMultiByte(const string& strKey);
 
 	DECLARE_SINGLE(CPathManager)
 };
-
-Engine_END

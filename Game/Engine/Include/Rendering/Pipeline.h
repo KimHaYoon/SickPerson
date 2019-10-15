@@ -3,13 +3,18 @@
 
 Engine_BEGIN
 
-class Engine_DLL Pipeline : public CObj
+class Engine_DLL CPipeline : public CObj
 {
+	DECLARE_SINGLE( CPipeline )
+
 private:
-	D3D12_INPUT_LAYOUT_DESC* m_pInputLayout;
+	unordered_map<string, ID3D12PipelineState*> m_mapPipline;
+
 public:
-	Pipeline();
-	~Pipeline();
+	bool Init();
+
+public:
+	ID3D12PipelineState*  CreatePipeline( const string& strTag, const class CShader* pShader, const class CRenderState* pRenderState[RST_END], const D3D12_INPUT_LAYOUT_DESC* pInputLayout );
 };
 
 Engine_END

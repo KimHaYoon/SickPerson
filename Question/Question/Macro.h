@@ -35,4 +35,3 @@
 #define	KEYDOWN(key)	CInput::GetInst()->KeyDown(key)
 #define	KEYPUSH(key)	CInput::GetInst()->KeyPush(key)
 #define	KEYUP(key)		CInput::GetInst()->KeyUp(key)
-#define	MOUSE_POS		CInput::GetInst()->GetWorldMousePos()

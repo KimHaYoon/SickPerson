@@ -349,12 +349,12 @@ void CShaderManager::SetInputLayout( const string & strKey )
 	if ( !pInputLayout )
 		return;
 
-	CONTEXT->IASetInputLayout( pInputLayout );
+	//CONTEXT->IASetInputLayout( pInputLayout );
 }
 
-ID3D12InputLayout * CShaderManager::FindInputLayout( const string & strKey )
+D3D12_INPUT_LAYOUT_DESC * CShaderManager::FindInputLayout( const string & strKey )
 {
-	unordered_map<string, ID3D12InputLayout*>::iterator	iter = m_mapLayout.find( strKey );
+	unordered_map<string, D3D12_INPUT_LAYOUT_DESC*>::iterator	iter = m_mapLayout.find( strKey );
 
 	if ( iter == m_mapLayout.end() )
 		return NULL;
@@ -372,7 +372,7 @@ bool CShaderManager::CreateCBuffer( const string & strKey, int iRegister, int iS
 	pBuffer->iRegister = iRegister;
 	pBuffer->iSize = iSize;
 
-	D3D11_BUFFER_DESC	tDesc = {};
+	D3D12_BUFFER_DESC	tDesc = {};
 
 	tDesc.ByteWidth = iSize;
 	tDesc.BindFlags = D3D12_BIND_CONSTANT_BUFFER;
@@ -397,21 +397,21 @@ void CShaderManager::UpdateCBuffer( const string & strKey, void * pData,
 
 	D3D12_MAPPED_SUBRESOURCE	tMap = {};
 
-	CONTEXT->Map( pBuffer->pBuffer, 0, D3D12_MAP_WRITE_DISCARD,
+	CMLIST->Map( pBuffer->pBuffer, 0, D3D12_MAP_WRITE_DISCARD,
 		0, &tMap );
 
 	memcpy( tMap.pData, pData, pBuffer->iSize );
 
-	CONTEXT->Unmap( pBuffer->pBuffer, 0 );
+	CMLIST->Unmap( pBuffer->pBuffer, 0 );
 
 	if ( iShaderConstantType & SCT_VERTEX )
-		CONTEXT->VSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
+		CMLIST->VSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
 
 	if ( iShaderConstantType & SCT_PIXEL )
-		CONTEXT->PSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
+		CMLIST->PSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
 
 	if ( iShaderConstantType & SCT_GEOMETRY )
-		CONTEXT->GSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
+		CMLIST->GSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
 }
 
 PCONSTANTBUFFER CShaderManager::FindCBuffer( const string & strKey )

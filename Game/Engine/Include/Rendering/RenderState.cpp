@@ -2,16 +2,16 @@
 
 Engine_USING
 
-CRenderState::CRenderState() :
-	m_pState( NULL ),
-	m_pOldState( NULL )
+CRenderState::CRenderState() //:
+	//m_pState( NULL ),
+	//m_pOldState( NULL )
 {
 }
 
 CRenderState::~CRenderState()
 {
-	SAFE_RELEASE( m_pOldState );
-	SAFE_RELEASE( m_pState );
+	//SAFE_RELEASE( m_pOldState );
+	//SAFE_RELEASE( m_pState );
 }
 
 RENDERSTATE_TYPE CRenderState::GetType() const

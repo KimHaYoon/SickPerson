@@ -13,6 +13,15 @@
 
 #define	PI	3.141592f
 
+
+// Path Key
+#define	BASE_PATH		"BasePath"
+#define	SHADER_PATH		"ShaderPath"
+#define	TEXTURE_PATH	"TexturePath"
+#define	DATA_PATH		"DataPath"
+#define	SOUND_PATH		"SoundPath"
+#define	MESH_PATH		"MeshPath"
+
 template <typename T>
 void Safe_Release_VecList(T& p)
 {

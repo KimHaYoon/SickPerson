@@ -153,11 +153,64 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Component\Animation.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Component\Animation2D.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Component\AnimationClip.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Component\Arm.cpp" />
+    <ClCompile Include="Component\Camera.cpp" />
+    <ClCompile Include="Component\CharacterPanel.cpp" />
+    <ClCompile Include="Component\Collider.cpp" />
+    <ClCompile Include="Component\ColliderAABB.cpp" />
+    <ClCompile Include="Component\ColliderOBB2D.cpp" />
+    <ClCompile Include="Component\ColliderPoint.cpp" />
+    <ClCompile Include="Component\ColliderRay.cpp" />
+    <ClCompile Include="Component\ColliderRect.cpp" />
+    <ClCompile Include="Component\ColliderSphere.cpp" />
+    <ClCompile Include="Component\Component.cpp" />
+    <ClCompile Include="Component\Decal.cpp" />
+    <ClCompile Include="Component\Frustum.cpp" />
+    <ClCompile Include="Component\LandScape.cpp" />
+    <ClCompile Include="Component\Light.cpp" />
+    <ClCompile Include="Component\LightDir.cpp" />
+    <ClCompile Include="Component\LightPoint.cpp" />
+    <ClCompile Include="Component\LightSpot.cpp" />
+    <ClCompile Include="Component\Material.cpp" />
+    <ClCompile Include="Component\Mouse.cpp" />
+    <ClCompile Include="Component\Navigation.cpp" />
+    <ClCompile Include="Component\Navigation3D.cpp" />
+    <ClCompile Include="Component\ParticleSingle.cpp" />
+    <ClCompile Include="Component\Renderer.cpp" />
+    <ClCompile Include="Component\Renderer2D.cpp" />
+    <ClCompile Include="Component\Script.cpp" />
+    <ClCompile Include="Component\Terrain2D.cpp" />
+    <ClCompile Include="Component\ThirdCamera.cpp" />
+    <ClCompile Include="Component\Tile.cpp" />
+    <ClCompile Include="Component\Transform.cpp" />
+    <ClCompile Include="Component\UI.cpp" />
+    <ClCompile Include="Component\UIButton.cpp" />
+    <ClCompile Include="Component\UIPanel.cpp" />
     <ClCompile Include="Core.cpp" />
+    <ClCompile Include="Core\CollisionManager.cpp" />
+    <ClCompile Include="Core\Input.cpp" />
     <ClCompile Include="Core\PathManager.cpp" />
     <ClCompile Include="Core\Timer.cpp" />
     <ClCompile Include="Core\TimerManager.cpp" />
-    <ClCompile Include="Pipeline.cpp" />
+    <ClCompile Include="GameObject\GameObject.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="EngineMatrix.cpp" />
     <ClCompile Include="EngineVector2.cpp" />
@@ -165,18 +218,80 @@
     <ClCompile Include="EngineVector4.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="Rendering\BlendState.cpp" />
+    <ClCompile Include="Rendering\DepthStencilState.cpp" />
+    <ClCompile Include="Rendering\Pipeline.cpp" />
+    <ClCompile Include="Rendering\RasterizerState.cpp" />
+    <ClCompile Include="Rendering\RenderingTarget.cpp" />
+    <ClCompile Include="Rendering\RenderManager.cpp" />
     <ClCompile Include="Rendering\RenderState.cpp" />
+    <ClCompile Include="Rendering\Root.cpp" />
     <ClCompile Include="Rendering\Shader.cpp" />
     <ClCompile Include="Rendering\ShaderManager.cpp" />
+    <ClCompile Include="Resources\FbxLoader.cpp" />
+    <ClCompile Include="Resources\Mesh.cpp" />
+    <ClCompile Include="Resources\ResourcesManager.cpp" />
+    <ClCompile Include="Resources\Sampler.cpp" />
+    <ClCompile Include="Resources\Texture.cpp" />
     <ClCompile Include="Scene\Layer.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Scene\SceneScript.cpp" />
-    <ClCompile Include="새 폴더\Component.cpp" />
-    <ClCompile Include="새 폴더\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component\Animation.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Component\Animation2D.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Component\AnimationClip.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Component\Arm.h" />
+    <ClInclude Include="Component\Camera.h" />
+    <ClInclude Include="Component\CharacterPanel.h" />
+    <ClInclude Include="Component\Collider.h" />
+    <ClInclude Include="Component\ColliderAABB.h" />
+    <ClInclude Include="Component\ColliderOBB2D.h" />
+    <ClInclude Include="Component\ColliderPoint.h" />
+    <ClInclude Include="Component\ColliderRay.h" />
+    <ClInclude Include="Component\ColliderRect.h" />
+    <ClInclude Include="Component\ColliderSphere.h" />
+    <ClInclude Include="Component\Component.h" />
+    <ClInclude Include="Component\Decal.h" />
+    <ClInclude Include="Component\Frustum.h" />
+    <ClInclude Include="Component\LandScape.h" />
+    <ClInclude Include="Component\Light.h" />
+    <ClInclude Include="Component\LightDir.h" />
+    <ClInclude Include="Component\LightPoint.h" />
+    <ClInclude Include="Component\LightSpot.h" />
+    <ClInclude Include="Component\Material.h" />
+    <ClInclude Include="Component\Mouse.h" />
+    <ClInclude Include="Component\Navigation.h" />
+    <ClInclude Include="Component\Navigation3D.h" />
+    <ClInclude Include="Component\ParticleSingle.h" />
+    <ClInclude Include="Component\Renderer.h" />
+    <ClInclude Include="Component\Renderer2D.h" />
+    <ClInclude Include="Component\Script.h" />
+    <ClInclude Include="Component\Terrain2D.h" />
+    <ClInclude Include="Component\ThirdCamera.h" />
+    <ClInclude Include="Component\Tile.h" />
+    <ClInclude Include="Component\Transform.h" />
+    <ClInclude Include="Component\UI.h" />
+    <ClInclude Include="Component\UIButton.h" />
+    <ClInclude Include="Component\UIPanel.h" />
     <ClInclude Include="Core.h" />
+    <ClInclude Include="Core\CollisionManager.h" />
+    <ClInclude Include="Core\Input.h" />
     <ClInclude Include="Core\PathManager.h" />
     <ClInclude Include="Core\Timer.h" />
     <ClInclude Include="Core\TimerManager.h" />
@@ -188,20 +303,33 @@
     <ClInclude Include="EngineVector3.h" />
     <ClInclude Include="EngineVector4.h" />
     <ClInclude Include="Flag.h" />
+    <ClInclude Include="GameObject\GameObject.h" />
     <ClInclude Include="Macro.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="Rendering\BlendState.h" />
+    <ClInclude Include="Rendering\DepthStencilState.h" />
     <ClInclude Include="Rendering\Pipeline.h" />
+    <ClInclude Include="Rendering\RasterizerState.h" />
+    <ClInclude Include="Rendering\RenderingTarget.h" />
+    <ClInclude Include="Rendering\RenderManager.h" />
     <ClInclude Include="Rendering\RenderState.h" />
+    <ClInclude Include="Rendering\Root.h" />
     <ClInclude Include="Rendering\Shader.h" />
     <ClInclude Include="Rendering\ShaderManager.h" />
+    <ClInclude Include="Resources\DirectXTex.h" />
+    <ClInclude Include="Resources\FbxLoader.h" />
+    <ClInclude Include="Resources\Mesh.h" />
+    <ClInclude Include="Resources\ResourcesManager.h" />
+    <ClInclude Include="Resources\Sampler.h" />
+    <ClInclude Include="Resources\Texture.h" />
     <ClInclude Include="Scene\Layer.h" />
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Scene\SceneScript.h" />
     <ClInclude Include="Types.h" />
-    <ClInclude Include="새 폴더\Component.h" />
-    <ClInclude Include="새 폴더\Transform.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DirectXTex.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

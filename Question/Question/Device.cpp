@@ -1,20 +1,21 @@
 #include "Device.h"
 
-DEFINITION_SINGLE(CDevice)
+
+DEFINITION_SINGLE( CDevice )
 
 CDevice::CDevice() :
-	m_pDevice(NULL),
-	m_pCmdList(NULL),
-	m_pCmdQueue(NULL),
-	m_pCmdAlloc(NULL),
-	m_pSwapChain(NULL),
-	m_pRTView(NULL),
-	m_pDepthBuffer(NULL),
-	m_pDSView(NULL),
-	m_pDebug(NULL),
-	m_pFence(NULL),
-	m_hFenceEvent(NULL),
-	m_pFactory(NULL)
+	m_pDevice( NULL ),
+	m_pCmdList( NULL ),
+	m_pCmdQueue( NULL ),
+	m_pCmdAlloc( NULL ),
+	m_pSwapChain( NULL ),
+	m_pRTView( NULL ),
+	m_pDepthBuffer( NULL ),
+	m_pDSView( NULL ),
+	m_pDebug( NULL ),
+	m_pFence( NULL ),
+	m_hFenceEvent( NULL ),
+	m_pFactory( NULL )
 {
 	//memset(m_fClearColor, 1.f, sizeof(float) * 4);
 	m_fClearColor[0] = 0.f;
@@ -28,7 +29,7 @@ CDevice::CDevice() :
 		m_iFenceValues[i] = 0;
 	}
 
-	memset( &m_tResourceBarrier, 0, sizeof( D3D12_RESOURCE_BARRIER ));
+	memset( &m_tResourceBarrier, 0, sizeof( D3D12_RESOURCE_BARRIER ) );
 }
 
 CDevice::~CDevice()
@@ -37,12 +38,12 @@ CDevice::~CDevice()
 	SAFE_RELEASE( m_pFence );
 
 	SAFE_RELEASE( m_pDebug );
-	SAFE_RELEASE(m_pDepthBuffer);
-	SAFE_RELEASE(m_pDSView);
+	SAFE_RELEASE( m_pDepthBuffer );
+	SAFE_RELEASE( m_pDSView );
 
-	SAFE_RELEASE(m_pRTView);
+	SAFE_RELEASE( m_pRTView );
 	m_pSwapChain->SetFullscreenState( FALSE, NULL );
-	SAFE_RELEASE(m_pSwapChain);
+	SAFE_RELEASE( m_pSwapChain );
 
 	for ( int i = 0; i < 2; ++i )
 		SAFE_RELEASE( m_pRTVBuffer[i] );
@@ -73,8 +74,8 @@ RESOLUTION CDevice::GetResolution() const
 	return m_tRS;
 }
 
-bool CDevice::Init(HWND hWnd, UINT iWidth, UINT iHeight,
-	bool bWindowMode)
+bool CDevice::Init( HWND hWnd, UINT iWidth, UINT iHeight,
+	bool bWindowMode )
 {
 	m_hWnd = hWnd;
 	m_tRS.iWidth = iWidth;
@@ -82,7 +83,7 @@ bool CDevice::Init(HWND hWnd, UINT iWidth, UINT iHeight,
 
 	UINT	iFlag = 0;
 #ifdef _DEBUG
-	HRESULT Debug = D3D12GetDebugInterface(__uuidof(ID3D12Debug), (void **)&m_pDebug );
+	HRESULT Debug = D3D12GetDebugInterface( __uuidof( ID3D12Debug ), ( void ** )&m_pDebug );
 	m_pDebug->EnableDebugLayer();
 #endif // _DEBUG
 
@@ -156,7 +157,7 @@ bool CDevice::Init(HWND hWnd, UINT iWidth, UINT iHeight,
 	tDescriptorDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_RTV;
 	tDescriptorDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
 	tDescriptorDesc.NodeMask = 0;
-	if(FAILED(m_pDevice->CreateDescriptorHeap( &tDescriptorDesc, __uuidof( ID3D12DescriptorHeap ), ( void** )&m_pRTView )))			// 렌더 타겟 서술자 힙을 생성																																															
+	if ( FAILED( m_pDevice->CreateDescriptorHeap( &tDescriptorDesc, __uuidof( ID3D12DescriptorHeap ), ( void** )&m_pRTView ) ) )			// 렌더 타겟 서술자 힙을 생성																																															
 		return false;
 	m_iRTVSize = m_pDevice->GetDescriptorHandleIncrementSize( D3D12_DESCRIPTOR_HEAP_TYPE_RTV );			// 렌더 타겟 서술자 힙의 원소의 크기를 저장
 	tDescriptorDesc.NumDescriptors = 1;
@@ -202,13 +203,28 @@ bool CDevice::Init(HWND hWnd, UINT iWidth, UINT iHeight,
 	tHeapProperties.CreationNodeMask = 1;
 	tHeapProperties.VisibleNodeMask = 1;
 
-	if (FAILED(m_pDevice->CreateCommittedResource(&tHeapProperties, D3D12_HEAP_FLAG_NONE,
-		&tDepthDesc, D3D12_RESOURCE_STATE_DEPTH_WRITE, &tClearValue, __uuidof( ID3D12Resource ), (void** )&m_pDepthBuffer)))
+	if ( FAILED( m_pDevice->CreateCommittedResource( &tHeapProperties, D3D12_HEAP_FLAG_NONE,
+		&tDepthDesc, D3D12_RESOURCE_STATE_DEPTH_WRITE, &tClearValue, __uuidof( ID3D12Resource ), ( void** )&m_pDepthBuffer ) ) )
 		return false;
 
 	// 생성한 깊이버퍼를 이용해서 DepthStencilView를 만들어준다.
 	auto pDSView = m_pDSView->GetCPUDescriptorHandleForHeapStart();
 	m_pDevice->CreateDepthStencilView( m_pDepthBuffer, NULL, pDSView );
+
+	// 위에서 생성한 렌더타겟뷰와 깊이스텐실뷰를 렌더링 파이프라인의
+	// 출력병합기 단계에 묶어준다.
+	//pRTVHeap = m_pRTView->GetCPUDescriptorHandleForHeapStart();
+	//pDSView = m_pDSView->GetCPUDescriptorHandleForHeapStart();
+	//m_pCmdList->OMSetRenderTargets(1, &pRTVHeap, TRUE, &pDSView );
+
+	// 뷰포트 설정. 
+	//D3D12_VIEWPORT	tVP = {};
+
+	//tVP.Width = iWidth;
+	//tVP.Height = iHeight;
+	//tVP.MaxDepth = 1.f;
+
+	//m_pCmdList->	RSSetViewports(1, &tVP);
 
 	return true;
 }
@@ -216,10 +232,11 @@ bool CDevice::Init(HWND hWnd, UINT iWidth, UINT iHeight,
 void CDevice::ClearTarget()
 {
 	auto pRTVHeap = m_pRTView->GetCPUDescriptorHandleForHeapStart();
-	m_pCmdList->ClearRenderTargetView( pRTVHeap, m_fClearColor, 0, NULL);
-	auto pDSVHeap= m_pDSView->GetCPUDescriptorHandleForHeapStart();
+	pRTVHeap.ptr += ( m_iSwapChainIdx * m_iRTVSize );
+	m_pCmdList->ClearRenderTargetView( pRTVHeap, m_fClearColor, 0, NULL );
+	auto pDSVHeap = m_pDSView->GetCPUDescriptorHandleForHeapStart();
 	m_pCmdList->ClearDepthStencilView( pDSVHeap,
-		D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.f, 0, 0 , NULL);
+		D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.f, 0, 0, NULL );
 
 	m_pCmdList->OMSetRenderTargets( 1, &pRTVHeap, TRUE, &pDSVHeap );
 }
@@ -238,20 +255,20 @@ void CDevice::Present()
 
 	WaitForGpuComplete();
 
-	m_pSwapChain->Present(0, 0);
+	m_pSwapChain->Present( 0, 0 );
 
 	m_iSwapChainIdx = m_pSwapChain->GetCurrentBackBufferIndex();
 
-	WaitForGpuComplete();
+	MoveToNextFrame();
 }
 
 Vector2 CDevice::GetWindowDeviceResolution() const
 {
 	RECT	rc;
-	GetClientRect(m_hWnd, &rc);
+	GetClientRect( m_hWnd, &rc );
 	Vector2	v;
-	v.x = m_tRS.iWidth / (float)(rc.right - rc.left);
-	v.y = m_tRS.iHeight / (float)(rc.bottom - rc.top);
+	v.x = m_tRS.iWidth / ( float )( rc.right - rc.left );
+	v.y = m_tRS.iHeight / ( float )( rc.bottom - rc.top );
 
 	return v;
 }
@@ -259,17 +276,17 @@ Vector2 CDevice::GetWindowDeviceResolution() const
 Vector2 CDevice::GetWindowResolution() const
 {
 	RECT	rc;
-	GetClientRect(m_hWnd, &rc);
+	GetClientRect( m_hWnd, &rc );
 
-	return Vector2(rc.right - rc.left, rc.bottom - rc.top);
+	return Vector2( rc.right - rc.left, rc.bottom - rc.top );
 }
 
 void CDevice::CmdReset()
 {
-	HRESULT hResult  = m_pCmdAlloc->Reset();
+	HRESULT hResult = m_pCmdAlloc->Reset();
 	hResult = m_pCmdList->Reset( m_pCmdAlloc, NULL );
 
-	/*현재 렌더 타겟에 대한 프리젠트가 끝나기를 기다린다. 프리젠트가 끝나면 렌더 타겟 버퍼의 상태는 프리젠트 상태 (D3D12_RESOURCE_STATE_PRESENT)에서 
+	/*현재 렌더 타겟에 대한 프리젠트가 끝나기를 기다린다. 프리젠트가 끝나면 렌더 타겟 버퍼의 상태는 프리젠트 상태 (D3D12_RESOURCE_STATE_PRESENT)에서
 	렌더 타겟 상태(D3D12_RESOURCE_STATE_RENDER_TARGET)로 바뀔 것이다.*/
 	m_tResourceBarrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
 	m_tResourceBarrier.Flags = D3D12_RESOURCE_BARRIER_FLAG_NONE;
@@ -303,6 +320,21 @@ void CDevice::WaitForGpuComplete()
 	if ( m_pFence->GetCompletedValue() < nFenceValue )
 	{
 		//펜스의 현재 값이 설정한 값보다 작으면 펜스의 현재 값이 설정한 값이 될 때까지 기다린다. 
+		hResult = m_pFence->SetEventOnCompletion( nFenceValue, m_hFenceEvent );
+		::WaitForSingleObject( m_hFenceEvent, INFINITE );
+	}
+}
+
+void CDevice::MoveToNextFrame()
+{
+	m_iSwapChainIdx = m_pSwapChain->GetCurrentBackBufferIndex();
+	//m_nSwapChainBufferIndex = (m_nSwapChainBufferIndex + 1) % m_nSwapChainBuffers;
+
+	UINT64 nFenceValue = ++m_iFenceValues[m_iSwapChainIdx];
+	HRESULT hResult = m_pCmdQueue->Signal( m_pFence, nFenceValue );
+
+	if ( m_pFence->GetCompletedValue() < nFenceValue )
+	{
 		hResult = m_pFence->SetEventOnCompletion( nFenceValue, m_hFenceEvent );
 		::WaitForSingleObject( m_hFenceEvent, INFINITE );
 	}

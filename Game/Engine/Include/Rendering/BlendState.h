@@ -13,11 +13,13 @@ private:
 	~CBlendState();
 
 private:
-	vector< D3D12_RENDER_TARGET_BLEND_DESC>	m_vecDesc;
+	vector< D3D12_RENDER_TARGET_BLEND_DESC >	m_vecDesc;
 	float	m_fBlendFactor[4];
 	UINT	m_iSampleMask;
 	float	m_fOldBlendFactor[4];
 	UINT	m_iOldSampleMask;
+
+	D3D12_BLEND_DESC		m_tDesc;
 
 public:
 	bool AddDesc( bool bEnable = true, D3D12_BLEND eSrc = D3D12_BLEND_SRC_ALPHA,
@@ -29,9 +31,11 @@ public:
 	void AddDesc( const D3D12_RENDER_TARGET_BLEND_DESC& tDesc );
 	bool CreateBlendState( const string& strKey, bool bAlphaCoverage, bool bIndependent );
 
-public:
-	virtual void SetState();
-	virtual void ResetState();
+	D3D12_BLEND_DESC	 GetBlendDesc() const;
+
+//public:
+//	virtual void SetState();
+//	virtual void ResetState();
 };
 
 Engine_END

@@ -1,7 +1,5 @@
 #include "PathManager.h"
 
-Engine_USING
-
 DEFINITION_SINGLE(CPathManager)
 
 CPathManager::CPathManager()
@@ -15,14 +13,14 @@ CPathManager::~CPathManager()
 
 bool CPathManager::Init()
 {
-	TCHAR	strPath[MAX_PATH] = {};
-	GetModuleFileName(NULL, strPath, MAX_PATH);
+	wchar_t 	strPath[MAX_PATH] = {};
+	GetModuleFileNameW(NULL, strPath, MAX_PATH);
 
-	for (int i = lstrlen(strPath) - 1; i >= 0; --i)
+	for (int i = lstrlenW(strPath) - 1; i >= 0; --i)
 	{
 		if (strPath[i] == '\\' || strPath[i] == '/')
 		{
-			memset(&strPath[i + 1], 0, sizeof(TCHAR) * (MAX_PATH - (i + 1)));
+			memset(&strPath[i + 1], 0, sizeof( wchar_t ) * (MAX_PATH - (i + 1)));
 			break;
 		}
 	}
@@ -38,7 +36,7 @@ bool CPathManager::Init()
 	return true;
 }
 
-bool CPathManager::AddPath(const string & strKey, const TCHAR * pPath,
+bool CPathManager::AddPath(const string & strKey, const wchar_t * pPath,
 	const string & strBaseKey)
 {
 	if (FindPath(strKey))
@@ -76,7 +74,7 @@ const char * CPathManager::FindPathToMultiByte(const string & strKey)
 		return NULL;
 
 	char	strPath[MAX_PATH] = {};
-	WideCharToMultiByte(CP_ACP, 0, pPath, -1, strPath, lstrlen(pPath),
+	WideCharToMultiByte( CP_ACP, 0, pPath, -1, strPath, lstrlenW( pPath ),
 		NULL, NULL);
 
 	m_strFindPath = strPath;

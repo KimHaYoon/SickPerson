@@ -16,7 +16,7 @@ public:
 	HWND GetWindowHandle()	const;
 
 public:
-	bool Init( HINSTANCE hInst, const TCHAR * pTitle, const  TCHAR * pClass, int iIconID,
+	bool Init( HINSTANCE hInst, const wchar_t * pTitle, const  wchar_t * pClass, int iIconID,
 		UINT iWidth, UINT iHeight, bool bWindowMode, bool bOnMouseRenderer = true );
 	bool Init( HINSTANCE hInst, HWND hWnd, UINT iWidth,
 		UINT iHeight, bool bWindowMode, bool bOnMouseRenderer = true );
@@ -32,8 +32,8 @@ private:
 	void Render( float fTime );
 
 private:
-	ATOM WindowRegisterClass( const TCHAR* pClass, int iIconID );
-	BOOL InitWindow( const TCHAR* pClass, const TCHAR* pTitle, UINT iWidth, UINT iHeight );
+	ATOM WindowRegisterClass( const wchar_t* pClass, int iIconID );
+	BOOL InitWindow( const wchar_t* pClass, const wchar_t* pTitle, UINT iWidth, UINT iHeight );
 
 public:
 	static LRESULT CALLBACK WndProc( HWND, UINT, WPARAM, LPARAM );

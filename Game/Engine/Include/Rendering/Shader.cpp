@@ -37,9 +37,38 @@ int CShader::GetShaderByteCodeLength()
 	return m_pVSBlob->GetBufferSize();
 }
 
+D3D12_SHADER_BYTECODE CShader::GetVertexShader() const
+{
+	return m_tVSByteCode;
+}
+
+D3D12_SHADER_BYTECODE CShader::GetPixelShader() const
+{
+	return m_tPSByteCode;
+}
+
+D3D12_SHADER_BYTECODE CShader::GetGeoShader() const
+{
+	return m_tGSByteCode;
+}
+
 bool CShader::LoadShader( const string & strKey, TCHAR * pFileName, char * pEntry[ST_MAX], const string & strPathKey )
 {
-	return false;
+	m_strKey = strKey;
+
+	if ( !LoadVertexShader( strKey, pFileName, pEntry[ST_VERTEX], strPathKey ) )
+		return false;
+
+	if ( !LoadPixelShader( strKey, pFileName, pEntry[ST_PIXEL], strPathKey ) )
+		return false;
+
+	if ( pEntry[ST_GEOMETRY] )
+	{
+		if ( !LoadGeometryShader( strKey, pFileName, pEntry[ST_GEOMETRY],	strPathKey ) )
+			return false;
+	}
+
+	return true;
 }
 
 bool CShader::LoadVertexShader( const string & strKey, TCHAR * pFileName, char * pEntry, const string & strPathKey )
@@ -74,14 +103,66 @@ bool CShader::LoadVertexShader( const string & strKey, TCHAR * pFileName, char *
 
 bool CShader::LoadPixelShader( const string & strKey, TCHAR * pFileName, char * pEntry, const string & strPathKey )
 {
-	return false;
+	UINT	iFlag = 0;
+
+#ifdef _DEBUG
+	iFlag = D3DCOMPILE_DEBUG;
+#endif // _DEBUG
+
+	const wchar_t* pPath = GET_SINGLE( CPathManager )->FindPath( strPathKey );
+	wstring	strFile;
+
+	if ( pPath )
+		strFile = pPath;
+
+	strFile += pFileName;
+
+	char*	pTarget = "ps_5_0";
+	ID3DBlob*	pErr = NULL;
+
+	if ( FAILED( D3DCompileFromFile( strFile.c_str(), NULL,
+		D3D_COMPILE_STANDARD_FILE_INCLUDE, pEntry, pTarget, iFlag,
+		0, &m_pPSBlob, &pErr ) ) )
+		return false;
+
+	m_tPSByteCode.BytecodeLength = m_pPSBlob->GetBufferSize();
+	m_tPSByteCode.pShaderBytecode = m_pPSBlob->GetBufferPointer();
+
+	return true;
 }
 
 bool CShader::LoadGeometryShader( const string & strKey, TCHAR * pFileName, char * pEntry, const string & strPathKey )
 {
-	return false;
+	UINT	iFlag = 0;
+
+#ifdef _DEBUG
+	iFlag = D3DCOMPILE_DEBUG;
+#endif // _DEBUG
+
+	const wchar_t* pPath = GET_SINGLE( CPathManager )->FindPath( strPathKey );
+	wstring	strFile;
+
+	if ( pPath )
+		strFile = pPath;
+
+	strFile += pFileName;
+
+	char*	pTarget = "gs_5_0";
+	ID3DBlob*	pErr = NULL;
+
+	if ( FAILED( D3DCompileFromFile( strFile.c_str(), NULL,
+		D3D_COMPILE_STANDARD_FILE_INCLUDE, pEntry, pTarget, iFlag,
+		0, &m_pGSBlob, &pErr ) ) )
+		return false;
+
+	m_tGSByteCode.BytecodeLength = m_pGSBlob->GetBufferSize();
+	m_tGSByteCode.pShaderBytecode = m_pGSBlob->GetBufferPointer();
+
+	return true;
 }
 
-void CShader::SetShader()
+void CShader::SetShader( ID3D12PipelineState * pPipeline )
 {
+	
+
 }

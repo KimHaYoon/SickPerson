@@ -2,6 +2,7 @@
 #include "Device.h"
 #include "Core/Timer.h"
 #include "Core/TimerManager.h"
+#include "Core/PathManager.h"
 
 DEFINITION_SINGLE( CCore )
 
@@ -20,6 +21,7 @@ CCore::CCore()
 CCore::~CCore()
 {
 	DESTROY_SINGLE( CTimerManager );
+	DESTROY_SINGLE( CPathManager );
 	DESTROY_SINGLE( CDevice );
 #ifdef _DEBUG
 	//FreeConsole();
@@ -32,7 +34,7 @@ HWND CCore::GetWindowHandle() const
 	return m_hWnd;
 }
 
-bool CCore::Init( HINSTANCE hInst, const TCHAR * pTitle, const TCHAR * pClass, int iIconID,
+bool CCore::Init( HINSTANCE hInst, const wchar_t * pTitle, const wchar_t * pClass, int iIconID,
 	UINT iWidth, UINT iHeight, bool bWindowMode, bool bOnMouseRenderer )
 {
 	m_hInst = hInst;
@@ -58,8 +60,8 @@ bool CCore::Init( HINSTANCE hInst, HWND hWnd, UINT iWidth,
 	//if ( !GET_SINGLE( CScheduler )->Init() )
 	//	return false;
 
-	//if ( !GET_SINGLE( CPathManager )->Init() )
-	//	return false;
+	if ( !GET_SINGLE( CPathManager )->Init() )
+		return false;
 
 	//// Mesh 부분이 난이도가 높다
 	//if ( !GET_SINGLE( CResourcesManager )->Init() )
@@ -155,7 +157,7 @@ void CCore::Render( float fTime )
 	GET_SINGLE( CDevice )->Present();
 }
 
-ATOM CCore::WindowRegisterClass( const TCHAR * pClass, int iIconID )
+ATOM CCore::WindowRegisterClass( const wchar_t * pClass, int iIconID )
 {
 	WNDCLASSEXW wcex;
 
@@ -170,15 +172,15 @@ ATOM CCore::WindowRegisterClass( const TCHAR * pClass, int iIconID )
 	wcex.hCursor = LoadCursor( nullptr, IDC_ARROW );
 	wcex.hbrBackground = ( HBRUSH )( COLOR_WINDOW + 1 );
 	wcex.lpszMenuName = NULL;// MAKEINTRESOURCEW(IDC_MY170825);
-	wcex.lpszClassName = pClass;
+	wcex.lpszClassName = ( LPWSTR )pClass;
 	wcex.hIconSm = LoadIcon( wcex.hInstance, MAKEINTRESOURCE( iIconID ) );
 
 	return RegisterClassExW( &wcex );
 }
 
-BOOL CCore::InitWindow( const TCHAR * pClass, const TCHAR * pTitle, UINT iWidth, UINT iHeight )
+BOOL CCore::InitWindow( const wchar_t * pClass, const wchar_t * pTitle, UINT iWidth, UINT iHeight )
 {
-	HWND hWnd = CreateWindowW( pClass, pTitle, WS_OVERLAPPEDWINDOW,
+	HWND hWnd = CreateWindowW( (LPWSTR)pClass, ( LPWSTR )pTitle, WS_OVERLAPPEDWINDOW,
 		300, 0, iWidth, iHeight, nullptr, nullptr, m_hInst, nullptr );
 
 	if ( !hWnd )

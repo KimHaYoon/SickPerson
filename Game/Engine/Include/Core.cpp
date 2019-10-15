@@ -2,6 +2,8 @@
 #include "Device.h"
 #include "Core/Timer.h"
 #include "Core/TimerManager.h"
+#include "Rendering/Pipeline.h"
+#include "Rendering/Root.h"
 
 Engine_USING
 
@@ -70,6 +72,12 @@ bool CCore::Init( HINSTANCE hInst, HWND hWnd, UINT iWidth,
 
 	//if ( !GET_SINGLE( CRenderManager )->Init() )
 	//	return false;
+
+	if ( !GET_SINGLE(CRoot)->Init() )
+		return false;
+
+	if ( !GET_SINGLE( CPipeline )->Init() )
+		return false;
 
 	//if ( !GET_SINGLE( CInput )->Init( m_hWnd, bOnMouseRenderer ) )
 	//	return false;
