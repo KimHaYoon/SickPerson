@@ -40,3 +40,14 @@ D3D12_RESOURCE_STATE_VIDEO_PROCESS_READ	리소스는 비디오 처리 중에 비
 D3D12_RESOURCE_STATE_VIDEO_PROCESS_WRITE	리소스는 비디오 처리 중에 비디오 데이터를 쓰는 데 사용됩니다. 즉, 비디오 인코딩 (압축)과 같은 처리 동작에서 자원이 목적지로서 사용된다.
 D3D12_RESOURCE_STATE_VIDEO_ENCODE_READ	인코딩 작업에서 리소스가 소스로 사용됩니다. 이 상태는 모션 추정의 입력 및 참조에 사용됩니다.
 D3D12_RESOURCE_STATE_VIDEO_ENCODE_WRITE	이 리소스는 인코딩 작업에서 대상으로 사용됩니다. 이 상태는 모션 벡터 힙 해결 작업의 대상 텍스처에 사용됩니다.
+
+루트서명 슬롯의 유형
+D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE	슬롯은 설명자 테이블 용입니다.
+D3D12_ROOT_PARAMETER_TYPE_32BIT_CONSTANTS	슬롯은 루트 상수를위한 것입니다.			-> 루트상수 : 32비트 상수당 DWORD 하나.
+D3D12_ROOT_PARAMETER_TYPE_CBV	슬롯은 CBV (constant-buffer view)를위한 것입니다.
+D3D12_ROOT_PARAMETER_TYPE_SRV	슬롯은 SRV (셰이더 리소스보기) 용입니다.
+D3D12_ROOT_PARAMETER_TYPE_UAV	슬롯은 UAV (순서없는 액세스보기) 용입니다.
+
+
+Renderer -> Mesh, Pipeline
+						-> 파이프라인은 출력직전에 쓰겠다고 지정하면됨

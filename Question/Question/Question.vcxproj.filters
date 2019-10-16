@@ -64,6 +64,9 @@
     <Filter Include="01. Device\01. RootSignature">
       <UniqueIdentifier>{ad4e529c-ff2b-475c-b35d-683ec1abe50f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05. Rendering\03. PipelineState">
+      <UniqueIdentifier>{4aa832a6-ac9c-4df3-8706-77f76eb80a68}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Flag.h">
@@ -189,6 +192,12 @@
     <ClInclude Include="RootSignature.h">
       <Filter>01. Device\01. RootSignature</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\PipelineState.h">
+      <Filter>05. Rendering\03. PipelineState</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\PipelineStateManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp">
@@ -298,6 +307,12 @@
     </ClCompile>
     <ClCompile Include="RootSignature.cpp">
       <Filter>01. Device\01. RootSignature</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\PipelineState.cpp">
+      <Filter>05. Rendering\03. PipelineState</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\PipelineStateManager.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

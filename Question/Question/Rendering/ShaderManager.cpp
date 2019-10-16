@@ -69,8 +69,8 @@ bool CShaderManager::Init()
 	CreateInputLayout( "VertexTex", STANDARD_TEX_SHADER );
 
 	CreateCBuffer( "Transform", 0, sizeof( TRANSFORMCBUFFER ) );
-	CreateCBuffer( "Material", 1, sizeof( MATERIAL ) );
-	CreateCBuffer( "Light", 2, sizeof( LIGHT ) );
+	//CreateCBuffer( "Material", 1, sizeof( MATERIAL ) );
+	//CreateCBuffer( "Light", 2, sizeof( LIGHT ) );
 
 	return true;
 }
@@ -183,7 +183,8 @@ bool CShaderManager::CreateCBuffer( const string & strKey, int iRegister, int iS
 	pBuffer->iSize = (iSize + 255) & ~255;
 	pBuffer->pBuffer = CreateBufferResource( NULL, pBuffer->iSize, D3D12_HEAP_TYPE_UPLOAD, D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER, NULL );
 	
-	m_mapCBuffer[strKey] = pBuffer;
+	//[strKey] = pBuffer;
+	m_mapCBuffer.insert( { strKey,pBuffer } );
 
 	return true;
 }

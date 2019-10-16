@@ -1,5 +1,6 @@
 #include "Core.h"
 #include "Device.h"
+#include "RootSignature.h"
 #include "Core/Timer.h"
 #include "Core/TimerManager.h"
 #include "Core/PathManager.h"
@@ -15,7 +16,7 @@ bool CCore::m_bLoop = true;
 CCore::CCore()
 {
 	_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
-	_CrtSetBreakAlloc( 432 );
+	//_CrtSetBreakAlloc( 432 );
 #ifdef _DEBUG
 	//AllocConsole();
 #endif
@@ -29,7 +30,8 @@ CCore::~CCore()
 	DESTROY_SINGLE( CResourcesManager );
 	DESTROY_SINGLE( CInput );
 	DESTROY_SINGLE( CTimerManager );
-	DESTROY_SINGLE( CPathManager );
+	DESTROY_SINGLE( CPathManager );	
+	DESTROY_SINGLE( CRootSignature );
 	DESTROY_SINGLE( CDevice );
 #ifdef _DEBUG
 	//FreeConsole();
@@ -46,7 +48,7 @@ bool CCore::Init( HINSTANCE hInst, const wchar_t * pTitle, const wchar_t * pClas
 	UINT iWidth, UINT iHeight, bool bWindowMode, bool bOnMouseRenderer )
 {
 	m_hInst = hInst;
-
+	
 	WindowRegisterClass( pClass, iIconID );
 
 	InitWindow( pClass, pTitle, iWidth, iHeight );
@@ -63,6 +65,9 @@ bool CCore::Init( HINSTANCE hInst, HWND hWnd, UINT iWidth,
 	m_hWnd = hWnd;
 
 	if ( !GET_SINGLE( CDevice )->Init( m_hWnd, iWidth, iHeight, bWindowMode ) )
+		return false;
+
+	if ( !GET_SINGLE( CRootSignature )->Init() )
 		return false;
 
 	//if ( !GET_SINGLE( CScheduler )->Init() )

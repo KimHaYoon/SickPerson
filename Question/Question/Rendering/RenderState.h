@@ -8,7 +8,7 @@ protected:
 
 protected:
 	CRenderState();
-	~CRenderState();
+	virtual ~CRenderState();
 
 protected:
 	//ID3D12DeviceChild*		m_pState;

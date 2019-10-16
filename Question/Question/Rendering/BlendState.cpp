@@ -4,6 +4,7 @@
 CBlendState::CBlendState()
 {
 	m_eType = RST_BLEND;
+	m_tDesc = {};
 }
 
 CBlendState::~CBlendState()

@@ -1,9 +1,9 @@
 #include "RenderState.h"
 
-CRenderState::CRenderState() //:
-	//m_pState( NULL ),
-	//m_pOldState( NULL )
+
+CRenderState::CRenderState()
 {
+	int i = 0;
 }
 
 CRenderState::~CRenderState()

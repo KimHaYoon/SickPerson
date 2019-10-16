@@ -1,0 +1,78 @@
+﻿  Camera.cpp
+d:\00.학교\졸업작품\sickperson\question\question\component\camera.cpp(123): warning C4244: '인수': 'const UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\component\camera.cpp(122): warning C4244: '인수': 'const UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Component.cpp
+  Frustum.cpp
+  Light.cpp
+  LightDir.cpp
+  LightPoint.cpp
+  LightSpot.cpp
+  Transform.cpp
+  Core.cpp
+d:\00.학교\졸업작품\sickperson\question\question\core.cpp(208): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+  Input.cpp
+  PathManager.cpp
+  Timer.cpp
+  TimerManager.cpp
+  Device.cpp
+d:\00.학교\졸업작품\sickperson\question\question\device.cpp(209): warning C4244: '=': 'float'에서 'UINT8'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\device.cpp(313): warning C4244: '=': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\device.cpp(314): warning C4244: '=': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\device.cpp(319): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+  EngineMatrix.cpp
+  EngineVector2.cpp
+d:\00.학교\졸업작품\sickperson\question\question\enginevector2.cpp(28): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector2.cpp(29): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector2.cpp(40): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector2.cpp(41): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector2.cpp(75): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector2.cpp(76): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  EngineVector3.cpp
+d:\00.학교\졸업작품\sickperson\question\question\enginevector3.cpp(40): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector3.cpp(41): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector3.cpp(42): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector3.cpp(54): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector3.cpp(55): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector3.cpp(56): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector3.cpp(94): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector3.cpp(95): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector3.cpp(96): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  EngineVector4.cpp
+d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(41): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(42): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(43): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(44): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(57): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(58): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(59): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(60): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(101): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(102): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(103): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(104): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  GameObject.cpp
+  Obj.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  BlendState.cpp
+  DepthStencilState.cpp
+  PipelineState.cpp
+  RasterizerState.cpp
+  RenderManager.cpp
+  RenderState.cpp
+  Shader.cpp
+  ShaderManager.cpp
+  Mesh.cpp
+d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.cpp(92): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  ResourcesManager.cpp
+  Sampler.cpp
+  RootSignature.cpp
+d:\00.학교\졸업작품\sickperson\question\question\rootsignature.cpp(23): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  Layer.cpp
+d:\00.학교\졸업작품\sickperson\question\question\scene\layer.cpp(246): warning C4018: '<=': signed 또는 unsigned가 일치하지 않습니다.
+  Scene.cpp
+  SceneManager.cpp
+  SceneScript.cpp
+  main.cpp
+  코드를 생성하고 있습니다...
+  Question.vcxproj -> D:\00.학교\졸업작품\SickPerson\Question\Debug\Question.exe

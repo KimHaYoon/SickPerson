@@ -47,5 +47,5 @@ public:
 		const string& strPathKey = SHADER_PATH );
 
 public:
-	void SetShader();
+	void SetShader( D3D12_GRAPHICS_PIPELINE_STATE_DESC tDesc );
 };

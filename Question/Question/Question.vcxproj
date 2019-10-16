@@ -152,6 +152,8 @@
     <ClInclude Include="Obj.h" />
     <ClInclude Include="Rendering\BlendState.h" />
     <ClInclude Include="Rendering\DepthStencilState.h" />
+    <ClInclude Include="Rendering\PipelineState.h" />
+    <ClInclude Include="Rendering\PipelineStateManager.h" />
     <ClInclude Include="Rendering\RasterizerState.h" />
     <ClInclude Include="Rendering\RenderManager.h" />
     <ClInclude Include="Rendering\RenderState.h" />
@@ -192,6 +194,8 @@
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="Rendering\BlendState.cpp" />
     <ClCompile Include="Rendering\DepthStencilState.cpp" />
+    <ClCompile Include="Rendering\PipelineState.cpp" />
+    <ClCompile Include="Rendering\PipelineStateManager.cpp" />
     <ClCompile Include="Rendering\RasterizerState.cpp" />
     <ClCompile Include="Rendering\RenderManager.cpp" />
     <ClCompile Include="Rendering\RenderState.cpp" />

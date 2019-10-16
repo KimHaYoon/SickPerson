@@ -10,17 +10,23 @@ CRootSignature::CRootSignature()
 
 CRootSignature::~CRootSignature()
 {
+	SAFE_DELETE_ARRAY( m_pRootParameter );
+	SAFE_RELEASE( m_pRootSignature );
 }
 
 bool CRootSignature::Init()
 {
+	CreateRootParameter( D3D12_ROOT_PARAMETER_TYPE_CBV, 1, 0, D3D12_SHADER_VISIBILITY_ALL );
 
 	if ( !m_vecRootParameter.empty() )
 	{
 		m_pRootParameter = new D3D12_ROOT_PARAMETER[m_vecRootParameter.size()];
 		for ( int i = 0; i < m_vecRootParameter.size(); ++i )
-			m_pRootParameter[i] = m_pRootParameter[i];
+			m_pRootParameter[i] = m_vecRootParameter[i];
 	}
+
+	CreateRootSignature();
+
 	return true;
 }
 

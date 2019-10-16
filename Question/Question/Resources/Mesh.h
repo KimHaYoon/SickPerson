@@ -32,12 +32,12 @@ private:
 
 private:
 	PVERTEXBUFFER	m_pVB;
-	PINDEXBUFFER		m_pIB;
+	PINDEXBUFFER	m_pIB;
 
 	PVERTEXBUFFER	m_pUploadVB;
-	PINDEXBUFFER		m_pUploadIB;
+	PINDEXBUFFER	m_pUploadIB;
 
-	string				m_strKey;
+	string			m_strKey;
 	Vector3			m_vLength;
 	Vector3			m_vMin;
 	Vector3			m_vMax;

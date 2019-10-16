@@ -160,13 +160,9 @@ bool CShader::LoadGeometryShader( const string & strKey, wchar_t * pFileName, ch
 	return true;
 }
 
-void CShader::SetShader()
+void CShader::SetShader( D3D12_GRAPHICS_PIPELINE_STATE_DESC tDesc )
 {
-	D3D12_GRAPHICS_PIPELINE_STATE_DESC	tDesc = {};
-	tDesc.pRootSignature = ROOTSIGNATURE;
 	tDesc.VS = m_tVSByteCode;
 	tDesc.PS = m_tPSByteCode;
 	tDesc.GS = m_tGSByteCode;
-	//tDesc.RasterizerState = 
-
 }

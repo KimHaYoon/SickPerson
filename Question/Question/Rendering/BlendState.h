@@ -9,7 +9,7 @@ private:
 
 private:
 	CBlendState();
-	~CBlendState();
+	virtual ~CBlendState();
 
 private:
 	vector< D3D12_RENDER_TARGET_BLEND_DESC >	m_vecDesc;

@@ -36,7 +36,7 @@ CDevice::~CDevice()
 {
 	CloseHandle( m_hFenceEvent );
 	SAFE_RELEASE( m_pFence );
-
+	
 	SAFE_RELEASE( m_pDebug );
 	SAFE_RELEASE( m_pDepthBuffer );
 	SAFE_RELEASE( m_pDSView );
@@ -238,6 +238,7 @@ bool CDevice::Init( HWND hWnd, UINT iWidth, UINT iHeight,
 
 	//m_pCmdList->	RSSetViewports(1, &tVP);
 
+	m_pCmdList->SetName( L"CommandList" );
 	return true;
 }
 
