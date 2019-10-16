@@ -1,6 +1,7 @@
 #include "Shader.h"
 #include "../Core/PathManager.h"
 #include "../Device.h"
+#include "../RootSignature.h"
 
 CShader::CShader():
 	m_pVSBlob( NULL ),
@@ -159,8 +160,13 @@ bool CShader::LoadGeometryShader( const string & strKey, wchar_t * pFileName, ch
 	return true;
 }
 
-void CShader::SetShader( ID3D12PipelineState * pPipeline )
+void CShader::SetShader()
 {
-	
+	D3D12_GRAPHICS_PIPELINE_STATE_DESC	tDesc = {};
+	tDesc.pRootSignature = ROOTSIGNATURE;
+	tDesc.VS = m_tVSByteCode;
+	tDesc.PS = m_tPSByteCode;
+	tDesc.GS = m_tGSByteCode;
+	//tDesc.RasterizerState = 
 
 }

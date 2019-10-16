@@ -20,13 +20,12 @@ CShaderManager::~CShaderManager()
 	}
 
 	Safe_Delete_Map( m_mapCBuffer );
-	Safe_Release_Map( m_mapLayout );
 	Safe_Release_Map( m_mapShader );
 }
 
 bool CShaderManager::Init()
 {
-	char*	pEntry[ST_MAX] = { "StandardColorVS", "StandardColorPS", NULL };
+	char*	pEntry[ST_MAX] = { "StandardColorVS", "StandardColorPS" };
 	CShader*	pShader = LoadShader( STANDARD_COLOR_SHADER, L"Standard.fx",
 		pEntry );
 
@@ -34,7 +33,6 @@ bool CShaderManager::Init()
 
 	pEntry[ST_VERTEX] = "StandardColorNormalVS";
 	pEntry[ST_PIXEL] = "StandardColorNormalPS";
-	pEntry[ST_GEOMETRY] = NULL;
 	pShader = LoadShader( STANDARD_COLOR_NORMAL_SHADER, L"Standard.fx",
 		pEntry );
 
@@ -42,133 +40,10 @@ bool CShaderManager::Init()
 
 	pEntry[ST_VERTEX] = "StandardTexVS";
 	pEntry[ST_PIXEL] = "StandardTexPS";
-	pEntry[ST_GEOMETRY] = NULL;
 	pShader = LoadShader( STANDARD_TEX_SHADER, L"Standard.fx",
 		pEntry );
 
 	SAFE_RELEASE( pShader );
-
-	pEntry[ST_VERTEX] = "StandardTexNormalVS";
-	pEntry[ST_PIXEL] = "StandardTexNormalPS";
-	pEntry[ST_GEOMETRY] = NULL;
-	pShader = LoadShader( STANDARD_TEX_NORMAL_SHADER, L"Standard.fx",
-		pEntry );
-
-	SAFE_RELEASE( pShader );
-
-	pEntry[ST_VERTEX] = "ColliderVS";
-	pEntry[ST_PIXEL] = "ColliderPS";
-	pEntry[ST_GEOMETRY] = NULL;
-	pShader = LoadShader( COLLIDER_SHADER, L"Collider.fx",
-		pEntry );
-
-	SAFE_RELEASE( pShader );
-
-	pEntry[ST_VERTEX] = "UIVS";
-	pEntry[ST_PIXEL] = "UIPS";
-	pEntry[ST_GEOMETRY] = NULL;
-	pShader = LoadShader( UI_SHADER, L"UI.fx",
-		pEntry );
-
-	SAFE_RELEASE( pShader );
-
-	pEntry[ST_VERTEX] = "UIVS";
-	pEntry[ST_PIXEL] = "UIColorPS";
-	pEntry[ST_GEOMETRY] = NULL;
-	pShader = LoadShader( UI_COLOR_SHADER, L"UI.fx",
-		pEntry );
-
-	SAFE_RELEASE( pShader );
-
-	pEntry[ST_VERTEX] = "UIVS";
-	pEntry[ST_PIXEL] = "UIMultiTexturePS";
-	pEntry[ST_GEOMETRY] = NULL;
-	pShader = LoadShader( UI_MULTITEXTURE_SHADER, L"UI.fx",
-		pEntry );
-
-	SAFE_RELEASE( pShader );
-
-	pEntry[ST_VERTEX] = "SkyVS";
-	pEntry[ST_PIXEL] = "SkyPS";
-	pEntry[ST_GEOMETRY] = NULL;
-	pShader = LoadShader( SKY_SHADER, L"Sky.fx",
-		pEntry );
-
-	SAFE_RELEASE( pShader );
-
-	pEntry[ST_VERTEX] = "EffectVS";
-	pEntry[ST_PIXEL] = "EffectPS";
-	pEntry[ST_GEOMETRY] = "EffectGS";
-	pShader = LoadShader( EFFECT_SHADER, L"Effect.fx",
-		pEntry );
-
-	SAFE_RELEASE( pShader );
-
-	pEntry[ST_VERTEX] = "LandScapeVS";
-	pEntry[ST_PIXEL] = "LandScapePS";
-	pEntry[ST_GEOMETRY] = NULL;
-	pShader = LoadShader( LANDSCAPE_SHADER, L"LandScape.fx",
-		pEntry );
-
-	SAFE_RELEASE( pShader );
-
-	pEntry[ST_VERTEX] = "StandardBumpVS";
-	pEntry[ST_PIXEL] = "StandardBumpPS";
-	pEntry[ST_GEOMETRY] = NULL;
-	pShader = LoadShader( STANDARD_BUMP_SHADER, L"Standard.fx",
-		pEntry );
-
-	SAFE_RELEASE( pShader );
-
-	pEntry[ST_VERTEX] = "StandardTexNormalAnimVS";
-	pEntry[ST_PIXEL] = "StandardTexNormalPS";
-	pEntry[ST_GEOMETRY] = NULL;
-	pShader = LoadShader( STANDARD_TEX_NORMAL_ANIM_SHADER, L"Standard.fx",
-		pEntry );
-
-	SAFE_RELEASE( pShader );
-
-	pEntry[ST_VERTEX] = "StandardBumpAnimVS";
-	pEntry[ST_PIXEL] = "StandardBumpPS";
-	pEntry[ST_GEOMETRY] = NULL;
-	pShader = LoadShader( STANDARD_BUMP_ANIM_SHADER, L"Standard.fx",
-		pEntry );
-
-	SAFE_RELEASE( pShader );
-
-	pEntry[ST_VERTEX] = "StandardBumpAnimVS";
-	pEntry[ST_PIXEL] = "StandardBumpForwardPS";
-	pEntry[ST_GEOMETRY] = NULL;
-	pShader = LoadShader( STANDARD_BUMP_ANIM_FORWARD_SHADER, L"Standard.fx",
-		pEntry );
-
-	SAFE_RELEASE( pShader );
-
-	pEntry[ST_VERTEX] = "LightVS";
-	pEntry[ST_PIXEL] = "LightAccPS";
-	pEntry[ST_GEOMETRY] = NULL;
-	pShader = LoadShader( LIGHT_ACC_SHADER, L"Light.fx", pEntry );
-
-	SAFE_RELEASE( pShader );
-
-	pEntry[ST_VERTEX] = "LightVS";
-	pEntry[ST_PIXEL] = "LightBlendPS";
-	pEntry[ST_GEOMETRY] = NULL;
-	pShader = LoadShader( LIGHT_BLEND_SHADER, L"Light.fx", pEntry );
-
-	SAFE_RELEASE( pShader );
-
-	pEntry[ST_VERTEX] = "LightVS";
-	pEntry[ST_PIXEL] = "DeferredPS";
-	pEntry[ST_GEOMETRY] = NULL;
-	pShader = LoadShader( DEFERRED_SHADER, L"Light.fx", pEntry );
-
-	SAFE_RELEASE( pShader );
-
-	AddInputDesc( "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
-		12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-
-	CreateInputLayout( "VertexPos", SKY_SHADER );
 
 	AddInputDesc( "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
 		12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
@@ -193,79 +68,15 @@ bool CShaderManager::Init()
 
 	CreateInputLayout( "VertexTex", STANDARD_TEX_SHADER );
 
-	AddInputDesc( "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
-		12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-	AddInputDesc( "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
-		12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-	AddInputDesc( "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0,
-		8, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-
-	CreateInputLayout( "VertexTexNormal", STANDARD_TEX_NORMAL_SHADER );
-
-	AddInputDesc( "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
-		12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-	AddInputDesc( "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
-		12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-	AddInputDesc( "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0,
-		8, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-	AddInputDesc( "TANGENT", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
-		12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-	AddInputDesc( "BINORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
-		12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-
-	CreateInputLayout( "Bump", LANDSCAPE_SHADER );
-
-	AddInputDesc( "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
-		12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-	AddInputDesc( "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
-		12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-	AddInputDesc( "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0,
-		8, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-	AddInputDesc( "BLENDWEIGHTS", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0,
-		16, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-	AddInputDesc( "BLENDINDICES", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0,
-		16, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-
-	CreateInputLayout( "VertexAnim", STANDARD_TEX_NORMAL_ANIM_SHADER );
-
-	AddInputDesc( "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
-		12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-	AddInputDesc( "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
-		12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-	AddInputDesc( "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0,
-		8, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-	AddInputDesc( "TANGENT", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
-		12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-	AddInputDesc( "BINORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
-		12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-	AddInputDesc( "BLENDWEIGHTS", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0,
-		16, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-	AddInputDesc( "BLENDINDICES", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0,
-		16, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-
-	CreateInputLayout( "BumpAnim", STANDARD_BUMP_ANIM_SHADER );
-
 	CreateCBuffer( "Transform", 0, sizeof( TRANSFORMCBUFFER ) );
 	CreateCBuffer( "Material", 1, sizeof( MATERIAL ) );
 	CreateCBuffer( "Light", 2, sizeof( LIGHT ) );
-
-	CreateCBuffer( "Animation2D", 10, sizeof( ANIMATION2DBUFFER ) );
-
-	CreateCBuffer( "ColliderColor", 13, sizeof( Vector4 ) );
-
-	CreateCBuffer( "Button", 11, sizeof( BUTTONCBUFFER ) );
-
-	CreateCBuffer( "Particle", 11, sizeof( PARTICLECBUFFER ) );
-
-	CreateCBuffer( "LandScape", 12, sizeof( LANDSCAPECBUFFER ) );
-
-	CreateCBuffer( "MultiTexture", 12, sizeof( MULTITEXTURECBUFFER ) );
 
 	return true;
 }
 
 CShader * CShaderManager::LoadShader( const string & strKey,
-	TCHAR * pFileName, char * pEntry[ST_MAX], const string & strPathKey )
+	wchar_t * pFileName, char * pEntry[ST_MAX], const string & strPathKey )
 {
 	CShader*	pShader = FindShader( strKey );
 
@@ -325,17 +136,17 @@ bool CShaderManager::CreateInputLayout( const string & strKey,
 
 	CShader*	pShader = FindShader( strShaderKey );
 
-	D3D12_INPUT_LAYOUT_DESC*		pInputLayout = NULL;
+	D3D12_INPUT_LAYOUT_DESC		pInputLayout = {};
 
-	pInputLayout->pInputElementDescs = &m_vecInputDesc[0];
-	pInputLayout->NumElements = m_vecInputDesc.size();
+	pInputLayout.pInputElementDescs = &m_vecInputDesc[0];
+	pInputLayout.NumElements = m_vecInputDesc.size();
 
 	SAFE_RELEASE( pShader );
 
 	m_vecInputDesc.clear();
 	m_iInputSize = 0;
 
-	m_mapLayout.insert( make_pair( strKey, pInputLayout ) );
+	m_mapLayout[strKey] = pInputLayout;
 
 	return true;
 }
@@ -346,18 +157,19 @@ void CShaderManager::SetInputLayout( const string & strKey )
 
 	if ( !pInputLayout )
 		return;
-
+	
+	// 파이프라인에 인풋레이아웃 연결
 	//CONTEXT->IASetInputLayout( pInputLayout );
 }
 
-D3D12_INPUT_LAYOUT_DESC * CShaderManager::FindInputLayout( const string & strKey )
+D3D12_INPUT_LAYOUT_DESC* CShaderManager::FindInputLayout( const string & strKey )
 {
-	unordered_map<string, D3D12_INPUT_LAYOUT_DESC*>::iterator	iter = m_mapLayout.find( strKey );
+	unordered_map<string, D3D12_INPUT_LAYOUT_DESC>::iterator	iter = m_mapLayout.find( strKey );
 
 	if ( iter == m_mapLayout.end() )
 		return NULL;
 
-	return iter->second;
+	return &iter->second;
 }
 
 bool CShaderManager::CreateCBuffer( const string & strKey, int iRegister, int iSize )
@@ -368,19 +180,10 @@ bool CShaderManager::CreateCBuffer( const string & strKey, int iRegister, int iS
 	PCONSTANTBUFFER	pBuffer = new CONSTANTBUFFER;
 
 	pBuffer->iRegister = iRegister;
-	pBuffer->iSize = iSize;
-
-	D3D12_BUFFER_DESC	tDesc = {};
-
-	tDesc.ByteWidth = iSize;
-	tDesc.BindFlags = D3D12_BIND_CONSTANT_BUFFER;
-	tDesc.Usage = D3D12_USAGE_DYNAMIC;
-	tDesc.CPUAccessFlags = D3D12_CPU_ACCESS_WRITE;
-
-	if ( FAILED( DEVICE->CreateBuffer( &tDesc, NULL, &pBuffer->pBuffer ) ) )
-		return false;
-
-	m_mapCBuffer.insert( make_pair( strKey, pBuffer ) );
+	pBuffer->iSize = (iSize + 255) & ~255;
+	pBuffer->pBuffer = CreateBufferResource( NULL, pBuffer->iSize, D3D12_HEAP_TYPE_UPLOAD, D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER, NULL );
+	
+	m_mapCBuffer[strKey] = pBuffer;
 
 	return true;
 }
@@ -393,23 +196,16 @@ void CShaderManager::UpdateCBuffer( const string & strKey, void * pData,
 	if ( !pBuffer )
 		return;
 
-	D3D12_MAPPED_SUBRESOURCE	tMap = {};
+	pBuffer->pBuffer->Map( 0, NULL, &pData );
 
-	FENCE->Map( pBuffer->pBuffer, 0, D3D12_MAP_WRITE_DISCARD,
-		0, &tMap );
+	//if ( iShaderConstantType & SCT_VERTEX )
+	//	CMDLIST->VSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
 
-	memcpy( tMap.pData, pData, pBuffer->iSize );
+	//if ( iShaderConstantType & SCT_PIXEL )
+	//	CMDLIST->PSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
 
-	CMDLIST->Unmap( pBuffer->pBuffer, 0 );
-
-	if ( iShaderConstantType & SCT_VERTEX )
-		CMDLIST->VSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
-
-	if ( iShaderConstantType & SCT_PIXEL )
-		CMDLIST->PSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
-
-	if ( iShaderConstantType & SCT_GEOMETRY )
-		CMDLIST->GSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
+	//if ( iShaderConstantType & SCT_GEOMETRY )
+	//	CMDLIST->GSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
 }
 
 PCONSTANTBUFFER CShaderManager::FindCBuffer( const string & strKey )
@@ -420,4 +216,90 @@ PCONSTANTBUFFER CShaderManager::FindCBuffer( const string & strKey )
 		return NULL;
 
 	return iter->second;
+}
+
+ID3D12Resource * CShaderManager::CreateBufferResource( void * pData, UINT nBytes, D3D12_HEAP_TYPE d3dHeapType, D3D12_RESOURCE_STATES d3dResourceStates, ID3D12Resource ** ppd3dUploadBuffer )
+{
+	ID3D12Resource *pd3dBuffer = NULL;
+	D3D12_HEAP_PROPERTIES d3dHeapPropertiesDesc;
+	::ZeroMemory( &d3dHeapPropertiesDesc, sizeof( D3D12_HEAP_PROPERTIES ) );
+	d3dHeapPropertiesDesc.Type = d3dHeapType;
+	d3dHeapPropertiesDesc.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
+	d3dHeapPropertiesDesc.MemoryPoolPreference = D3D12_MEMORY_POOL_UNKNOWN;
+	d3dHeapPropertiesDesc.CreationNodeMask = 1;
+	d3dHeapPropertiesDesc.VisibleNodeMask = 1;
+	D3D12_RESOURCE_DESC d3dResourceDesc;
+	::ZeroMemory( &d3dResourceDesc, sizeof( D3D12_RESOURCE_DESC ) );
+	d3dResourceDesc.Dimension = D3D12_RESOURCE_DIMENSION_BUFFER;
+	d3dResourceDesc.Alignment = 0;
+	d3dResourceDesc.Width = nBytes;
+	d3dResourceDesc.Height = 1;
+	d3dResourceDesc.DepthOrArraySize = 1;
+	d3dResourceDesc.MipLevels = 1;
+	d3dResourceDesc.Format = DXGI_FORMAT_UNKNOWN;
+	d3dResourceDesc.SampleDesc.Count = 1;
+	d3dResourceDesc.SampleDesc.Quality = 0;
+	d3dResourceDesc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
+	d3dResourceDesc.Flags = D3D12_RESOURCE_FLAG_NONE;
+	D3D12_RESOURCE_STATES d3dResourceInitialStates = D3D12_RESOURCE_STATE_COPY_DEST;
+	if ( d3dHeapType == D3D12_HEAP_TYPE_UPLOAD ) d3dResourceInitialStates =
+		D3D12_RESOURCE_STATE_GENERIC_READ;
+	else if ( d3dHeapType == D3D12_HEAP_TYPE_READBACK ) d3dResourceInitialStates =
+		D3D12_RESOURCE_STATE_COPY_DEST;
+	HRESULT hResult = DEVICE->CreateCommittedResource( &d3dHeapPropertiesDesc,
+		D3D12_HEAP_FLAG_NONE, &d3dResourceDesc, d3dResourceInitialStates, NULL,
+		__uuidof( ID3D12Resource ), ( void ** )&pd3dBuffer );
+
+
+	if ( pData )
+	{
+		switch ( d3dHeapType )
+		{
+		case D3D12_HEAP_TYPE_DEFAULT:
+		{
+			if ( ppd3dUploadBuffer )
+			{
+				//업로드 버퍼를 생성한다.
+				d3dHeapPropertiesDesc.Type = D3D12_HEAP_TYPE_UPLOAD;
+				DEVICE->CreateCommittedResource( &d3dHeapPropertiesDesc,
+					D3D12_HEAP_FLAG_NONE, &d3dResourceDesc, D3D12_RESOURCE_STATE_GENERIC_READ, NULL,
+					__uuidof( ID3D12Resource ), ( void ** )ppd3dUploadBuffer );
+				//업로드 버퍼를 매핑하여 초기화 데이터를 업로드 버퍼에 복사한다.
+				D3D12_RANGE d3dReadRange = { 0, 0 };
+				UINT8 *pBufferDataBegin = NULL;
+				( *ppd3dUploadBuffer )->Map( 0, &d3dReadRange, ( void ** )&pBufferDataBegin );
+				memcpy( pBufferDataBegin, pData, nBytes );
+				( *ppd3dUploadBuffer )->Unmap( 0, NULL );
+				//업로드 버퍼의 내용을 디폴트 버퍼에 복사한다.
+
+					//return;
+				D3D12_RESOURCE_BARRIER d3dResourceBarrier;
+				::ZeroMemory( &d3dResourceBarrier, sizeof( D3D12_RESOURCE_BARRIER ) );
+				d3dResourceBarrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
+				d3dResourceBarrier.Flags = D3D12_RESOURCE_BARRIER_FLAG_NONE;
+				d3dResourceBarrier.Transition.pResource = pd3dBuffer;
+				d3dResourceBarrier.Transition.StateBefore = D3D12_RESOURCE_STATE_COPY_DEST;
+				d3dResourceBarrier.Transition.StateAfter = d3dResourceStates;
+				d3dResourceBarrier.Transition.Subresource =
+					D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES;
+
+				CMDLIST->CopyResource( pd3dBuffer, *ppd3dUploadBuffer );
+				CMDLIST->ResourceBarrier( 1, &d3dResourceBarrier );
+			}
+			break;
+		}
+		case D3D12_HEAP_TYPE_UPLOAD:
+		{
+			D3D12_RANGE d3dReadRange = { 0, 0 };
+			UINT8 *pBufferDataBegin = NULL;
+			pd3dBuffer->Map( 0, &d3dReadRange, ( void ** )&pBufferDataBegin );
+			memcpy( pBufferDataBegin, pData, nBytes );
+			pd3dBuffer->Unmap( 0, NULL );
+			break;
+		}
+		case D3D12_HEAP_TYPE_READBACK:
+			break;
+		}
+	}
+	return( pd3dBuffer );
 }

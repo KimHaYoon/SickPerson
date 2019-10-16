@@ -12,7 +12,7 @@ private:
 	~CSampler();
 
 private:
-	ID3D12SamplerState*		m_pSampler;
+	D3D12_STATIC_SAMPLER_DESC		m_pSampler;
 	string					m_strKey;
 
 public:

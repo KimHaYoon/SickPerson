@@ -1,6 +1,6 @@
 ﻿  Camera.cpp
-d:\00.학교\졸업작품\sickperson\question\question\component\camera.cpp(123): warning C4244: '인수': 'const UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\component\camera.cpp(122): warning C4244: '인수': 'const UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\졸업작품\sickperson\question\question\component\camera.cpp(123): warning C4244: '인수': 'const UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\졸업작품\sickperson\question\question\component\camera.cpp(122): warning C4244: '인수': 'const UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   Component.cpp
   Frustum.cpp
   Light.cpp
@@ -9,504 +9,58 @@ d:\00.학교\졸업작품\sickperson\question\question\component\camera.cpp(122)
   LightSpot.cpp
   Transform.cpp
   Core.cpp
-d:\00.학교\졸업작품\sickperson\question\question\core.cpp(192): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+d:\01.kpu\졸업작품\sickperson\question\question\core.cpp(203): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
   Input.cpp
-d:\00.학교\졸업작품\sickperson\question\question\core\input.h(62): warning C4311: '형식 캐스트': 'const char *'에서 'DWORD'(으)로 포인터가 잘립니다.
-  d:\00.학교\졸업작품\sickperson\question\question\core\input.cpp(27): note: 컴파일 중인 함수 템플릿 인스턴스화 'void CInput::CreateKey<char[10],char>(const T (&),const char &)'에 대한 참조를 확인하십시오.
+d:\01.kpu\졸업작품\sickperson\question\question\core\input.h(62): warning C4311: '형식 캐스트': 'const char *'에서 'DWORD'(으)로 포인터가 잘립니다.
+  d:\01.kpu\졸업작품\sickperson\question\question\core\input.cpp(27): note: 컴파일 중인 함수 템플릿 인스턴스화 'void CInput::CreateKey<char[10],char>(const T (&),const char &)'에 대한 참조를 확인하십시오.
           with
           [
               T=char [10]
           ]
-d:\00.학교\졸업작품\sickperson\question\question\core\input.h(62): warning C4302: '형식 캐스트': 'const char *'에서 'DWORD'(으)로 잘립니다.
-d:\00.학교\졸업작품\sickperson\question\question\core\input.h(35): warning C4311: '형식 캐스트': 'const char *'에서 'DWORD'(으)로 포인터가 잘립니다.
-  d:\00.학교\졸업작품\sickperson\question\question\core\input.h(71): note: 컴파일 중인 함수 템플릿 인스턴스화 'void CInput::CreateKey<char[5]>(const T (&))'에 대한 참조를 확인하십시오.
+d:\01.kpu\졸업작품\sickperson\question\question\core\input.h(62): warning C4302: '형식 캐스트': 'const char *'에서 'DWORD'(으)로 잘립니다.
+d:\01.kpu\졸업작품\sickperson\question\question\core\input.h(35): warning C4311: '형식 캐스트': 'const char *'에서 'DWORD'(으)로 포인터가 잘립니다.
+  d:\01.kpu\졸업작품\sickperson\question\question\core\input.h(71): note: 컴파일 중인 함수 템플릿 인스턴스화 'void CInput::CreateKey<char[5]>(const T (&))'에 대한 참조를 확인하십시오.
           with
           [
               T=char [5]
           ]
-  d:\00.학교\졸업작품\sickperson\question\question\core\input.cpp(30): note: 컴파일 중인 함수 템플릿 인스턴스화 'void CInput::CreateKey<char,char[5]>(const T &,const char (&)[5])'에 대한 참조를 확인하십시오.
+  d:\01.kpu\졸업작품\sickperson\question\question\core\input.cpp(30): note: 컴파일 중인 함수 템플릿 인스턴스화 'void CInput::CreateKey<char,char[5]>(const T &,const char (&)[5])'에 대한 참조를 확인하십시오.
           with
           [
               T=char
           ]
-d:\00.학교\졸업작품\sickperson\question\question\core\input.h(35): warning C4302: '형식 캐스트': 'const char *'에서 'DWORD'(으)로 잘립니다.
+d:\01.kpu\졸업작품\sickperson\question\question\core\input.h(35): warning C4302: '형식 캐스트': 'const char *'에서 'DWORD'(으)로 잘립니다.
   PathManager.cpp
   Timer.cpp
   TimerManager.cpp
   Device.cpp
-d:\00.학교\졸업작품\sickperson\question\question\device.cpp(197): warning C4244: '=': 'float'에서 'UINT8'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\device.cpp(301): warning C4244: '=': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\device.cpp(302): warning C4244: '=': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\device.cpp(307): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-  EngineMatrix.cpp
-  EngineVector2.cpp
-d:\00.학교\졸업작품\sickperson\question\question\enginevector2.cpp(28): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector2.cpp(29): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector2.cpp(40): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector2.cpp(41): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector2.cpp(75): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector2.cpp(76): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  EngineVector3.cpp
-d:\00.학교\졸업작품\sickperson\question\question\enginevector3.cpp(40): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector3.cpp(41): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector3.cpp(42): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector3.cpp(54): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector3.cpp(55): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector3.cpp(56): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector3.cpp(94): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector3.cpp(95): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector3.cpp(96): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  EngineVector4.cpp
-d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(41): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(42): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(43): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(44): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(57): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(58): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(59): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(60): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(101): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(102): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(103): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\enginevector4.cpp(104): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\졸업작품\sickperson\question\question\device.cpp(209): warning C4244: '=': 'float'에서 'UINT8'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\졸업작품\sickperson\question\question\device.cpp(313): warning C4244: '=': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\졸업작품\sickperson\question\question\device.cpp(314): warning C4244: '=': 'UINT'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\01.kpu\졸업작품\sickperson\question\question\device.cpp(319): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
   GameObject.cpp
-  main.cpp
-  코드를 생성하고 있습니다...
-  컴파일하고 있습니다...
   Obj.cpp
   BlendState.cpp
   DepthStencilState.cpp
   RasterizerState.cpp
-  RenderingTarget.cpp
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(14): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(14): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(14): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(15): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(15): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(15): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(16): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(16): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(16): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(17): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(17): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(17): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(18): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(18): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(18): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(20): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(20): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(20): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(21): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(21): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(21): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(28): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(28): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(28): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(31): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(31): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(31): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(32): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(32): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(32): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(33): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(33): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(33): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C2144: 구문 오류: Engine_DLL'은(는) ';' 다음에 와야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C2079: 'CShader'은(는) 정의되지 않은 class 'Engine_DLL'을(를) 사용합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C2143: 구문 오류: ';'이(가) ':' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C2059: 구문 오류: ':'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(7): error C2059: 구문 오류: 'public'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(8): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(8): error C2447: '{': 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(7): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(7): error C2146: 구문 오류: ';'이(가) 'Engine_BEGIN' 식별자 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(8): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(8): error C2447: '{': 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
-d:\00.학교\졸업작품\sickperson\question\question\device.h(5): error C2143: 구문 오류: ';'이(가) '<class-head>' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\device.h(6): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\device.h(6): error C2086: 'int Engine_END': 재정의
-  d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(55): note: 'Engine_END' 선언을 참조하십시오.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.cpp(6): fatal error C1083: 포함 파일을 열 수 없습니다. '../Resources/DirectXTex.h': No such file or directory
   RenderManager.cpp
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(8): error C2144: 구문 오류: Engine_DLL'은(는) ';' 다음에 와야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(8): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(8): error C2079: 'CShaderManager'은(는) 정의되지 않은 class 'Engine_DLL'을(를) 사용합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(9): error C2059: 구문 오류: 'private'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(12): error C2065: 'PCONSTANTBUFFER': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(12): error C2923: 'std::unordered_map': 'PCONSTANTBUFFER'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
-c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\unordered_map(93): error C3203: 'pair': 특수화되지 않은 클래스 템플릿은(는) 템플릿 매개 변수 '_Ty'에 대한 템플릿 인수로 사용할 수 없습니다. 실제 형식이 필요합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(12): error C2133: 'm_mapCBuffer': 알 수 없는 크기입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(12): error C2512: 'std::unordered_map': 사용할 수 있는 적절한 기본 생성자가 없습니다.
-  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\unordered_map(95): note: 'std::unordered_map' 선언을 참조하십시오.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(16): error C2059: 구문 오류: 'public'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(37): error C2059: 구문 오류: 'private'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(38): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(38): error C2146: 구문 오류: ';'이(가) 'FindCBuffer' 식별자 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C2059: 구문 오류: 'private'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C2370: 'CShaderManager': 재정의. 스토리지 클래스가 다릅니다.
-  d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(7): note: 'CShaderManager' 선언을 참조하십시오.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C2059: 구문 오류: 'public'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C2059: 구문 오류: '{'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C2447: '{': 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C2365: 'CShaderManager': 재정의: 이전 정의는 '데이터 변수'입니다.
-  d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(7): note: 'CShaderManager' 선언을 참조하십시오.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C2588: '::~CShaderManager': 잘못된 전역 소멸자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(41): error C2059: 구문 오류: '}'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(41): error C2143: 구문 오류: ';'이(가) '}' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\obj.h(5): error C2143: 구문 오류: ';'이(가) '<class-head>' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\obj.h(6): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C2144: 구문 오류: Engine_DLL'은(는) ';' 다음에 와야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C2086: 'int Engine_BEGIN': 재정의
-  d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(5): note: 'Engine_BEGIN' 선언을 참조하십시오.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C2079: 'CShader'은(는) 정의되지 않은 class 'Engine_DLL'을(를) 사용합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C2143: 구문 오류: ';'이(가) ':' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C2059: 구문 오류: ':'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(7): error C2059: 구문 오류: 'public'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(8): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(8): error C2447: '{': 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderstate.h(4): error C2143: 구문 오류: ';'이(가) '<class-head>' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderstate.h(4): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderstate.h(4): error C2086: 'int Engine_END': 재정의
-  d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(43): note: 'Engine_END' 선언을 참조하십시오.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(14): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(14): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(14): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(15): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(15): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(15): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(16): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(16): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(16): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(17): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(17): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(17): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(18): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(18): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(18): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(20): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(20): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(20): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(21): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(21): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(21): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(28): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(28): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(28): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(31): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(31): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(31): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(32): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(32): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(32): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(33): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(33): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\renderingtarget.h(33): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\rendermanager.cpp(10): fatal error C1083: 포함 파일을 열 수 없습니다. '../Component/Renderer.h': No such file or directory
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
   RenderState.cpp
   Shader.cpp
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C2144: 구문 오류: Engine_DLL'은(는) ';' 다음에 와야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C2079: 'CShader'은(는) 정의되지 않은 class 'Engine_DLL'을(를) 사용합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C2143: 구문 오류: ';'이(가) ':' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C2059: 구문 오류: ':'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(7): error C2059: 구문 오류: 'public'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(8): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(8): error C2447: '{': 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
-d:\00.학교\졸업작품\sickperson\question\question\core\pathmanager.h(4): error C2143: 구문 오류: ';'이(가) '<class-head>' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\core\pathmanager.h(5): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(7): error C2825: 'CShader': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(7): error C2510: 'CShader': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(7): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(7): error C2146: 구문 오류: ';'이(가) 'CShader' 식별자 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(8): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(9): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(10): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(11): error C2448: 'm_pGSBlob': 함수 스타일 이니셜라이저가 함수 정의처럼 나타납니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(18): error C2825: 'CShader': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(18): error C2510: 'CShader': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(19): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(23): warning C4508: '{dtor}': 함수는 값을 반환해야 하므로 'void' 반환 형식으로 간주됩니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(25): error C2825: 'CShader': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(25): error C2510: 'CShader': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(26): error C2270: 'GetKey': 비멤버 함수에 한정자를 사용할 수 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(27): error C2065: 'm_strKey': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(30): error C2825: 'CShader': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(30): error C2510: 'CShader': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(35): error C2825: 'CShader': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(35): error C2510: 'CShader': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(40): error C2825: 'CShader': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(40): error C2510: 'CShader': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(41): error C2270: 'GetVertexShader': 비멤버 함수에 한정자를 사용할 수 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(42): error C2065: 'm_tVSByteCode': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(45): error C2825: 'CShader': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(45): error C2510: 'CShader': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(46): error C2270: 'GetPixelShader': 비멤버 함수에 한정자를 사용할 수 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(47): error C2065: 'm_tPSByteCode': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(50): error C2825: 'CShader': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(50): error C2510: 'CShader': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(51): error C2270: 'GetGeoShader': 비멤버 함수에 한정자를 사용할 수 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(52): error C2065: 'm_tGSByteCode': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(55): error C2825: 'CShader': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(55): error C2510: 'CShader': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(57): error C2065: 'm_strKey': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(59): error C3861: 'LoadVertexShader': 식별자를 찾을 수 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(62): error C3861: 'LoadPixelShader': 식별자를 찾을 수 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(67): error C3861: 'LoadGeometryShader': 식별자를 찾을 수 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(74): error C2825: 'CShader': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(74): error C2510: 'CShader': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(88): error C2678: 이항 '+=': 왼쪽 피연산자로 'std::wstring' 형식을 사용하는 연산자가 없거나 허용되는 변환이 없습니다.
-  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(2530): note: 'std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>> &std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::operator +=(_Elem)'일 수 있습니다.
-          with
-          [
-              _Elem=wchar_t
-          ]
-  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(2525): note: 또는       'std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>> &std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::operator +=(const _Elem *const )'
-          with
-          [
-              _Elem=wchar_t
-          ]
-  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(2511): note: 또는       'std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>> &std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::operator +=(const std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>> &)'
-  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(2430): note: 또는       'std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>> &std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::operator +=(std::initializer_list<_Elem>)'
-          with
-          [
-              _Elem=wchar_t
-          ]
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmathvector.inl(14447): note: 또는       'DirectX::XMVECTOR &DirectX::operator +=(DirectX::XMVECTOR &,DirectX::FXMVECTOR)'
-  d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(88): note: 인수 목록 '(std::wstring, TCHAR *)'을(를) 일치시키는 동안
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(93): error C2664: 'HRESULT D3DCompileFromFile(LPCWSTR,const D3D_SHADER_MACRO *,ID3DInclude *,LPCSTR,LPCSTR,UINT,UINT,ID3DBlob **,ID3DBlob **)': 인수 8을(를) 'int *'에서 'ID3DBlob **'(으)로 변환할 수 없습니다.
-  d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(93): note: 가리킨 형식이 관련이 없습니다. 변환하려면 reinterpret_cast, C 스타일 캐스트 또는 함수 스타일 캐스트가 필요합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(98): error C2065: 'm_tVSByteCode': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(99): error C2065: 'm_tVSByteCode': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(104): error C2825: 'CShader': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(104): error C2510: 'CShader': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(118): error C2678: 이항 '+=': 왼쪽 피연산자로 'std::wstring' 형식을 사용하는 연산자가 없거나 허용되는 변환이 없습니다.
-  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(2530): note: 'std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>> &std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::operator +=(_Elem)'일 수 있습니다.
-          with
-          [
-              _Elem=wchar_t
-          ]
-  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(2525): note: 또는       'std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>> &std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::operator +=(const _Elem *const )'
-          with
-          [
-              _Elem=wchar_t
-          ]
-  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(2511): note: 또는       'std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>> &std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::operator +=(const std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>> &)'
-  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(2430): note: 또는       'std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>> &std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::operator +=(std::initializer_list<_Elem>)'
-          with
-          [
-              _Elem=wchar_t
-          ]
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmathvector.inl(14447): note: 또는       'DirectX::XMVECTOR &DirectX::operator +=(DirectX::XMVECTOR &,DirectX::FXMVECTOR)'
-  d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(118): note: 인수 목록 '(std::wstring, TCHAR *)'을(를) 일치시키는 동안
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(123): error C2664: 'HRESULT D3DCompileFromFile(LPCWSTR,const D3D_SHADER_MACRO *,ID3DInclude *,LPCSTR,LPCSTR,UINT,UINT,ID3DBlob **,ID3DBlob **)': 인수 8을(를) 'int *'에서 'ID3DBlob **'(으)로 변환할 수 없습니다.
-  d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(123): note: 가리킨 형식이 관련이 없습니다. 변환하려면 reinterpret_cast, C 스타일 캐스트 또는 함수 스타일 캐스트가 필요합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(128): error C2065: 'm_tPSByteCode': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(129): error C2065: 'm_tPSByteCode': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(134): error C2825: 'CShader': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(134): error C2510: 'CShader': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(148): error C2678: 이항 '+=': 왼쪽 피연산자로 'std::wstring' 형식을 사용하는 연산자가 없거나 허용되는 변환이 없습니다.
-  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(2530): note: 'std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>> &std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::operator +=(_Elem)'일 수 있습니다.
-          with
-          [
-              _Elem=wchar_t
-          ]
-  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(2525): note: 또는       'std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>> &std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::operator +=(const _Elem *const )'
-          with
-          [
-              _Elem=wchar_t
-          ]
-  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(2511): note: 또는       'std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>> &std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::operator +=(const std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>> &)'
-  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\xstring(2430): note: 또는       'std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>> &std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>::operator +=(std::initializer_list<_Elem>)'
-          with
-          [
-              _Elem=wchar_t
-          ]
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\directxmathvector.inl(14447): note: 또는       'DirectX::XMVECTOR &DirectX::operator +=(DirectX::XMVECTOR &,DirectX::FXMVECTOR)'
-  d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(148): note: 인수 목록 '(std::wstring, TCHAR *)'을(를) 일치시키는 동안
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(153): error C2664: 'HRESULT D3DCompileFromFile(LPCWSTR,const D3D_SHADER_MACRO *,ID3DInclude *,LPCSTR,LPCSTR,UINT,UINT,ID3DBlob **,ID3DBlob **)': 인수 8을(를) 'int *'에서 'ID3DBlob **'(으)로 변환할 수 없습니다.
-  d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(153): note: 가리킨 형식이 관련이 없습니다. 변환하려면 reinterpret_cast, C 스타일 캐스트 또는 함수 스타일 캐스트가 필요합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(158): error C2065: 'm_tGSByteCode': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(159): error C2065: 'm_tGSByteCode': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(164): error C2825: 'CShader': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.cpp(164): error C2510: 'CShader': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
+d:\01.kpu\졸업작품\sickperson\question\question\rendering\shader.cpp(36): warning C4244: 'return': 'SIZE_T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   ShaderManager.cpp
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(8): error C2144: 구문 오류: Engine_DLL'은(는) ';' 다음에 와야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(8): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(8): error C2079: 'CShaderManager'은(는) 정의되지 않은 class 'Engine_DLL'을(를) 사용합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(9): error C2059: 구문 오류: 'private'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(12): error C2065: 'PCONSTANTBUFFER': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(12): error C2923: 'std::unordered_map': 'PCONSTANTBUFFER'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
-c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\unordered_map(93): error C3203: 'pair': 특수화되지 않은 클래스 템플릿은(는) 템플릿 매개 변수 '_Ty'에 대한 템플릿 인수로 사용할 수 없습니다. 실제 형식이 필요합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(12): error C2133: 'm_mapCBuffer': 알 수 없는 크기입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(12): error C2512: 'std::unordered_map': 사용할 수 있는 적절한 기본 생성자가 없습니다.
-  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\unordered_map(95): note: 'std::unordered_map' 선언을 참조하십시오.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(16): error C2059: 구문 오류: 'public'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(37): error C2059: 구문 오류: 'private'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(38): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(38): error C2146: 구문 오류: ';'이(가) 'FindCBuffer' 식별자 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C2059: 구문 오류: 'private'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C2370: 'CShaderManager': 재정의. 스토리지 클래스가 다릅니다.
-  d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(7): note: 'CShaderManager' 선언을 참조하십시오.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C2059: 구문 오류: 'public'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C2059: 구문 오류: '{'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C2447: '{': 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C2365: 'CShaderManager': 재정의: 이전 정의는 '데이터 변수'입니다.
-  d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(7): note: 'CShaderManager' 선언을 참조하십시오.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(40): error C2588: '::~CShaderManager': 잘못된 전역 소멸자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(41): error C2059: 구문 오류: '}'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(41): error C2143: 구문 오류: ';'이(가) '}' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\obj.h(5): error C2143: 구문 오류: ';'이(가) '<class-head>' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\obj.h(6): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C2144: 구문 오류: Engine_DLL'은(는) ';' 다음에 와야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C2086: 'int Engine_BEGIN': 재정의
-  d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(5): note: 'Engine_BEGIN' 선언을 참조하십시오.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C2079: 'CShader'은(는) 정의되지 않은 class 'Engine_DLL'을(를) 사용합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C2143: 구문 오류: ';'이(가) ':' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(6): error C2059: 구문 오류: ':'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(7): error C2059: 구문 오류: 'public'
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(8): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shader.h(8): error C2447: '{': 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
-d:\00.학교\졸업작품\sickperson\question\question\device.h(5): error C2143: 구문 오류: ';'이(가) '<class-head>' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\device.h(6): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\device.h(6): error C2086: 'int Engine_END': 재정의
-  d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(43): note: 'Engine_END' 선언을 참조하십시오.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(7): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(7): error C2146: 구문 오류: ';'이(가) 'CShaderManager' 식별자 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(7): error C2825: 'CShaderManager': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(7): error C2510: 'CShaderManager': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(9): error C2825: 'CShaderManager': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(9): error C2510: 'CShaderManager': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(10): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(10): error C2365: 'CShaderManager': 재정의: 이전 정의는 '데이터 변수'입니다.
-  d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(7): note: 'CShaderManager' 선언을 참조하십시오.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(14): error C2825: 'CShaderManager': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(14): error C2510: 'CShaderManager': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(15): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(16): error C2923: 'std::unordered_map': 'PCONSTANTBUFFER'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
-  d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(38): note: 'PCONSTANTBUFFER' 선언을 참조하십시오.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(16): error C2955: 'std::unordered_map': 클래스 템플릿을(를) 사용하려면 템플릿 인수 목록이 필요합니다.
-  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\unordered_map(95): note: 'std::unordered_map' 선언을 참조하십시오.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(17): error C2923: 'std::unordered_map': 'PCONSTANTBUFFER'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
-  d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.h(38): note: 'PCONSTANTBUFFER' 선언을 참조하십시오.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(17): error C2955: 'std::unordered_map': 클래스 템플릿을(를) 사용하려면 템플릿 인수 목록이 필요합니다.
-  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\unordered_map(95): note: 'std::unordered_map' 선언을 참조하십시오.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(17): error C2663: 'std::_Hash<_Traits>::end': 4개의 오버로드에서 'this' 포인터에 대한 변환이 잘못되었습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(19): error C2663: 'std::_Hash<_Traits>::begin': 4개의 오버로드에서 'this' 포인터에 대한 변환이 잘못되었습니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(26): error C2065: 'm_mapShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(27): warning C4508: '{dtor}': 함수는 값을 반환해야 하므로 'void' 반환 형식으로 간주됩니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(29): error C2825: 'CShaderManager': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(29): error C2510: 'CShaderManager': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(32): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(32): error C2065: 'STANDARD_COLOR_SHADER': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(35): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(40): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(40): error C2065: 'STANDARD_COLOR_NORMAL_SHADER': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(43): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(48): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(48): error C2065: 'STANDARD_TEX_SHADER': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(51): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(56): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(56): error C2065: 'STANDARD_TEX_NORMAL_SHADER': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(59): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(64): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(64): error C2065: 'COLLIDER_SHADER': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(67): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(72): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(72): error C2065: 'UI_SHADER': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(75): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(80): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(80): error C2065: 'UI_COLOR_SHADER': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(83): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(88): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(88): error C2065: 'UI_MULTITEXTURE_SHADER': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(91): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(96): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(96): error C2065: 'SKY_SHADER': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(99): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(104): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(104): error C2065: 'EFFECT_SHADER': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(107): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(112): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(112): error C2065: 'LANDSCAPE_SHADER': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(115): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(120): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(120): error C2065: 'STANDARD_BUMP_SHADER': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(123): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(128): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(128): error C2065: 'STANDARD_TEX_NORMAL_ANIM_SHADER': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(131): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(136): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(136): error C2065: 'STANDARD_BUMP_ANIM_SHADER': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(139): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(144): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(144): error C2065: 'STANDARD_BUMP_ANIM_FORWARD_SHADER': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(147): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(152): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(152): error C2065: 'LIGHT_ACC_SHADER': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(154): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(159): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(159): error C2065: 'LIGHT_BLEND_SHADER': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(161): error C2065: 'pShader': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(161): fatal error C1003: 오류 수가 100개를 초과했습니다. 컴파일을 중지합니다.
+d:\01.kpu\졸업작품\sickperson\question\question\rendering\shadermanager.cpp(142): warning C4267: '=': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   Mesh.cpp
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(6): error C2143: 구문 오류: ';'이(가) '<class-head>' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(7): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(8): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(8): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(8): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(11): error C3646: 'eUsage': 알 수 없는 재정의 지정자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(11): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(18): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(18): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(18): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(21): error C3646: 'eUsage': 알 수 없는 재정의 지정자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(21): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(74): error C2061: 구문 오류: 식별자 'D3D12_USAGE'
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(83): error C2061: 구문 오류: 식별자 'D3D12_USAGE'
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(86): error C2061: 구문 오류: 식별자 'D3D12_USAGE'
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.cpp(4): fatal error C1083: 포함 파일을 열 수 없습니다. '../Component/Material.h': No such file or directory
+d:\01.kpu\졸업작품\sickperson\question\question\resources\mesh.cpp(92): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
   ResourcesManager.cpp
-d:\00.학교\졸업작품\sickperson\question\question\resources\resourcesmanager.h(12): error C2061: 구문 오류: 식별자 'D3D12_USAGE'
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(6): error C2143: 구문 오류: ';'이(가) '<class-head>' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(7): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(8): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(8): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(8): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(11): error C3646: 'eUsage': 알 수 없는 재정의 지정자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(11): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(18): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(18): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(18): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(21): error C3646: 'eUsage': 알 수 없는 재정의 지정자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(21): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(74): error C2061: 구문 오류: 식별자 'D3D12_USAGE'
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(83): error C2061: 구문 오류: 식별자 'D3D12_USAGE'
-d:\00.학교\졸업작품\sickperson\question\question\resources\mesh.h(86): error C2061: 구문 오류: 식별자 'D3D12_USAGE'
-d:\00.학교\졸업작품\sickperson\question\question\resources\resourcesmanager.cpp(3): fatal error C1083: 포함 파일을 열 수 없습니다. 'Texture.h': No such file or directory
   Sampler.cpp
-d:\00.학교\졸업작품\sickperson\question\question\resources\sampler.h(15): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\sampler.h(15): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\sampler.h(15): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\sampler.cpp(5): error C2614: 'CSampler': 멤버 초기화가 잘못되었습니다. 'm_pSampler'이(가) 기본 또는 멤버가 아닙니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\sampler.cpp(11): error C2065: 'm_pSampler': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\sampler.cpp(39): error C2039: 'CreateSamplerState': 'ID3D12Device'의 멤버가 아닙니다.
-  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\d3d12.h(7748): note: 'ID3D12Device' 선언을 참조하십시오.
-d:\00.학교\졸업작품\sickperson\question\question\resources\sampler.cpp(39): error C2065: 'm_pSampler': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\sampler.cpp(48): error C2065: 'CMLIST': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\sampler.cpp(48): error C2065: 'm_pSampler': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\sampler.cpp(51): error C2065: 'CMLIST': 선언되지 않은 식별자입니다.
-d:\00.학교\졸업작품\sickperson\question\question\resources\sampler.cpp(51): error C2065: 'm_pSampler': 선언되지 않은 식별자입니다.
+  RootSignature.cpp
+d:\01.kpu\졸업작품\sickperson\question\question\rootsignature.cpp(75): warning C4267: '=': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   Layer.cpp
   Scene.cpp
   SceneManager.cpp
   SceneScript.cpp
+  main.cpp
   코드를 생성하고 있습니다...
+  Question.vcxproj -> D:\01.KPU\졸업작품\SickPerson\Question\x64\Debug\Question.exe

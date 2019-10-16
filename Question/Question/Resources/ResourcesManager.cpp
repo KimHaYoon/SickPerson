@@ -1,6 +1,5 @@
 #include "ResourcesManager.h"
 #include "Mesh.h"
-#include "Texture.h"
 #include "Sampler.h"
 #include "../Core/PathManager.h"
 
@@ -82,9 +81,9 @@ bool CResourcesManager::Init()
 
 	UINT	iIndex[18] = { 0, 4, 3, 0, 3, 1, 0, 2, 4, 0, 1, 2, 7, 8, 6, 7, 6, 5 };
 
-	CMesh*	pMesh = CreateMesh("Pyramid", 9, sizeof(VERTEXCOLORNORMAL), D3D12_USAGE_DEFAULT,
-		D3D12_PRIMITIVE_TOPOLOGY_TRIANGLELIST, tPyramid, 18, 4,
-		D3D12_USAGE_DEFAULT, DXGI_FORMAT_R32_UINT, iIndex);
+	CMesh*	pMesh = CreateMesh("Pyramid", 9, sizeof(VERTEXCOLORNORMAL),
+		D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST, tPyramid, 18, 4,
+		DXGI_FORMAT_R32_UINT, iIndex);
 
 	SAFE_RELEASE(pMesh);
 
@@ -103,72 +102,24 @@ bool CResourcesManager::Init()
 	UINT	iAABBIndex[24] = { 0, 1, 4, 5, 4, 0, 5, 1, 0, 2, 1, 3, 5, 7, 4, 6, 6, 7, 2, 3,
 		6, 2, 7, 3 };
 
-	pMesh = CreateMesh("AABB", 8, sizeof(VERTEXCOLOR), D3D12_USAGE_DEFAULT,
-		D3D12_PRIMITIVE_TOPOLOGY_LINELIST, tAABB, 24, 4,
-		D3D12_USAGE_DEFAULT, DXGI_FORMAT_R32_UINT, iAABBIndex);
-
-	SAFE_RELEASE(pMesh);
-
-	VERTEXTEX	tVtxRectLTTex[4] =
-	{
-		VERTEXTEX(0.f, 0.f, 0, 0, 0),
-		VERTEXTEX(1.f, 0.f, 0, 1, 0),
-		VERTEXTEX(0.f, 1.f, 0, 0, 1),
-		VERTEXTEX(1.f, 1.f, 0, 1, 1)
-	};
-
-	UINT	tIdxRectCol[6] = { 0, 1, 3, 0, 3, 2 };
-
-	pMesh = CreateMesh("RectOrthoLTTex", 4, sizeof(VERTEXTEX),
-		D3D12_USAGE_DEFAULT, D3D12_PRIMITIVE_TOPOLOGY_TRIANGLELIST,
-		tVtxRectLTTex, 6, 4, D3D12_USAGE_DEFAULT, DXGI_FORMAT_R32_UINT,
-		tIdxRectCol);
-
-	SAFE_RELEASE(pMesh);
-
-	VERTEXCOLOR	tVtxRectCenterLine[5] =
-	{
-		VERTEXCOLOR(-0.5f, -0.5f, 0, 0, 1, 0, 1),
-		VERTEXCOLOR(0.5f, -0.5f, 0, 0, 1, 0, 1),
-		VERTEXCOLOR(0.5f, 0.5f, 0, 0, 1, 0, 1),
-		VERTEXCOLOR(-0.5f, 0.5f, 0, 0, 1, 0, 1),
-		VERTEXCOLOR(-0.5f, -0.5f, 0, 0, 1, 0, 1)
-	};
-
-	pMesh = CreateMesh("RectOrthoCenterLine", 5, sizeof(VERTEXCOLOR),
-		D3D12_USAGE_DEFAULT, D3D12_PRIMITIVE_TOPOLOGY_LINESTRIP,
-		tVtxRectCenterLine);
-
-	SAFE_RELEASE(pMesh);
-
-	// 구 메쉬를 생성한다.
-	pMesh = CreateSphere("Sphere", 1.f, 10);
-
-	SAFE_RELEASE(pMesh);
-
-	Vector3	vEffectPos;
-
-	pMesh = CreateMesh("ParticleMesh", 1, sizeof(Vector3),
-		D3D12_USAGE_DEFAULT, D3D12_PRIMITIVE_TOPOLOGY_POINTLIST,
-		&vEffectPos);
+	pMesh = CreateMesh("AABB", 8, sizeof(VERTEXCOLOR),
+		D3D_PRIMITIVE_TOPOLOGY_LINELIST, tAABB, 24, 4,
+		DXGI_FORMAT_R32_UINT, iAABBIndex);
 
 	SAFE_RELEASE(pMesh);
 
 	CSampler*	pSampler = CreateSampler(SAMPLER_LINEAR);
 
 	SAFE_RELEASE(pSampler);
-
-	pSampler = CreateSampler(SAMPLER_POINT, D3D12_FILTER_MIN_MAG_MIP_POINT);
-
-	SAFE_RELEASE(pSampler);
+	
 
 	return true;
 }
 
-CMesh * CResourcesManager::CreateMesh(const string & strKey, UINT iVtxCount,
-	UINT iVtxSize, D3D12_USAGE eVtxUsage,
-	D3D12_PRIMITIVE_TOPOLOGY ePrimitive, void * pVtxData, UINT iIdxCount,
-	UINT iIdxSize, D3D12_USAGE eIdxUsage, DXGI_FORMAT eFmt, void * pIdxData)
+CMesh * CResourcesManager::CreateMesh( const string& strKey, UINT iVtxCount, UINT iVtxSize,
+	D3D12_PRIMITIVE_TOPOLOGY ePrimitive, void* pVtxData,
+	UINT iIdxCount, UINT iIdxSize,
+	DXGI_FORMAT eFmt,	void* pIdxData )
 {
 	CMesh*	pMesh = FindMesh(strKey);
 
@@ -178,8 +129,8 @@ CMesh * CResourcesManager::CreateMesh(const string & strKey, UINT iVtxCount,
 	pMesh = new CMesh;
 	pMesh->m_strKey = strKey;
 
-	if (!pMesh->CreateMesh(iVtxCount, iVtxSize, eVtxUsage, ePrimitive, pVtxData,
-		iIdxCount, iIdxSize, eIdxUsage, eFmt, pIdxData))
+	if (!pMesh->CreateMesh(iVtxCount, iVtxSize, ePrimitive, pVtxData,
+		iIdxCount, iIdxSize, eFmt, pIdxData))
 	{
 		SAFE_RELEASE(pMesh);
 		return NULL;
@@ -194,30 +145,6 @@ CMesh * CResourcesManager::CreateMesh(const string & strKey, UINT iVtxCount,
 	return pMesh;
 }
 
-CMesh * CResourcesManager::CreateSphere(const string & strKey, float radius, UINT numSubdivisions)
-{
-	CMesh*	pMesh = FindMesh(strKey);
-
-	if (pMesh)
-		return pMesh;
-
-	pMesh = new CMesh;
-	pMesh->m_strKey = strKey;
-
-	if (!pMesh->CreateSphere(radius, numSubdivisions))
-	{
-		SAFE_RELEASE(pMesh);
-		return NULL;
-	}
-
-	pMesh->SetKey(strKey);
-
-	pMesh->AddRef();
-
-	m_mapMesh.insert(make_pair(strKey, pMesh));
-
-	return pMesh;
-}
 
 CMesh * CResourcesManager::FindMesh(const string & strKey)
 {

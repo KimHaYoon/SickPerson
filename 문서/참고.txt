@@ -1,1 +1,42 @@
 https://docs.microsoft.com/ko-kr/windows/win32/direct3d12/porting-from-direct3d-11-to-direct3d-12
+
+* D3D12_TEXTURE_ADDRESS_MODE 
+D3D12_TEXTURE_ADDRESS_MODE_WRAP	모든 (u, v) 정수 접합에서 텍스처를 바둑판 식으로 배열하십시오. 예를 들어, 0과 3 사이의 u 값의 경우 텍스처가 세 번 반복됩니다.
+D3D12_TEXTURE_ADDRESS_MODE_MIRROR	모든 (u, v) 정수 접합에서 텍스처를 뒤집습니다. 예를 들어 0과 1 사이의 u 값의 경우 텍스처가 정상적으로 처리됩니다. 1과 2 사이에서 텍스처가 뒤집 힙니다 (미러링 됨). 2와 3 사이에서 텍스처는 다시 정상입니다. 등등.
+D3D12_TEXTURE_ADDRESS_MODE_CLAMP	[0.0, 1.0] 범위를 벗어난 텍스처 좌표는 각각 0.0 또는 1.0의 텍스처 색상으로 설정됩니다.
+D3D12_TEXTURE_ADDRESS_MODE_BORDER	[0.0, 1.0] 범위를 벗어난 텍스처 좌표는 D3D12_SAMPLER_DESC 또는 HLSL 코드에 지정된 테두리 색상으로 설정됩니다 .
+D3D12_TEXTURE_ADDRESS_MODE_MIRROR_ONCE	유사 D3D12_TEXTURE_ADDRESS_MODE_MIRROR 및 D3D12_TEXTURE_ADDRESS_MODE_CLAMP . 텍스처 좌표의 절대 값 (따라서 0을 기준으로 미러링)을 가져온 다음 최대 값으로 고정합니다.
+
+D3D12_RESOURCE_STATE_COMMON	다른 그래픽 엔진 유형에서 리소스에 액세스하려면 응용 프로그램은이 상태로만 전환해야합니다.
+특히, 자원은 COPY 큐에서 사용되기 전에 (이전에 DIRECT / COMPUTE에서 사용 된 경우) 및 DIRECT / COMPUTE에서 사용되기 전에 (이전에 COPY에서 사용 된 경우) COMMON 상태에 있어야합니다. DIRECT와 COMPUTE 큐 사이의 데이터에 액세스 할 때는이 제한이 없습니다.
+
+COMMON 상태는 암시 적 상태 전이를 사용하여 복사 큐의 모든 사용법에 사용할 수 있습니다. 자세한 정보는 다중 엔진 동기화 에서 "공통"을 찾으십시오.
+
+또한 텍스처가 CPU 가시적 힙에서 생성되었다고 가정하면 CPU 액세스가 적법한 텍스처는 COMMON 상태에 있어야합니다.
+
+D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER	하위 리소스는 3D 파이프 라인에서 정점 버퍼 또는 상수 버퍼로 액세스 할 때이 상태에 있어야합니다. 이것은 읽기 전용 상태입니다.
+D3D12_RESOURCE_STATE_INDEX_BUFFER	하위 리소스는 3D 파이프 라인에서 인덱스 버퍼로 액세스 할 때이 상태에 있어야합니다. 이것은 읽기 전용 상태입니다.
+D3D12_RESOURCE_STATE_RENDER_TARGET	리소스는 렌더 대상으로 사용됩니다. 서브 리소스 는 렌더링 될 때 또는 ID3D12GraphicsCommandList :: ClearRenderTargetView로 지워질 때이 상태에 있어야합니다 . 이것은 쓰기 전용 상태입니다. 렌더 대상에서 셰이더 리소스로 읽으려면 리소스가 D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE 또는 D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE에 있어야합니다.
+D3D12_RESOURCE_STATE_UNORDERED_ACCESS	리소스는 순서없는 액세스에 사용됩니다. 정렬되지 않은 액세스 뷰를 통해 3D 파이프 라인에서 서브 리소스에 액세스 할 때 서브 리소스는이 상태에 있어야합니다. ID3D12GraphicsCommandList :: ClearUnorderedAccessViewInt 또는 ID3D12GraphicsCommandList :: ClearUnorderedAccessViewFloat로 지워진 서브 리소스도이 상태에 있어야합니다 . 이것은 읽기 / 쓰기 상태입니다.
+D3D12_RESOURCE_STATE_DEPTH_WRITE	DEPTH_WRITE는 다른 상태와 상호 배타적 인 상태입니다. 그것은 사용되어야한다 ID3D12GraphicsCommandList :: ClearDepthStencilView 플래그 (볼 때 D3D12_CLEAR_FLAGS가 쓰기 가능한 스텐실보기에서 사용하는 경우) 지정된 하위 리소스가 (그렇지 않으면 하위 리소스 상태가 중요하지 않습니다) 삭제해야 함을 의미합니다, 또는 (참조 D3D12_DSV_FLAGS를 ) 할 때 PSO는 깊이 쓰기가 가능합니다 ( D3D12_DEPTH_STENCIL_DESC 참조 ).
+D3D12_RESOURCE_STATE_DEPTH_READ	DEPTH_READ는 다른 상태와 결합 할 수있는 상태입니다. 서브 리소스 가 읽기 전용 깊이 스텐실보기에 있거나 D3D12_DEPTH_STENCIL_DESC 의 DepthEnable 매개 변수 가 false 인 경우에 사용해야 합니다. 다른 읽기 상태 (예 : D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE)와 결합하여 리소스를 깊이 또는 스텐실 테스트에 사용하고 동일한 드로우 콜 내에서 셰이더로 액세스 할 수 있습니다. 깊이가 드로우 콜에 의해 쓰여지거나 clear 명령이 유효하지 않을 때 사용합니다.
+D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE	리소스는 픽셀 셰이더 이외의 셰이더와 함께 사용됩니다. 하위 리소스는 셰이더 리소스보기를 통해 모든 스테이지 (픽셀 셰이더 스테이지 제외)에서 읽기 전에이 상태에 있어야합니다. 플래그 D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE가 설정되어있는 한이 플래그를 사용하여 픽셀 셰이더의 리소스를 계속 사용할 수 있습니다. 이것은 읽기 전용 상태입니다.
+D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE	리소스는 픽셀 셰이더와 함께 사용됩니다. 셰이더 리소스 뷰를 통해 픽셀 셰이더가 읽기 전에 하위 리소스가이 상태에 있어야합니다. 이것은 읽기 전용 상태입니다.
+D3D12_RESOURCE_STATE_STREAM_OUT	자원은 스트림 출력과 함께 사용됩니다. 하위 리소스는 3D 파이프 라인에서 스트림 아웃 대상으로 액세스 할 때이 상태에 있어야합니다. 이것은 쓰기 전용 상태입니다.
+D3D12_RESOURCE_STATE_INDIRECT_ARGUMENT	리소스는 간접 인수로 사용됩니다. 서브 리소스는 간접 그리기 메소드 ID3D12GraphicsCommandList :: ExecuteIndirect에 전달 된 인수 버퍼로 사용될 때이 상태에 있어야합니다 . 이것은 읽기 전용 상태입니다.
+D3D12_RESOURCE_STATE_COPY_DEST	리소스는 복사 작업에서 대상으로 사용됩니다. 서브 리소스가 복사 조작 또는 blt 조작의 대상으로 사용될 때이 상태에 있어야합니다. 이것은 쓰기 전용 상태입니다.
+D3D12_RESOURCE_STATE_COPY_SOURCE	복사 작업에서 리소스가 소스로 사용됩니다. 서브 리소스가 복사 소스 또는 blt 조작으로 사용될 때이 상태에 있어야합니다. 이것은 읽기 전용 상태입니다.
+D3D12_RESOURCE_STATE_RESOLVE_DEST	리소스는 확인 작업에서 대상으로 사용됩니다.
+D3D12_RESOURCE_STATE_RESOLVE_SOURCE	리소스는 확인 작업에서 소스로 사용됩니다.
+D3D12_RESOURCE_STATE_GENERIC_READ	D3D12_RESOURCE_STATE_GENERIC_READ는 다른 읽기 상태 비트의 논리적 OR 조합입니다. 업로드 힙의 필수 시작 상태입니다. 애플리케이션은 일반적으로 가능한 경우 D3D12_RESOURCE_STATE_GENERIC_READ 로의 전환을 피해야합니다. 캐시 캐시가 조기에 종료되거나 리소스 레이아웃 변경 (예 : 압축 / 압축 해제)이 발생하여 불필요한 파이프 라인 중단이 발생할 수 있습니다. 대신 리소스를 실제로 사용 된 상태로만 전환해야합니다.
+D3D12_RESOURCE_STATE_RAYTRACING_ACCELERATION_STRUCTURE	### D3D12_RESOURCE_STATE_SHADING_RATE_SOURCE
+Windows 10 버전 1903 (10.0; 빌드 18362)부터는 리소스가 VRS (Variable Rate Shading)의 화면 공간 음영 처리 속도 이미지임을 나타냅니다. 자세한 내용은 VRS (가변 속도 음영)를 참조하십시오 .
+
+D3D12_RESOURCE_STATE_PRESENT	D3D12_RESOURCE_STATE_COMMON과 동의어
+D3D12_RESOURCE_STATE_PREDICATION	자원은 Predication에 사용됩니다 .
+D3D12_RESOURCE_STATE_VIDEO_DECODE_READ	리소스는 디코딩 작업에서 소스로 사용됩니다. 압축 된 비트 스트림 읽기 및 디코딩 참조 읽기,
+D3D12_RESOURCE_STATE_VIDEO_DECODE_WRITE	리소스는 디코딩 작업에서 대상으로 사용됩니다. 이 상태는 디코드 출력 및 히스토그램에 사용됩니다.
+D3D12_RESOURCE_STATE_VIDEO_PROCESS_READ	리소스는 비디오 처리 중에 비디오 데이터를 읽는 데 사용됩니다. 즉, 비디오 인코딩 (압축)과 같은 처리 동작에서 리소스가 소스로 사용된다.
+D3D12_RESOURCE_STATE_VIDEO_PROCESS_WRITE	리소스는 비디오 처리 중에 비디오 데이터를 쓰는 데 사용됩니다. 즉, 비디오 인코딩 (압축)과 같은 처리 동작에서 자원이 목적지로서 사용된다.
+D3D12_RESOURCE_STATE_VIDEO_ENCODE_READ	인코딩 작업에서 리소스가 소스로 사용됩니다. 이 상태는 모션 추정의 입력 및 참조에 사용됩니다.
+D3D12_RESOURCE_STATE_VIDEO_ENCODE_WRITE	이 리소스는 인코딩 작업에서 대상으로 사용됩니다. 이 상태는 모션 벡터 힙 해결 작업의 대상 텍스처에 사용됩니다.

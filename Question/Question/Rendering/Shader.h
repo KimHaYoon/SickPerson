@@ -47,5 +47,5 @@ public:
 		const string& strPathKey = SHADER_PATH );
 
 public:
-	void SetShader( ID3D12PipelineState * pPipeline);
+	void SetShader();
 };

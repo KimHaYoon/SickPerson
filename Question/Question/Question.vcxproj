@@ -153,7 +153,6 @@
     <ClInclude Include="Rendering\BlendState.h" />
     <ClInclude Include="Rendering\DepthStencilState.h" />
     <ClInclude Include="Rendering\RasterizerState.h" />
-    <ClInclude Include="Rendering\RenderingTarget.h" />
     <ClInclude Include="Rendering\RenderManager.h" />
     <ClInclude Include="Rendering\RenderState.h" />
     <ClInclude Include="Rendering\Shader.h" />
@@ -162,6 +161,7 @@
     <ClInclude Include="Resources\Mesh.h" />
     <ClInclude Include="Resources\ResourcesManager.h" />
     <ClInclude Include="Resources\Sampler.h" />
+    <ClInclude Include="RootSignature.h" />
     <ClInclude Include="Scene\Layer.h" />
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Scene\SceneManager.h" />
@@ -193,7 +193,6 @@
     <ClCompile Include="Rendering\BlendState.cpp" />
     <ClCompile Include="Rendering\DepthStencilState.cpp" />
     <ClCompile Include="Rendering\RasterizerState.cpp" />
-    <ClCompile Include="Rendering\RenderingTarget.cpp" />
     <ClCompile Include="Rendering\RenderManager.cpp" />
     <ClCompile Include="Rendering\RenderState.cpp" />
     <ClCompile Include="Rendering\Shader.cpp" />
@@ -201,6 +200,7 @@
     <ClCompile Include="Resources\Mesh.cpp" />
     <ClCompile Include="Resources\ResourcesManager.cpp" />
     <ClCompile Include="Resources\Sampler.cpp" />
+    <ClCompile Include="RootSignature.cpp" />
     <ClCompile Include="Scene\Layer.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />

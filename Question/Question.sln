@@ -5,6 +5,11 @@ VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Question", "Question\Question.vcxproj", "{7BE5B5B6-BA95-4DFB-8E89-BDFCBDFD53FA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00. 참고", "00. 참고", "{CCC286C2-D2A6-454F-BBCA-06A61634DAD9}"
+	ProjectSection(SolutionItems) = preProject
+		..\문서\참고.txt = ..\문서\참고.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

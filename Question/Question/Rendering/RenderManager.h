@@ -1,59 +1,11 @@
 #pragma once
 #include "../Engine.h"
 
-typedef struct _tagRenderGroup
-{
-	class CGameObject**	pRenderObj;
-	int		iSize;
-	int		iCapasity;
-
-	_tagRenderGroup() :
-		iSize(0),
-		iCapasity(1000)
-	{
-		pRenderObj = new CGameObject*[iCapasity];
-	}
-}RENDERGROUP, *PRENDERGROUP;
-
-enum RENDER_GROUP_TYPE
-{
-	RGT_LANDSCAPE,
-	RGT_DEFAULT,
-	RGT_DECAL,
-	RGT_ALPHA,
-	RGT_UI,
-	RGT_END
-};
-
-typedef struct _tagMultiRenderTarget
-{
-	vector<class CRenderingTarget*>	vecTargets;
-	ID3D12DescriptorHeap*			pDepth;
-	ID3D12DescriptorHeap*		pOldTarget[8];
-	ID3D12DescriptorHeap*			pOldDepth;
-
-	_tagMultiRenderTarget() :
-		pDepth(NULL),
-		pOldDepth(NULL)
-	{
-		memset(pOldTarget, 0, sizeof( ID3D12DescriptorHeap*) * 8);
-	}
-}MRT, *PMRT;
-
 class CRenderManager
 {
 private:
 	unordered_map<string, class CRenderState*>		m_mapRenderState;
 	vector<D3D12_RENDER_TARGET_BLEND_DESC>			m_vecDesc;
-	RENDERGROUP	m_tRenderGroup[RGT_END];
-	unordered_map<string, class CRenderingTarget*>	m_mapTarget;
-	unordered_map<string, PMRT>	m_mapMRT;
-	class CShader*	m_pLightAccShader;
-	class CShader*	m_pLightBlendShader;
-	class CShader*	m_pDeferredShader;
-	class CSampler*	m_pPointSmp;
-	class CRenderState*	m_pDepthDisable;
-	class CRenderState*	m_pAccBlend;
 
 public:
 	bool Init();
@@ -64,6 +16,7 @@ public:
 		D3D12_BLEND eDestAlpha = D3D12_BLEND_ZERO,
 		D3D12_BLEND_OP eAlphaOp = D3D12_BLEND_OP_ADD, D3D12_LOGIC_OP eLogicOP = D3D12_LOGIC_OP_NOOP,
 		UINT8 iWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL);
+
 	class CBlendState* CreateBlendState(const string& strKey,
 		bool bAlphaCoverage, bool bIndependent);
 
@@ -83,38 +36,6 @@ public:
 		bool bAntialisedLineEnable = false);
 
 	class CRenderState* FindRenderState(const string& strKey);
-
-	class CRenderingTarget* CreateRenderTarget(const string& strKey,
-		unsigned int iW, unsigned int iH, DXGI_FORMAT eFmt,
-		const Vector4& vClearColor = Vector4::Zero,
-		DXGI_FORMAT eDepthFmt = DXGI_FORMAT_UNKNOWN);
-
-	class CRenderingTarget* FindRenderTarget(const string& strKey);
-	void AddRenderTargetToMRT(const string& strMRTKey,
-		const string& strTargetKey);
-	void SetDepthToMRT(const string& strMRTKey,
-		const string& strDepthKey);
-	void ClearMRT(const string& strKey);
-	void SetMRT(const string& strKey);
-	void ResetMRT(const string& strKey);
-
-	PMRT FindMRT(const string& strKey);
-
-public:
-	void AddRenderObject(class CGameObject* pObj);
-	void Render(float fTime);
-
-private:
-	void RenderDecal(float fTime);
-	void RenderGBuffer(float fTime);
-	void RenderLightAcc(float fTime);
-	void RenderLightBlend(float fTime);
-	void RenderDeferredTarget(float fTime);
-
-public:
-	static bool SortZ(class CGameObject* pSrc, class CGameObject* pDest);
-	static bool SortAlpha(class CGameObject* pSrc, class CGameObject* pDest);
-	static bool SortUI(class CGameObject* pSrc, class CGameObject* pDest);
 
 	DECLARE_SINGLE(CRenderManager)
 };

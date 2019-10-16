@@ -32,6 +32,7 @@
 #define	SWAPCHAIN	GET_SINGLE(CDevice)->GetSwapChain()
 #define	FENCE	GET_SINGLE(CDevice)->GetFence()
 #define	DEVICE_RESOLUTION	GET_SINGLE(CDevice)->GetResolution()
+#define ROOTSIGNATURE	GET_SINGLE(CRootSignature)->GetRootSignature()
 
 #define	KEYDOWN(key)	CInput::GetInst()->KeyDown(key)
 #define	KEYPUSH(key)	CInput::GetInst()->KeyPush(key)

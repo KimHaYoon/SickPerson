@@ -3,6 +3,10 @@
 #include "Core/Timer.h"
 #include "Core/TimerManager.h"
 #include "Core/PathManager.h"
+#include "Core/Input.h"
+#include "Scene/SceneManager.h"
+#include "Rendering/RenderManager.h"
+#include "Resources/ResourcesManager.h"
 
 DEFINITION_SINGLE( CCore )
 
@@ -11,7 +15,7 @@ bool CCore::m_bLoop = true;
 CCore::CCore()
 {
 	_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
-	//_CrtSetBreakAlloc(1077434);
+	_CrtSetBreakAlloc( 432 );
 #ifdef _DEBUG
 	//AllocConsole();
 #endif
@@ -20,6 +24,10 @@ CCore::CCore()
 
 CCore::~CCore()
 {
+	DESTROY_SINGLE( CSceneManager );
+	DESTROY_SINGLE( CRenderManager );
+	DESTROY_SINGLE( CResourcesManager );
+	DESTROY_SINGLE( CInput );
 	DESTROY_SINGLE( CTimerManager );
 	DESTROY_SINGLE( CPathManager );
 	DESTROY_SINGLE( CDevice );
@@ -63,15 +71,14 @@ bool CCore::Init( HINSTANCE hInst, HWND hWnd, UINT iWidth,
 	if ( !GET_SINGLE( CPathManager )->Init() )
 		return false;
 
-	//// Mesh 부분이 난이도가 높다
-	//if ( !GET_SINGLE( CResourcesManager )->Init() )
-	//	return false;
+	if ( !GET_SINGLE( CResourcesManager )->Init() )
+		return false;
 
-	//if ( !GET_SINGLE( CRenderManager )->Init() )
-	//	return false;
+	if ( !GET_SINGLE( CRenderManager )->Init() )
+		return false;
 
-	//if ( !GET_SINGLE( CInput )->Init( m_hWnd, bOnMouseRenderer ) )
-	//	return false;
+	if ( !GET_SINGLE( CInput )->Init( m_hWnd, bOnMouseRenderer ) )
+		return false;
 
 	if ( !GET_SINGLE( CTimerManager )->Init() )
 		return false;
@@ -79,8 +86,8 @@ bool CCore::Init( HINSTANCE hInst, HWND hWnd, UINT iWidth,
 	//if ( !GET_SINGLE( CCollisionManager )->Init() )
 	//	return false;
 
-	//if ( !GET_SINGLE( CSceneManager )->Init() )
-	//	return false;
+	if ( !GET_SINGLE( CSceneManager )->Init() )
+		return false;
 
 	//if ( !GET_SINGLE( CSound )->Init() )
 	//	return false;
@@ -90,7 +97,7 @@ bool CCore::Init( HINSTANCE hInst, HWND hWnd, UINT iWidth,
 
 int CCore::Run()
 {
-	//GET_SINGLE(CSceneManager)->Start();
+	GET_SINGLE(CSceneManager)->Start();
 	MSG msg;
 
 	while ( m_bLoop )
@@ -132,16 +139,18 @@ void CCore::Logic()
 
 void CCore::Input( float fTime )
 {
+	GET_SINGLE( CInput )->Update( fTime );
+	GET_SINGLE( CSceneManager )->Input( fTime );
 }
 
 int CCore::Update( float fTime )
 {
-	return 0;
+	return GET_SINGLE( CSceneManager )->Update( fTime );
 }
 
 int CCore::LateUpdate( float fTime )
 {
-	return 0;
+	return GET_SINGLE( CSceneManager )->LateUpdate( fTime );
 }
 
 void CCore::Collision( float fTime )
@@ -153,6 +162,8 @@ void CCore::Render( float fTime )
 	GET_SINGLE( CDevice )->CmdReset();
 
 	GET_SINGLE( CDevice )->ClearTarget();
+
+	GET_SINGLE( CSceneManager )->Render( fTime );
 
 	GET_SINGLE( CDevice )->Present();
 }

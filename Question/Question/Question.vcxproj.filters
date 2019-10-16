@@ -58,11 +58,11 @@
     <Filter Include="05. Rendering\02. RenderState">
       <UniqueIdentifier>{4f0ed446-46d7-4c1c-9932-f48f8b716fa1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="05. Rendering\03. RenderingTarget">
-      <UniqueIdentifier>{282e8804-a6e4-4481-aec3-81496cc2df52}</UniqueIdentifier>
-    </Filter>
     <Filter Include="06. Resources">
       <UniqueIdentifier>{c1601061-9043-44e4-b7e0-68f4f090f529}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Device\01. RootSignature">
+      <UniqueIdentifier>{ad4e529c-ff2b-475c-b35d-683ec1abe50f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -177,9 +177,6 @@
     <ClInclude Include="Rendering\RenderState.h">
       <Filter>05. Rendering\02. RenderState</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\RenderingTarget.h">
-      <Filter>05. Rendering\03. RenderingTarget</Filter>
-    </ClInclude>
     <ClInclude Include="Resources\Mesh.h">
       <Filter>06. Resources</Filter>
     </ClInclude>
@@ -188,6 +185,9 @@
     </ClInclude>
     <ClInclude Include="Resources\Sampler.h">
       <Filter>06. Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="RootSignature.h">
+      <Filter>01. Device\01. RootSignature</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -287,9 +287,6 @@
     <ClCompile Include="Rendering\RenderState.cpp">
       <Filter>05. Rendering\02. RenderState</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\RenderingTarget.cpp">
-      <Filter>05. Rendering\03. RenderingTarget</Filter>
-    </ClCompile>
     <ClCompile Include="Resources\Mesh.cpp">
       <Filter>06. Resources</Filter>
     </ClCompile>
@@ -298,6 +295,9 @@
     </ClCompile>
     <ClCompile Include="Resources\Sampler.cpp">
       <Filter>06. Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="RootSignature.cpp">
+      <Filter>01. Device\01. RootSignature</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
