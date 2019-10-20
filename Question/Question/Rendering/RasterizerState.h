@@ -23,7 +23,7 @@ public:
 		bool bAntialisedLineEnable = false );
 
 public:
-	D3D12_RASTERIZER_DESC	GetRasterizerDesc();
+	D3D12_RASTERIZER_DESC	GetDesc();
 
 //public:
 //	virtual void SetState();

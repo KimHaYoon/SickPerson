@@ -6,7 +6,7 @@ class  CShaderManager
 {
 private:
 	unordered_map<string, class CShader*>	m_mapShader;
-	unordered_map<string, D3D12_INPUT_LAYOUT_DESC>	m_mapLayout;
+	unordered_map<string, D3D12_INPUT_LAYOUT_DESC*>	m_mapLayout;
 	unordered_map<string, PCONSTANTBUFFER>	m_mapCBuffer;
 	vector<D3D12_INPUT_ELEMENT_DESC>	m_vecInputDesc;
 	int			m_iInputSize;

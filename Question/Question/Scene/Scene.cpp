@@ -219,7 +219,7 @@ bool CScene::Init()
 	m_pMainCamera = m_pMainCameraObj->FindComponentFromTypeID<CCamera>();
 	m_pMainCameraTr = m_pMainCameraObj->GetTransform();
 
-	//m_pMainCameraTr->SetWorldRotX(WTF_PI / -2.f);
+	m_pMainCameraTr->SetWorldRotX(PI / -2.f);
 
 	// 전역 조명을 생성한다.
 	/*CLight*	pGlobalLight = CreateLight("GlobalLight", LT_DIR);

@@ -12,12 +12,19 @@ private:
 
 private:
 	ID3D12PipelineState*					m_pPipelineState;
-	D3D12_GRAPHICS_PIPELINE_STATE_DESC		m_tDesc;
+	D3D12_GRAPHICS_PIPELINE_STATE_DESC*		m_pDesc;
+	string									m_strTag;
 
 public:
 	bool Init();
 
-	void SetInputLayout( D3D12_INPUT_LAYOUT_DESC tInputLayout );
-	void CreatePipeline();
+	void SetInputLayout( D3D12_INPUT_LAYOUT_DESC* pInputLayout );
+	void SetRenderState( class CRenderState* pRenderState[RST_END]);
+	void CreatePipeline();			// 렌더링 하기전에 호출
+
+	void SetTag( const string& strTag );
+
+	ID3D12PipelineState*	GetPipelineState()	const;
+	D3D12_GRAPHICS_PIPELINE_STATE_DESC*	GetPipelineStateDesc() const;
 };
 

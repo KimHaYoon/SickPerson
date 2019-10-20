@@ -1,3 +1,2 @@
-﻿  RootSignature.cpp
-d:\00.학교\졸업작품\sickperson\question\question\rootsignature.cpp(81): warning C4267: '=': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Question.vcxproj -> D:\00.학교\졸업작품\SickPerson\Question\x64\Debug\Question.exe
+﻿  PipelineState.cpp
+  Question.vcxproj -> D:\01.KPU\졸업작품\SickPerson\Question\x64\Debug\Question.exe

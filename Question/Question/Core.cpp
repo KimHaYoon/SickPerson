@@ -7,6 +7,7 @@
 #include "Core/Input.h"
 #include "Scene/SceneManager.h"
 #include "Rendering/RenderManager.h"
+#include "Rendering/PipelineStateManager.h"
 #include "Resources/ResourcesManager.h"
 
 DEFINITION_SINGLE( CCore )
@@ -26,6 +27,7 @@ CCore::CCore()
 CCore::~CCore()
 {
 	DESTROY_SINGLE( CSceneManager );
+	DESTROY_SINGLE( CPipelineStateManager );
 	DESTROY_SINGLE( CRenderManager );
 	DESTROY_SINGLE( CResourcesManager );
 	DESTROY_SINGLE( CInput );
@@ -80,6 +82,9 @@ bool CCore::Init( HINSTANCE hInst, HWND hWnd, UINT iWidth,
 		return false;
 
 	if ( !GET_SINGLE( CRenderManager )->Init() )
+		return false;
+
+	if ( !GET_SINGLE( CPipelineStateManager )->Init() )
 		return false;
 
 	if ( !GET_SINGLE( CInput )->Init( m_hWnd, bOnMouseRenderer ) )

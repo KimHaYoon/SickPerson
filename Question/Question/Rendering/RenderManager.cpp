@@ -22,7 +22,7 @@ bool CRenderManager::Init()
 	if (!GET_SINGLE(CShaderManager)->Init())
 		return false;
 
-	AddBlendTargetDesc();
+	AddBlendTargetDesc();  
 
 	CBlendState*	pState = CreateBlendState( ALPHA_BLEND, FALSE, FALSE );
 
@@ -40,6 +40,10 @@ bool CRenderManager::Init()
 
 	pRS = CreateRasterizerState( CULLING_NONE, D3D12_FILL_MODE_SOLID,
 		D3D12_CULL_MODE_NONE );
+
+	SAFE_RELEASE( pRS );
+
+	pRS = CreateRasterizerState( CULLING_DEFAULT, D3D12_FILL_MODE_SOLID );
 
 	SAFE_RELEASE( pRS );
 

@@ -60,7 +60,7 @@ bool CBlendState::CreateBlendState( const string& strKey, bool bAlphaCoverage, b
 	return true;
 }
 
-D3D12_BLEND_DESC CBlendState::GetBlendDesc() const
+D3D12_BLEND_DESC CBlendState::GetDesc() const
 {
 	return m_tDesc;
 }

@@ -33,7 +33,7 @@ bool CRasterizerState::CreateRasterizerState(const string& strKey, D3D12_FILL_MO
 	return true;
 }
 
-D3D12_RASTERIZER_DESC CRasterizerState::GetRasterizerDesc()
+D3D12_RASTERIZER_DESC CRasterizerState::GetDesc()
 {
 	return m_tDesc;
 }
