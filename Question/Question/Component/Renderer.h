@@ -19,6 +19,7 @@ private:
 	class CPipelineState*		m_pPipeline;
 	class CRenderState*			m_pRenderState[RST_END];
 	bool	m_bAlpha;
+	bool	m_bChange;
 
 public:
 	void SetMesh(const string& strKey);

@@ -27,31 +27,13 @@ CShaderManager::~CShaderManager()
 bool CShaderManager::Init()
 {
 	char*	pEntry[ST_MAX] = { "StandardColorVS", "StandardColorPS" };
-	CShader*	pShader = LoadShader( STANDARD_COLOR_SHADER, L"Standard.fx",
-		pEntry );
-
-	SAFE_RELEASE( pShader );
-
+	
 	pEntry[ST_VERTEX] = "StandardColorNormalVS";
 	pEntry[ST_PIXEL] = "StandardColorNormalPS";
-	pShader = LoadShader( STANDARD_COLOR_NORMAL_SHADER, L"Standard.fx",
+	CShader* pShader = LoadShader( STANDARD_COLOR_NORMAL_SHADER, L"Standard.fx",
 		pEntry );
 
 	SAFE_RELEASE( pShader );
-
-	pEntry[ST_VERTEX] = "StandardTexVS";
-	pEntry[ST_PIXEL] = "StandardTexPS";
-	pShader = LoadShader( STANDARD_TEX_SHADER, L"Standard.fx",
-		pEntry );
-
-	SAFE_RELEASE( pShader );
-
-	AddInputDesc( "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
-		12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-	AddInputDesc( "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0,
-		16, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-
-	CreateInputLayout( "VertexColor", STANDARD_COLOR_SHADER );
 
 	AddInputDesc( "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
 		12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
@@ -61,13 +43,6 @@ bool CShaderManager::Init()
 		16, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
 
 	CreateInputLayout( "VertexColorNormal", STANDARD_COLOR_NORMAL_SHADER );
-
-	AddInputDesc( "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
-		12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-	AddInputDesc( "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0,
-		8, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 );
-
-	CreateInputLayout( "VertexTex", STANDARD_TEX_SHADER );
 
 	CreateCBuffer( "Transform", 0, sizeof( TRANSFORMCBUFFER ) );
 	CreateCBuffer( "Material", 1, sizeof( MATERIAL ) );
@@ -158,9 +133,6 @@ void CShaderManager::SetInputLayout( const string & strKey )
 
 	if ( !pInputLayout )
 		return;
-	
-	// 파이프라인에 인풋레이아웃 연결
-	//CONTEXT->IASetInputLayout( pInputLayout );
 }
 
 D3D12_INPUT_LAYOUT_DESC* CShaderManager::FindInputLayout( const string & strKey )

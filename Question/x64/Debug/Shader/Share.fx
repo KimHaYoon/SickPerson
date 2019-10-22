@@ -54,11 +54,6 @@ struct PS_OUTPUT
 	//float4	vColor1	: SV_Target1;
 };
 
-Texture2D		g_DifTex	: register(t0);
-SamplerState	g_DifSmp	: register(s0);
-
-Texture2DArray	g_DifArrTex	: register(t10);
-
 cbuffer Transform	: register(b0)
 {
 	matrix	g_matWorld;
@@ -94,27 +89,6 @@ cbuffer Light	: register(b2)
 	float	g_fLightOutAngle;
 	float	g_fLightIntensityPercent;
 	float	g_fLightEmpty;
-}
-
-
-cbuffer Animation2D	: register(b10)
-{
-	int		g_iAniType;
-	int		g_iAniFrameX;
-	int		g_iAniFrameY;
-	int		g_iAniLengthX;
-	int		g_iAniLengthY;
-	float3	g_vAniEmpty;
-}
-
-float2 ComputeUV(float2 vInputUV)
-{
-	float2	vUV;
-
-	vUV.x = (g_iAniFrameX + vInputUV.x) / g_iAniLengthX;
-	vUV.y = (g_iAniFrameY + vInputUV.y) / g_iAniLengthY;
-
-	return vUV;
 }
 
 struct _tagLightInfo

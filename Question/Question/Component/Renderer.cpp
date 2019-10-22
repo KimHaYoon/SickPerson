@@ -19,7 +19,8 @@ CRenderer::CRenderer()	:
 	m_pShader(NULL),
 	m_pInputLayout(NULL),
 	m_pPipeline(NULL),
-	m_bAlpha( false )
+	m_bAlpha( false ),
+	m_bChange(true)
 {
 	SetTag("Renderer");
 	SetTypeName("CRenderer");
@@ -80,6 +81,7 @@ void CRenderer::SetShader(const string & strKey)
 {
 	SAFE_RELEASE(m_pShader);
 	m_pShader = GET_SINGLE(CShaderManager)->FindShader(strKey);
+	m_bChange = true;
 }
 
 void CRenderer::SetShader(CShader * pShader)
@@ -87,16 +89,19 @@ void CRenderer::SetShader(CShader * pShader)
 	SAFE_RELEASE(m_pShader);
 	pShader->AddRef();
 	m_pShader = pShader;
+	m_bChange = true;
 }
 
 void CRenderer::SetInputLayout(const string & strKey)
 {
 	m_pInputLayout = GET_SINGLE(CShaderManager)->FindInputLayout(strKey);
+	m_bChange = true;
 }
 
 void CRenderer::SetInputLayout( D3D12_INPUT_LAYOUT_DESC * pLayout)
 {
 	m_pInputLayout = pLayout;
+	m_bChange = true;
 }
 
 void CRenderer::SetRenderState( const string & strKey )
@@ -111,6 +116,7 @@ void CRenderer::SetRenderState( const string & strKey )
 
 	if ( strKey == ALPHA_BLEND )
 		m_bAlpha = true;
+	m_bChange = true;
 }
 
 
@@ -159,8 +165,17 @@ void CRenderer::Render(float fTime)
 		m_pPipeline->SetRenderState( m_pRenderState );
 	m_pShader->SetShader( m_pPipeline->GetPipelineStateDesc());
 	m_pPipeline->SetInputLayout( m_pInputLayout );
-	m_pPipeline->CreatePipeline();
+	if ( m_bChange )
+	{
+		m_pPipeline->CreatePipeline();
+		m_bChange = false;
+	}
+	CMDLIST->SetPipelineState( m_pPipeline->GetPipelineState() );
 
+	/*ID3D12DescriptorHeap* pHeap = GET_SINGLE( CDevice )->GetRTVHeap();
+	CMDLIST->SetDescriptorHeaps( 1, &pHeap );
+	CMDLIST->SetGraphicsRootDescriptorTable( 0, GET_SINGLE(CDevice)->GetRTVHeap()->GetGPUDescriptorHandleForHeapStart());
+*/
 	m_pMesh->Render(fTime);
 }
 

@@ -10,6 +10,7 @@ CPipelineStateManager::CPipelineStateManager()
 
 CPipelineStateManager::~CPipelineStateManager()
 {
+	Safe_Release_Map( m_mapPipelineState );
 }
 
 bool CPipelineStateManager::Init()
@@ -32,6 +33,8 @@ CPipelineState * CPipelineStateManager::CreatePipelineState( const string & strK
 		return NULL;
 	}
 
+	pPipelineState->SetTag( strKey + "Pipeline" );
+	pPipelineState->AddRef();
 	m_mapPipelineState[strKey] = pPipelineState;
 
 	return pPipelineState;
@@ -43,6 +46,8 @@ CPipelineState * CPipelineStateManager::FindPipelineState( const string & strKey
 
 	if ( iter == m_mapPipelineState.end() )
 		return NULL;
+
+	iter->second->AddRef();
 
 	return iter->second;
 }

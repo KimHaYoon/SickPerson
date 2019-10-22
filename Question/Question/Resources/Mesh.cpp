@@ -232,11 +232,11 @@ ID3D12Resource * CMesh::CreateBufferResource(void * pData, UINT nBytes, D3D12_HE
 void CMesh::Render( float fTime )
 {
 	// 버텍스버퍼를 지정한다.
-
 	CMDLIST->IASetVertexBuffers( 0, 1, &m_pVB->tView);
 	// 도형 위상구조를 설정한다.
 	CMDLIST->IASetPrimitiveTopology( m_pVB->ePrimitive );
 
+	//CMDLIST->DrawInstanced( m_pVB->iVtxCount, 1, 0, 0 );
 	if ( m_pIB )
 	{
 		// 인덱스버퍼를 지정한다.
