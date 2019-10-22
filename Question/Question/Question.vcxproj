@@ -133,6 +133,8 @@
     <ClInclude Include="Component\LightDir.h" />
     <ClInclude Include="Component\LightPoint.h" />
     <ClInclude Include="Component\LightSpot.h" />
+    <ClInclude Include="Component\Renderer.h" />
+    <ClInclude Include="Component\Script.h" />
     <ClInclude Include="Component\Transform.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="Core\Input.h" />
@@ -148,6 +150,7 @@
     <ClInclude Include="EngineVector4.h" />
     <ClInclude Include="Flag.h" />
     <ClInclude Include="GameObject\GameObject.h" />
+    <ClInclude Include="GameObject\Pyramid.h" />
     <ClInclude Include="Macro.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="Rendering\BlendState.h" />
@@ -168,6 +171,7 @@
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Scene\SceneScript.h" />
+    <ClInclude Include="Scene\TestScene.h" />
     <ClInclude Include="Types.h" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +182,8 @@
     <ClCompile Include="Component\LightDir.cpp" />
     <ClCompile Include="Component\LightPoint.cpp" />
     <ClCompile Include="Component\LightSpot.cpp" />
+    <ClCompile Include="Component\Renderer.cpp" />
+    <ClCompile Include="Component\Script.cpp" />
     <ClCompile Include="Component\Transform.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="Core\Input.cpp" />
@@ -190,6 +196,7 @@
     <ClCompile Include="EngineVector3.cpp" />
     <ClCompile Include="EngineVector4.cpp" />
     <ClCompile Include="GameObject\GameObject.cpp" />
+    <ClCompile Include="GameObject\Pyramid.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="Rendering\BlendState.cpp" />
@@ -209,12 +216,35 @@
     <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Scene\SceneScript.cpp" />
+    <ClCompile Include="Scene\TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Question.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\x64\Debug\Shader\Share.fx">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="..\x64\Debug\Shader\Standard.fx">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">StandardColorVS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">StandardColorVS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">StandardColorVS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">StandardColorVS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

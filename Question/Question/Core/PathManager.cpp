@@ -28,10 +28,10 @@ bool CPathManager::Init()
 	m_mapPath.insert(make_pair(BASE_PATH, strPath));
 
 	AddPath(SHADER_PATH, L"Shader\\");
-	AddPath(TEXTURE_PATH, L"Texture\\");
+	/*AddPath(TEXTURE_PATH, L"Texture\\");
 	AddPath(DATA_PATH, L"Data\\");
 	AddPath(SOUND_PATH, L"Sound\\");
-	AddPath(MESH_PATH, L"Mesh\\");
+	AddPath(MESH_PATH, L"Mesh\\");*/
 
 	return true;
 }

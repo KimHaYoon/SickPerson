@@ -16,7 +16,9 @@ CRootSignature::~CRootSignature()
 
 bool CRootSignature::Init()
 {
+	CreateRootParameter( D3D12_ROOT_PARAMETER_TYPE_CBV, 0, 0, D3D12_SHADER_VISIBILITY_ALL );
 	CreateRootParameter( D3D12_ROOT_PARAMETER_TYPE_CBV, 1, 0, D3D12_SHADER_VISIBILITY_ALL );
+	CreateRootParameter( D3D12_ROOT_PARAMETER_TYPE_CBV, 2, 0, D3D12_SHADER_VISIBILITY_ALL );
 
 	if ( !m_vecRootParameter.empty() )
 	{

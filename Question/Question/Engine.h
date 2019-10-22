@@ -46,6 +46,7 @@ using namespace std;
 
 #define	WIRE_FRAME		"WireFrame"
 #define	CULLING_NONE	"CullNone"
+#define CULLING_DEFAULT	"CullDefault"
 
 template <typename T>
 void Safe_Release_VecList(T& p)

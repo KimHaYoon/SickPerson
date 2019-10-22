@@ -30,7 +30,7 @@ public:
 	void AddDesc( const D3D12_RENDER_TARGET_BLEND_DESC& tDesc );
 	bool CreateBlendState( const string& strKey, bool bAlphaCoverage, bool bIndependent );
 
-	D3D12_BLEND_DESC	 GetBlendDesc() const;
+	D3D12_BLEND_DESC	 GetDesc() const;
 
 //public:
 //	virtual void SetState();

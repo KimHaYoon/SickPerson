@@ -9,7 +9,7 @@ private:
 public:
 	bool Init();
 
-	void CreatePipelineState(const string& strKey);
+	class CPipelineState*	CreatePipelineState(const string& strKey);
 	class CPipelineState*	FindPipelineState( const string& strKey );
 
 	DECLARE_SINGLE(CPipelineStateManager)

@@ -13,12 +13,12 @@ protected:
 protected:
 	//ID3D12DeviceChild*		m_pState;
 	//ID3D12DeviceChild*		m_pOldState;
-	RENDERSTATE_TYPE	m_eType;
-	string								m_strKey;
+	RENDERSTATE_TYPE			m_eType;
+	string						m_strKey;
 
 public:
 	RENDERSTATE_TYPE	GetType()	const;
-	string								GetKey()	const;
+	string				GetKey()	const;
 
 //public:
 //	virtual	void		SetState() = 0;

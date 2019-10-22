@@ -67,6 +67,33 @@
     <Filter Include="05. Rendering\03. PipelineState">
       <UniqueIdentifier>{4aa832a6-ac9c-4df3-8706-77f76eb80a68}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. Component\04. Renderer">
+      <UniqueIdentifier>{8ba79dd7-a5c7-4605-81ac-0ba84ebf5005}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\05. Material">
+      <UniqueIdentifier>{4b8eb904-65ea-4f7b-b5cc-cad8862f9356}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scene\01. Engine">
+      <UniqueIdentifier>{5e094abc-e8a4-426b-9532-1433d9f6c2e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Scene\02. Client">
+      <UniqueIdentifier>{d417a33c-9360-4627-9bea-afa227eebc1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. GameObject\01. Engine">
+      <UniqueIdentifier>{af62a3ed-ee6b-44d3-962d-325cc1689949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. GameObject\02. Client">
+      <UniqueIdentifier>{e9162f29-c617-4279-afe5-754a69cf03a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Component\06. Script">
+      <UniqueIdentifier>{88088f1d-816f-48a7-9c96-3190958edf95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. GameObject\02. Client\01. Prymid">
+      <UniqueIdentifier>{07ff38f1-9994-4d47-87d2-3be35ae6b111}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Rendering\01. Shader\01. HLSL">
+      <UniqueIdentifier>{852e3833-1a8b-4522-b0a9-f5e88facce10}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Flag.h">
@@ -117,23 +144,8 @@
     <ClInclude Include="Core\PathManager.h">
       <Filter>00. Core\03. Path</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Layer.h">
-      <Filter>02. Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\Scene.h">
-      <Filter>02. Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\SceneManager.h">
-      <Filter>02. Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\SceneScript.h">
-      <Filter>02. Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Input.h">
       <Filter>00. Core\04. Input</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject\GameObject.h">
-      <Filter>03. GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Component\Component.h">
       <Filter>04. Component</Filter>
@@ -196,7 +208,34 @@
       <Filter>05. Rendering\03. PipelineState</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\PipelineStateManager.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>05. Rendering\03. PipelineState</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Renderer.h">
+      <Filter>04. Component\04. Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Layer.h">
+      <Filter>02. Scene\01. Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Scene.h">
+      <Filter>02. Scene\01. Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneManager.h">
+      <Filter>02. Scene\01. Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneScript.h">
+      <Filter>02. Scene\01. Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\TestScene.h">
+      <Filter>02. Scene\02. Client</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\GameObject.h">
+      <Filter>03. GameObject\01. Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Script.h">
+      <Filter>04. Component\06. Script</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Pyramid.h">
+      <Filter>03. GameObject\02. Client\01. Prymid</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -233,23 +272,8 @@
     <ClCompile Include="Core\PathManager.cpp">
       <Filter>00. Core\03. Path</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Layer.cpp">
-      <Filter>02. Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\Scene.cpp">
-      <Filter>02. Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\SceneManager.cpp">
-      <Filter>02. Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\SceneScript.cpp">
-      <Filter>02. Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Core\Input.cpp">
       <Filter>00. Core\04. Input</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject\GameObject.cpp">
-      <Filter>03. GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Component\Component.cpp">
       <Filter>04. Component</Filter>
@@ -312,7 +336,34 @@
       <Filter>05. Rendering\03. PipelineState</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\PipelineStateManager.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>05. Rendering\03. PipelineState</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Renderer.cpp">
+      <Filter>04. Component\04. Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Layer.cpp">
+      <Filter>02. Scene\01. Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Scene.cpp">
+      <Filter>02. Scene\01. Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneManager.cpp">
+      <Filter>02. Scene\01. Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneScript.cpp">
+      <Filter>02. Scene\01. Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\TestScene.cpp">
+      <Filter>02. Scene\02. Client</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\GameObject.cpp">
+      <Filter>03. GameObject\01. Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Script.cpp">
+      <Filter>04. Component\06. Script</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Pyramid.cpp">
+      <Filter>03. GameObject\02. Client\01. Prymid</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -324,5 +375,13 @@
     <Image Include="icon1.ico">
       <Filter>리소스 파일</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\x64\Debug\Shader\Share.fx">
+      <Filter>05. Rendering\01. Shader\01. HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="..\x64\Debug\Shader\Standard.fx">
+      <Filter>05. Rendering\01. Shader\01. HLSL</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

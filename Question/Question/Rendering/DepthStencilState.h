@@ -25,7 +25,7 @@ public:
 		D3D12_DEPTH_STENCILOP_DESC tBackDesc = {});
 
 public:
-	D3D12_DEPTH_STENCIL_DESC	GetDepthStencilDesc()	const;
+	D3D12_DEPTH_STENCIL_DESC	GetDesc()	const;
 //public:
 //	virtual void SetState();
 //	virtual void ResetState();

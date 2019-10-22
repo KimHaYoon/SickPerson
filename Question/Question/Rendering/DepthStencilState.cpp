@@ -33,7 +33,7 @@ bool CDepthStencilState::CreateDepthStencilState(const string& strKey, bool bDep
 	return true;
 }
 
-D3D12_DEPTH_STENCIL_DESC CDepthStencilState::GetDepthStencilDesc() const
+D3D12_DEPTH_STENCIL_DESC CDepthStencilState::GetDesc() const
 {
 	return m_tDesc;
 }

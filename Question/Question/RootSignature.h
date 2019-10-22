@@ -5,8 +5,8 @@ class CRootSignature
 {
 private:
 	vector<D3D12_DESCRIPTOR_RANGE > m_vecDescRange;
-	vector<D3D12_ROOT_PARAMETER > m_vecRootParameter;
-	D3D12_ROOT_PARAMETER*	m_pRootParameter;
+	vector<D3D12_ROOT_PARAMETER >	m_vecRootParameter;
+	D3D12_ROOT_PARAMETER*			m_pRootParameter;
 	ID3D12RootSignature*			m_pRootSignature;
 
 public:

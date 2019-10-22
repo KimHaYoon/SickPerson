@@ -20,6 +20,7 @@ CShaderManager::~CShaderManager()
 	}
 
 	Safe_Delete_Map( m_mapCBuffer );
+	Safe_Delete_Map( m_mapLayout );
 	Safe_Release_Map( m_mapShader );
 }
 
@@ -69,8 +70,8 @@ bool CShaderManager::Init()
 	CreateInputLayout( "VertexTex", STANDARD_TEX_SHADER );
 
 	CreateCBuffer( "Transform", 0, sizeof( TRANSFORMCBUFFER ) );
-	//CreateCBuffer( "Material", 1, sizeof( MATERIAL ) );
-	//CreateCBuffer( "Light", 2, sizeof( LIGHT ) );
+	CreateCBuffer( "Material", 1, sizeof( MATERIAL ) );
+	CreateCBuffer( "Light", 2, sizeof( LIGHT ) );
 
 	return true;
 }
@@ -136,10 +137,10 @@ bool CShaderManager::CreateInputLayout( const string & strKey,
 
 	CShader*	pShader = FindShader( strShaderKey );
 
-	D3D12_INPUT_LAYOUT_DESC		pInputLayout = {};
+	D3D12_INPUT_LAYOUT_DESC*		pInputLayout = new D3D12_INPUT_LAYOUT_DESC;
 
-	pInputLayout.pInputElementDescs = &m_vecInputDesc[0];
-	pInputLayout.NumElements = m_vecInputDesc.size();
+	pInputLayout->pInputElementDescs = &m_vecInputDesc[0];
+	pInputLayout->NumElements = m_vecInputDesc.size();
 
 	SAFE_RELEASE( pShader );
 
@@ -164,12 +165,12 @@ void CShaderManager::SetInputLayout( const string & strKey )
 
 D3D12_INPUT_LAYOUT_DESC* CShaderManager::FindInputLayout( const string & strKey )
 {
-	unordered_map<string, D3D12_INPUT_LAYOUT_DESC>::iterator	iter = m_mapLayout.find( strKey );
+	unordered_map<string, D3D12_INPUT_LAYOUT_DESC*>::iterator	iter = m_mapLayout.find( strKey );
 
 	if ( iter == m_mapLayout.end() )
 		return NULL;
 
-	return &iter->second;
+	return iter->second;
 }
 
 bool CShaderManager::CreateCBuffer( const string & strKey, int iRegister, int iSize )
