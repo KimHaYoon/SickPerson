@@ -1,4 +1,5 @@
 #include "Device.h"
+#include "RootSignature.h"
 
 
 DEFINITION_SINGLE( CDevice )
@@ -252,6 +253,8 @@ void CDevice::ClearTarget()
 		D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.f, 0, 0, NULL );
 
 	m_pCmdList->OMSetRenderTargets( 1, &pRTVHeap, TRUE, &pDSVHeap );
+
+	m_pCmdList->SetGraphicsRootSignature( ROOTSIGNATURE );
 }
 
 void CDevice::Present()

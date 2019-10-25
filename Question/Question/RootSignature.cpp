@@ -19,7 +19,7 @@ CRootSignature::~CRootSignature()
 
 bool CRootSignature::Init()
 {
-	CreateDescritorRange( D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 3, 0, 0, 0 );
+	/*CreateDescritorRange( D3D12_DESCRIPTOR_RANGE_TYPE_CBV, 3, 0, 0, 0 );
 	
 	CreateRootParameterDescTable();
 
@@ -31,6 +31,19 @@ bool CRootSignature::Init()
 			m_pRootParameter[i] = m_vecRootParameter[i];
 	}
 
+
+	CreateRootSignature();*/
+
+	CreateRootParameter( D3D12_ROOT_PARAMETER_TYPE_CBV, 0, 0, D3D12_SHADER_VISIBILITY_ALL );
+	CreateRootParameter( D3D12_ROOT_PARAMETER_TYPE_CBV, 1, 0, D3D12_SHADER_VISIBILITY_ALL );
+	CreateRootParameter( D3D12_ROOT_PARAMETER_TYPE_CBV, 2, 0, D3D12_SHADER_VISIBILITY_ALL );
+
+	if ( !m_vecRootParameter.empty() )
+	{
+		m_pRootParameter = new D3D12_ROOT_PARAMETER[m_vecRootParameter.size()];
+		for ( int i = 0; i < m_vecRootParameter.size(); ++i )
+			m_pRootParameter[i] = m_vecRootParameter[i];
+	}
 
 	CreateRootSignature();
 

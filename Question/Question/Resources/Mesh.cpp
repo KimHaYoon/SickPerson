@@ -237,14 +237,14 @@ void CMesh::Render( float fTime )
 	CMDLIST->IASetPrimitiveTopology( m_pVB->ePrimitive );
 
 	//CMDLIST->DrawInstanced( m_pVB->iVtxCount, 1, 0, 0 );
-	if ( m_pIB )
-	{
-		// 인덱스버퍼를 지정한다.
-		CMDLIST->IASetIndexBuffer( &m_pIB->tView);
-		CMDLIST->DrawIndexedInstanced( m_pIB->iIdxCount, 1, 0, 0, 0 );
-	}
+	//if ( m_pIB )
+	//{
+	//	// 인덱스버퍼를 지정한다.
+	//	CMDLIST->IASetIndexBuffer( &m_pIB->tView);
+	//	CMDLIST->DrawInstanced( m_pIB->iIdxCount, 1, 0, 0);
+	//}
 
-	else
+	//else
 	{
 		CMDLIST->DrawInstanced( m_pVB->iVtxCount, 1, 0, 0 );
 	}
