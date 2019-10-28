@@ -1,6 +1,7 @@
 #include "Pyramid.h"
 #include "GameObject.h"
 #include "../Component/Renderer.h"
+#include "../Component/Transform.h"
 
 
 CPyramid::CPyramid()
@@ -27,6 +28,8 @@ bool CPyramid::Init()
 	pRenderer->SetRenderState( DEPTH_DISABLE );
 	pRenderer->SetRenderState( CULLING_DEFAULT );
 	SAFE_RELEASE( pRenderer );
+
+	m_pTransform->SetWorldScale( 10.f, 10.f, 10.f );
 
 	return true;
 }

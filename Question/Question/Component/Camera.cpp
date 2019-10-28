@@ -226,11 +226,11 @@ int CCamera::LateUpdate(float fTime)
 		break;
 	}
 
-	Matrix	matInvVP = *m_matView * *m_matProj;
+	/*Matrix	matInvVP = *m_matView * *m_matProj;
 	matInvVP = XMMatrixInverse(&XMMatrixDeterminant(matInvVP.mat),
 		matInvVP.mat);
 
-	m_pFrustum->UpdateFrustum(matInvVP);
+	m_pFrustum->UpdateFrustum(matInvVP);*/
 
 	return 0;
 }

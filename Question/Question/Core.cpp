@@ -69,6 +69,8 @@ bool CCore::Init( HINSTANCE hInst, HWND hWnd, UINT iWidth,
 	if ( !GET_SINGLE( CDevice )->Init( m_hWnd, iWidth, iHeight, bWindowMode ) )
 		return false;
 
+	GET_SINGLE(CDevice)->ResetCmdList();	//!!
+
 	if ( !GET_SINGLE( CRootSignature )->Init() )
 		return false;
 
@@ -101,7 +103,9 @@ bool CCore::Init( HINSTANCE hInst, HWND hWnd, UINT iWidth,
 
 	//if ( !GET_SINGLE( CSound )->Init() )
 	//	return false;
-
+	
+	GET_SINGLE(CDevice)->SetCommandList();	//!!
+	
 	return true;
 }
 
@@ -144,6 +148,12 @@ void CCore::Logic()
 	float fTime = pTimer->GetDeltaTime();
 
 	SAFE_RELEASE( pTimer );
+	Input( fTime );
+	if ( Update( fTime ) == SC_CHANGE )
+		return;
+	if ( LateUpdate( fTime ) == SC_CHANGE )
+		return;
+	Collision( fTime );
 	Render( fTime );
 }
 

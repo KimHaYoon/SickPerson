@@ -44,6 +44,20 @@ public:
 	ID3D12DescriptorHeap* GetRTVHeap() const;
 	ID3D12Fence*	GetFence() const;
 
+	inline void ResetCmdList() {	//!!
+		m_pCmdAlloc->Reset();
+		m_pCmdList->Reset(m_pCmdAlloc, nullptr);
+	}
+
+	inline void SetCommandList() {	//!!
+		m_pCmdList->Close();
+
+		ID3D12CommandList* ppd3dCommandLists[] = { m_pCmdList };
+		m_pCmdQueue->ExecuteCommandLists(1, ppd3dCommandLists);
+
+		WaitForGpuComplete();
+	}
+
 public:
 	bool Init(HWND hWnd, UINT iWidth, UINT iHeight,
 		bool bWindowMode);

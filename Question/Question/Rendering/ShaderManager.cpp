@@ -173,16 +173,7 @@ void CShaderManager::UpdateCBuffer( const string & strKey, void * pData,
 	pBuffer->pBuffer->Map( 0, NULL, &pData );
 
 	D3D12_GPU_VIRTUAL_ADDRESS	d3dGPUAddr = pBuffer->pBuffer->GetGPUVirtualAddress();
-	CMDLIST->SetGraphicsRootConstantBufferView( 0, d3dGPUAddr );
-
-	//if ( iShaderConstantType & SCT_VERTEX )
-	//	CMDLIST->VSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
-
-	//if ( iShaderConstantType & SCT_PIXEL )
-	//	CMDLIST->PSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
-
-	//if ( iShaderConstantType & SCT_GEOMETRY )
-	//	CMDLIST->GSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
+	CMDLIST->SetGraphicsRootConstantBufferView( pBuffer->iRegister, d3dGPUAddr );
 }
 
 PCONSTANTBUFFER CShaderManager::FindCBuffer( const string & strKey )

@@ -214,12 +214,12 @@ bool CScene::Init()
 
 	// 메인 카메라 생성
 	m_pMainCameraObj = CreateCamera("MainCamera",
-		Vector3(0.f, 0.f, -5.f), PI / 2.f,
+		Vector3(0.f, 0.f, -5.f), PI / 3.f,
 		DEVICE_RESOLUTION.iWidth / (float)DEVICE_RESOLUTION.iHeight, 0.03f, 5000.f);
 	m_pMainCamera = m_pMainCameraObj->FindComponentFromTypeID<CCamera>();
 	m_pMainCameraTr = m_pMainCameraObj->GetTransform();
 
-	m_pMainCameraTr->SetWorldRotX(PI / -2.f);
+	//m_pMainCameraTr->SetWorldRotX(PI / -2.f);
 
 	// 전역 조명을 생성한다.
 	/*CLight*	pGlobalLight = CreateLight("GlobalLight", LT_DIR);

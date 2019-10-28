@@ -85,6 +85,7 @@ ID3D12Fence * CDevice::GetFence() const
 	return m_pFence;
 }
 
+
 bool CDevice::Init( HWND hWnd, UINT iWidth, UINT iHeight,
 	bool bWindowMode )
 {
@@ -102,7 +103,7 @@ bool CDevice::Init( HWND hWnd, UINT iWidth, UINT iHeight,
 	IDXGIAdapter1* pAdapter = NULL;
 	D3D_FEATURE_LEVEL	eLevel = D3D_FEATURE_LEVEL_12_0;
 
-	if ( FAILED( D3D12CreateDevice( NULL, eLevel, __uuidof( ID3D12Device ), ( void** )&m_pDevice ) ) )
+	if ( FAILED( D3D12CreateDevice( nullptr, eLevel, __uuidof( ID3D12Device ), ( void** )&m_pDevice ) ) )
 	{
 		m_pFactory->EnumWarpAdapter( __uuidof( IDXGIFactory4 ), ( void** )&pAdapter );
 		D3D12CreateDevice( pAdapter, D3D_FEATURE_LEVEL_11_0, __uuidof( ID3D12Device ), ( void** )&m_pDevice );		// 특성 레벨 12.0을 지원하는 하드웨어 디바이스를 생성할 수 없으면 WARP 디바이스 생성
@@ -223,21 +224,6 @@ bool CDevice::Init( HWND hWnd, UINT iWidth, UINT iHeight,
 	// 생성한 깊이버퍼를 이용해서 DepthStencilView를 만들어준다.
 	auto pDSView = m_pDSView->GetCPUDescriptorHandleForHeapStart();
 	m_pDevice->CreateDepthStencilView( m_pDepthBuffer, NULL, pDSView );
-
-	// 위에서 생성한 렌더타겟뷰와 깊이스텐실뷰를 렌더링 파이프라인의
-	// 출력병합기 단계에 묶어준다.
-	//pRTVHeap = m_pRTView->GetCPUDescriptorHandleForHeapStart();
-	//pDSView = m_pDSView->GetCPUDescriptorHandleForHeapStart();
-	//m_pCmdList->OMSetRenderTargets(1, &pRTVHeap, TRUE, &pDSView );
-
-	// 뷰포트 설정. 
-	//D3D12_VIEWPORT	tVP = {};
-
-	//tVP.Width = iWidth;
-	//tVP.Height = iHeight;
-	//tVP.MaxDepth = 1.f;
-
-	//m_pCmdList->	RSSetViewports(1, &tVP);
 
 	m_pCmdList->SetName( L"CommandList" );
 	return true;

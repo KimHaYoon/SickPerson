@@ -23,6 +23,7 @@ CMesh::~CMesh()
 	if ( m_pUploadVB )
 		SAFE_RELEASE( m_pUploadVB->pBuffer );
 
+
 	if ( m_pUploadIB )
 		SAFE_RELEASE( m_pUploadIB->pBuffer );
 
@@ -75,13 +76,14 @@ bool CMesh::CreateVertexBuffer( UINT iVtxCount, UINT iVtxSize,
 	SAFE_DELETE( m_pVB );
 
 	m_pVB = new VERTEXBUFFER;
+	m_pUploadVB = new VERTEXBUFFER;		//!!
 
 	m_pVB->iVtxCount = iVtxCount;
 	m_pVB->iVtxSize = iVtxSize;
 	m_pVB->ePrimitive = ePrimitive;
 
 	m_pVB->pBuffer = CreateBufferResource( pVtxData, iVtxCount * iVtxSize, 
-		D3D12_HEAP_TYPE_DEFAULT, D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER, &m_pUploadVB->pBuffer );
+		D3D12_HEAP_TYPE_DEFAULT, D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER, &m_pUploadVB->pBuffer);
 	m_pVB->tView.BufferLocation = m_pVB->pBuffer->GetGPUVirtualAddress();
 	m_pVB->tView.StrideInBytes = iVtxSize;
 	m_pVB->tView.SizeInBytes = iVtxSize * iVtxCount;
@@ -129,22 +131,86 @@ bool CMesh::CreateIndexBuffer( UINT iIdxCount, UINT iIdxSize,
 	SAFE_DELETE( m_pIB );
 
 	m_pIB = new INDEXBUFFER;
+	m_pUploadIB = new INDEXBUFFER;		//!!
 
 	m_pIB->iIdxCount = iIdxCount;
 	m_pIB->iIdxSize = iIdxSize;
 	m_pIB->eFmt = eFmt;
 
 	m_pIB->pBuffer = CreateBufferResource( pIdxData, iIdxCount * iIdxSize,
-		D3D12_HEAP_TYPE_DEFAULT, D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER, &m_pUploadIB->pBuffer );
+		D3D12_HEAP_TYPE_DEFAULT, D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER, &(m_pUploadIB->pBuffer));
 	m_pIB->tView.BufferLocation = m_pIB->pBuffer->GetGPUVirtualAddress();
 	m_pIB->tView.Format = eFmt;
 	m_pIB->tView.SizeInBytes = iIdxCount * iIdxSize;
 
 	return true;
 }
-
-ID3D12Resource * CMesh::CreateBufferResource(void * pData, UINT nBytes, D3D12_HEAP_TYPE d3dHeapType, D3D12_RESOURCE_STATES d3dResourceStates, ID3D12Resource ** ppd3dUploadBuffer )
+ID3D12Resource* CMesh::CreateBufferResource(void* pData, UINT nBytes, D3D12_HEAP_TYPE d3dHeapType, D3D12_RESOURCE_STATES d3dResourceStates, ID3D12Resource** ppd3dUploadBuffer)	//!!
 {
+	/*ID3D12Resource* pd3dBuffer = NULL;
+
+	D3D12_HEAP_PROPERTIES d3dHeapPropertiesDesc;
+	::ZeroMemory(&d3dHeapPropertiesDesc, sizeof(D3D12_HEAP_PROPERTIES));
+	d3dHeapPropertiesDesc.Type = d3dHeapType;
+	d3dHeapPropertiesDesc.CPUPageProperty = D3D12_CPU_PAGE_PROPERTY_UNKNOWN;
+	d3dHeapPropertiesDesc.MemoryPoolPreference = D3D12_MEMORY_POOL_UNKNOWN;
+	d3dHeapPropertiesDesc.CreationNodeMask = 1;
+	d3dHeapPropertiesDesc.VisibleNodeMask = 1;
+
+	D3D12_RESOURCE_DESC d3dResourceDesc;
+	::ZeroMemory(&d3dResourceDesc, sizeof(D3D12_RESOURCE_DESC));
+	d3dResourceDesc.Dimension = D3D12_RESOURCE_DIMENSION_BUFFER;
+	d3dResourceDesc.Alignment = 0;
+	d3dResourceDesc.Width = nBytes;
+	d3dResourceDesc.Height = 1;
+	d3dResourceDesc.DepthOrArraySize = 1;
+	d3dResourceDesc.MipLevels = 1;
+	d3dResourceDesc.Format = DXGI_FORMAT_UNKNOWN;
+	d3dResourceDesc.SampleDesc.Count = 1;
+	d3dResourceDesc.SampleDesc.Quality = 0;
+	d3dResourceDesc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
+	d3dResourceDesc.Flags = D3D12_RESOURCE_FLAG_NONE;
+
+	
+	DEVICE->CreateCommittedResource(
+		&d3dHeapPropertiesDesc,
+		D3D12_HEAP_FLAG_NONE,
+		&d3dResourceDesc,
+		D3D12_RESOURCE_STATE_COPY_DEST,
+		nullptr, IID_PPV_ARGS(&pd3dBuffer));
+
+	d3dHeapPropertiesDesc.Type = D3D12_HEAP_TYPE_UPLOAD;
+
+	DEVICE->CreateCommittedResource(
+		&d3dHeapPropertiesDesc,
+		D3D12_HEAP_FLAG_NONE,
+		&d3dResourceDesc,
+		D3D12_RESOURCE_STATE_GENERIC_READ,
+		nullptr, IID_PPV_ARGS(&ppd3dUploadBuffer));
+
+	D3D12_RANGE d3dReadRange = { 0, 0 };
+	UINT8 *pBufferDataBegin = NULL;
+	( ppd3dUploadBuffer )->Map( 0, &d3dReadRange, ( void ** )&pBufferDataBegin );
+	memcpy( pBufferDataBegin, pData, nBytes );
+	( ppd3dUploadBuffer )->Unmap( 0, NULL );
+
+	CMDLIST->CopyResource(pd3dBuffer, (ppd3dUploadBuffer));
+
+	D3D12_RESOURCE_BARRIER d3dResourceBarrier;
+	::ZeroMemory(&d3dResourceBarrier, sizeof(D3D12_RESOURCE_BARRIER));
+	d3dResourceBarrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
+	d3dResourceBarrier.Flags = D3D12_RESOURCE_BARRIER_FLAG_NONE;
+	d3dResourceBarrier.Transition.pResource = pd3dBuffer;
+	d3dResourceBarrier.Transition.StateBefore = D3D12_RESOURCE_STATE_COPY_DEST;
+	d3dResourceBarrier.Transition.StateAfter = d3dResourceStates;
+	d3dResourceBarrier.Transition.Subresource =
+		D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES;
+
+	CMDLIST->ResourceBarrier(1, &d3dResourceBarrier);
+
+	return pd3dBuffer;*/
+
+
 	ID3D12Resource *pd3dBuffer = NULL;
 	D3D12_HEAP_PROPERTIES d3dHeapPropertiesDesc;
 	::ZeroMemory( &d3dHeapPropertiesDesc, sizeof( D3D12_HEAP_PROPERTIES ) );
@@ -237,14 +303,14 @@ void CMesh::Render( float fTime )
 	CMDLIST->IASetPrimitiveTopology( m_pVB->ePrimitive );
 
 	//CMDLIST->DrawInstanced( m_pVB->iVtxCount, 1, 0, 0 );
-	//if ( m_pIB )
-	//{
-	//	// 인덱스버퍼를 지정한다.
-	//	CMDLIST->IASetIndexBuffer( &m_pIB->tView);
-	//	CMDLIST->DrawInstanced( m_pIB->iIdxCount, 1, 0, 0);
-	//}
+	if ( m_pIB )
+	{
+		// 인덱스버퍼를 지정한다.
+		CMDLIST->IASetIndexBuffer( &m_pIB->tView);
+		CMDLIST->DrawIndexedInstanced( m_pIB->iIdxCount, 1, 0, 0, 0);
+	}
 
-	//else
+	else
 	{
 		CMDLIST->DrawInstanced( m_pVB->iVtxCount, 1, 0, 0 );
 	}
