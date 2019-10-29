@@ -200,6 +200,7 @@ bool CCamera::Init()
 
 	m_pFrustum = new CFrustum;
 
+	
 	return true;
 }
 

@@ -26,10 +26,8 @@ bool CPyramid::Init()
 
 	pRenderer->SetRenderState( ALPHA_BLEND );
 	pRenderer->SetRenderState( DEPTH_DISABLE );
-	pRenderer->SetRenderState( CULLING_DEFAULT );
+	pRenderer->SetRenderState( CULLING_NONE );
 	SAFE_RELEASE( pRenderer );
-
-	m_pTransform->SetWorldScale( 10.f, 10.f, 10.f );
 
 	return true;
 }
@@ -54,6 +52,7 @@ void CPyramid::Collision( float fTime )
 
 void CPyramid::Render( float fTime )
 {
+	int a = 0;
 }
 
 CPyramid * CPyramid::Clone()

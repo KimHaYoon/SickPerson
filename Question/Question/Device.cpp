@@ -330,7 +330,6 @@ void CDevice::WaitForGpuComplete()
 void CDevice::MoveToNextFrame()
 {
 	m_iSwapChainIdx = m_pSwapChain->GetCurrentBackBufferIndex();
-	//m_nSwapChainBufferIndex = (m_nSwapChainBufferIndex + 1) % m_nSwapChainBuffers;
 
 	UINT64 nFenceValue = ++m_iFenceValues[m_iSwapChainIdx];
 	HRESULT hResult = m_pCmdQueue->Signal( m_pFence, nFenceValue );

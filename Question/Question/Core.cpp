@@ -179,6 +179,7 @@ void CCore::Collision( float fTime )
 
 void CCore::Render( float fTime )
 {
+	
 	GET_SINGLE( CDevice )->CmdReset();
 
 	GET_SINGLE( CDevice )->ClearTarget();

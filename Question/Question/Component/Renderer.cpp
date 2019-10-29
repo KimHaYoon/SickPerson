@@ -163,7 +163,8 @@ void CRenderer::Render(float fTime)
 	
 	if( m_pRenderState[RST_RASTERIZER] && m_pRenderState[RST_DEPTH] && m_pRenderState[RST_BLEND] )
 		m_pPipeline->SetRenderState( m_pRenderState );
-	m_pShader->SetShader( m_pPipeline->GetPipelineStateDesc());
+	//m_pShader->SetShader( m_pPipeline->GetPipelineStateDesc());
+	m_pPipeline->SetShader( m_pShader );
 	m_pPipeline->SetInputLayout( m_pInputLayout );
 	if ( m_bChange )
 	{
@@ -174,8 +175,8 @@ void CRenderer::Render(float fTime)
 
 	/*ID3D12DescriptorHeap* pHeap = GET_SINGLE( CDevice )->GetRTVHeap();
 	CMDLIST->SetDescriptorHeaps( 1, &pHeap );
-	CMDLIST->SetGraphicsRootDescriptorTable( 0, GET_SINGLE(CDevice)->GetRTVHeap()->GetGPUDescriptorHandleForHeapStart());
-*/
+	CMDLIST->SetGraphicsRootDescriptorTable( 0, GET_SINGLE(CDevice)->GetRTVHeap()->GetGPUDescriptorHandleForHeapStart());*/
+
 	m_pMesh->Render(fTime);
 }
 

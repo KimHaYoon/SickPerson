@@ -21,6 +21,7 @@ public:
 	void SetInputLayout( D3D12_INPUT_LAYOUT_DESC* pInputLayout );
 	void SetRenderState( class CRenderState* pRenderState[RST_END]);
 	void SetRenderState( class CRenderState* pRenderState );
+	void SetShader( class CShader* pShader );
 	void CreatePipeline();			// 렌더링 하기전에 호출
 
 	void SetTag( const string& strTag );

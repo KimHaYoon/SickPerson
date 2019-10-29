@@ -4,6 +4,7 @@
 #include "BlendState.h"
 #include "RasterizerState.h"
 #include "DepthStencilState.h"
+#include "Shader.h"
 
 CPipelineState::CPipelineState():
 	m_pPipelineState(NULL)
@@ -71,6 +72,13 @@ void CPipelineState::SetRenderState( CRenderState * pRenderState )
 	{
 		m_tDesc.BlendState = ( ( CBlendState* )pRenderState )->GetDesc();
 	}
+}
+
+void CPipelineState::SetShader( CShader * pShader )
+{
+	m_tDesc.VS = pShader->GetVertexShader();
+	m_tDesc.PS = pShader->GetPixelShader();
+	m_tDesc.GS = pShader->GetGeoShader();
 }
 
 void CPipelineState::CreatePipeline()
