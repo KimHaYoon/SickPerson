@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="02. SceneScript">
+      <UniqueIdentifier>{4a366133-da63-4f52-b1cc-f4e9ba8c7f72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. ClientCore">
+      <UniqueIdentifier>{879fc4f8-6865-4db1-b76b-bdefe2a0533e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. ObjectScript">
+      <UniqueIdentifier>{b2f90fff-5419-482d-8ae4-89644f231260}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. ObjectScript\01. Player">
+      <UniqueIdentifier>{f1014f34-af81-4f0f-8ba3-7ca60a92602c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. ObjectScript\02. 야생동물">
+      <UniqueIdentifier>{e4cd6c8c-0ea3-4cde-add8-f672a0908945}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneScript\InGameScene.cpp">
+      <Filter>02. SceneScript</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectScript\Player.cpp">
+      <Filter>03. ObjectScript\01. Player</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneScript\InGameScene.h">
+      <Filter>02. SceneScript</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectScript\Player.h">
+      <Filter>03. ObjectScript\01. Player</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Client.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

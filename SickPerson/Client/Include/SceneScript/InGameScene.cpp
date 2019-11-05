@@ -1,0 +1,142 @@
+#include "InGameScene.h"
+#include "Scene/Layer.h"
+#include "Scene/Scene.h"
+#include "GameObject/GameObject.h"
+#include "Component/LandScape.h"
+#include "Component/Material.h"
+#include "Component/Renderer.h"
+
+#include "../ObjectScript/Player.h"
+
+InGameScene::InGameScene()
+{
+}
+
+
+InGameScene::~InGameScene()
+{
+}
+
+bool InGameScene::Init()
+{
+	CLayer*	pLayer = m_pScene->GetLayer("Default");
+
+	CGameObject* pLandScapeObj = CGameObject::CreateObject("LandScape", pLayer);
+
+	CLandScape* pLandScape = pLandScapeObj->AddComponent<CLandScape>("LandScape");
+	
+	pLandScape->CreateLandScape("LandScapeMesh", 219, false, "LandScape",
+		L"Terrain/Sand_Dif.bmp",
+		L"Terrain/Sand_normal.bmp",
+		L"Terrain/Sand_specular.bmp",
+		"Terrain/4.bmp");
+
+	vector<wstring>	vecSplatting;
+
+	wchar_t	strSplatPath[MAX_PATH] = {};
+
+	wsprintf(strSplatPath, L"Terrain/Grass1_COLOR.png");
+	vecSplatting.push_back(strSplatPath);
+
+	memset(strSplatPath, 0, sizeof(wchar_t) * MAX_PATH);
+	wsprintf(strSplatPath, L"Terrain/Grass4_COLOR.png");
+	vecSplatting.push_back(strSplatPath);
+
+	memset(strSplatPath, 0, sizeof(wchar_t) * MAX_PATH);
+	wsprintf(strSplatPath, L"Terrain/Grass2_COLOR.png");
+	vecSplatting.push_back(strSplatPath);
+
+	/*memset(strSplatPath, 0, sizeof(wchar_t) * MAX_PATH);
+	wsprintf(strSplatPath, L"Terrain/Rock.png");
+	vecSplatting.push_back(strSplatPath);*/
+
+	pLandScape->SetDiffuseSplatting("Linear", "SplatDif", &vecSplatting);
+
+	vecSplatting.clear();
+	memset(strSplatPath, 0, sizeof(wchar_t) * MAX_PATH);
+	wsprintf(strSplatPath, L"Terrain/Grass1_NRM.png");
+	vecSplatting.push_back(strSplatPath);
+
+	memset(strSplatPath, 0, sizeof(wchar_t) * MAX_PATH);
+	wsprintf(strSplatPath, L"Terrain/Grass2_NRM.png");
+	vecSplatting.push_back(strSplatPath);
+
+	memset(strSplatPath, 0, sizeof(wchar_t) * MAX_PATH);
+	wsprintf(strSplatPath, L"Terrain/Grass4_NRM.png");
+	vecSplatting.push_back(strSplatPath);
+
+	/*memset(strSplatPath, 0, sizeof(wchar_t) * MAX_PATH);
+	wsprintf(strSplatPath, L"Terrain/Rock_NRM.png");
+	vecSplatting.push_back(strSplatPath);*/
+
+	pLandScape->SetNormalSplatting("Linear", "SplatNormal", &vecSplatting);
+
+	vecSplatting.clear();
+	memset(strSplatPath, 0, sizeof(wchar_t) * MAX_PATH);
+	wsprintf(strSplatPath, L"Terrain/Grass1_SPEC.png");
+	vecSplatting.push_back(strSplatPath);
+
+	memset(strSplatPath, 0, sizeof(wchar_t) * MAX_PATH);
+	wsprintf(strSplatPath, L"Terrain/Grass2_SPEC.png");
+	vecSplatting.push_back(strSplatPath);
+
+	memset(strSplatPath, 0, sizeof(wchar_t) * MAX_PATH);
+	wsprintf(strSplatPath, L"Terrain/Grass4_SPEC.png");
+	vecSplatting.push_back(strSplatPath);
+
+	/*memset(strSplatPath, 0, sizeof(wchar_t) * MAX_PATH);
+	wsprintf(strSplatPath, L"Terrain/Rock_SPEC.png");
+	vecSplatting.push_back(strSplatPath);*/
+
+	pLandScape->SetSpecularSplatting("Linear", "SplatSpecular", &vecSplatting);
+
+	vecSplatting.clear();
+	memset(strSplatPath, 0, sizeof(wchar_t) * MAX_PATH);
+	wsprintf(strSplatPath, L"Terrain/Grass1.bmp");
+	vecSplatting.push_back(strSplatPath);
+
+	memset(strSplatPath, 0, sizeof(wchar_t) * MAX_PATH);
+	wsprintf(strSplatPath, L"Terrain/Grass2.bmp");
+	vecSplatting.push_back(strSplatPath);
+
+	memset(strSplatPath, 0, sizeof(wchar_t) * MAX_PATH);
+	wsprintf(strSplatPath, L"Terrain/Grass4.bmp");
+	vecSplatting.push_back(strSplatPath);
+
+	/*memset(strSplatPath, 0, sizeof(wchar_t) * MAX_PATH);
+	wsprintf(strSplatPath, L"Terrain/Rock.bmp");
+	vecSplatting.push_back(strSplatPath);*/
+
+	pLandScape->SetSplattingAlpha("Linear", "SplatAlpha", 15, 11, &vecSplatting);
+
+	CRenderer* pRenderer = pLandScapeObj->FindComponentFromType<CRenderer>(CT_RENDERER);
+
+	CMaterial*	pMaterial = pRenderer->GetMaterial();
+
+	pMaterial->SetMaterial(Vector4::White, Vector4(0.5f, 1.f, 0.1f, 0.f),
+		Vector4::Black, Vector4::Black, 3.2f);
+
+	SAFE_RELEASE(pMaterial);
+
+	SAFE_RELEASE(pRenderer);
+
+	SAFE_RELEASE(pLandScape);
+	SAFE_RELEASE(pLandScapeObj);
+
+
+	CGameObject*	pPlayerObj = CGameObject::CreateObject("Player", pLayer);
+
+	CPlayer* pPlayer = pPlayerObj->AddComponent<CPlayer>("Player");
+
+	SAFE_RELEASE(pPlayer);
+	SAFE_RELEASE(pPlayerObj);
+
+	SAFE_RELEASE(pLayer);
+
+	return true;
+}
+
+int InGameScene::Update(float fTime)
+{
+	return 0;
+}
