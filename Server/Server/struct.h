@@ -2,18 +2,20 @@
 
 struct OVER_EX {
 	WSAOVERLAPPED	overlapped;
-	WSABUF					dataBuffer;
-	char							messageBuffer[MAX_BUF_SIZE];
+	WSABUF					wsabuf[1];
+	char							net_buf[MAX_BUF];
 	EVENT_TYPE			event;
 };
 
 struct PLAYER_INFO {
-	SOCKET			socket;
-	unsigned int		id;
-	bool					connected;
-	OVER_EX			over;
-	char					packet_buf[MAX_BUF_SIZE];
-	int					prev_size;
+	SOCKET				socket;
+	OVER_EX				over;
+	unsigned int			id;
+
+	// game contents
+	POS3D					pos;
+	set<unsigned int>near_id;
+	mutex					near_lock;
 };
 
 typedef struct Position2d{

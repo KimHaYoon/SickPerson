@@ -3,12 +3,11 @@
 constexpr		int	MAX_USER = 10000;
 constexpr		int	MAX_STR_LEN = 50;
 
-constexpr		int	NPC_ID_START = 10000;
-constexpr		int	NUM_NPC = 10000;
-
+#define WORLD_WIDTH 800
+#define WORLD_HEIGHT 800
 #define SERVER_PORT 9000
 
-#define MAX_BUF_SIZE 1024
+#define MAX_BUF 1024
 
 #define		CS_LOGIN					1
 #define		CS_MOVE						2

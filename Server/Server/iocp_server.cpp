@@ -83,28 +83,47 @@ void iocp_server::MakeThreads()
 	}
 	Accept_Thread.join();
 	Timer_Thread.join();
-	DB_Thread.join();
 }
 
 void iocp_server::Do_WokerThread()
 {
 	while (true == (!m_ServerShutdown)) {
 		DWORD	io_byte;
-		unsigned long long	key;
-		OVER_EX	*lpover_ex;
+		ULONG		key;
+		PULONG	p_key = &key;
+		WSAOVERLAPPED*	p_over;
 
-		BOOL	is_error = GetQueuedCompletionStatus(m_Iocp, &io_byte, &key, reinterpret_cast<LPWSAOVERLAPPED *>(&lpover_ex), INFINITE);
+		BOOL	is_error = GetQueuedCompletionStatus(m_Iocp, &io_byte, (PULONG_PTR)p_key, reinterpret_cast<LPWSAOVERLAPPED *>(&lpover_ex), INFINITE);
+		
+		SOCKET	client_s = m_clients[key]->socket;
 
-		// client가 접속을 끊었을 경우
+		// 접속이 종료가 되면 io_byte가 0이 되기 때문에, closesocket을 한다.
 		if (FALSE == is_error || 0 == io_byte) {
 			if (FALSE == is_error) {
 				int err_no = WSAGetLastError();
 				error_display("Woker_Thread Start - GetQueuedCompletionStatus", err_no);
 			}
-			closesocket(m_clients[key]->socket);
-			m_clients[key]->connected = false;
-			cout << "[ Clients" << key << " ] Disconnected" << endl;
+			closesocket(client_s);
+			m_clients.erase(key);
+			cout << "[ Clients " << key << " ] Disconnected" << endl;
+			// 접속한 클라이언트들에게 해당 클라이언트 접속 종료에 대한 패킷을 보낸다.
+			for (auto& client : m_clients) {
+				// remove player 패킷을 전송
+			}
+			continue; // 작업을 계속
 		}
+
+		OVER_EX* over_ex = reinterpret_cast<OVER_EX*>(p_over);
+
+		if (EV_RECV == over_ex->event) {
+			ProcessPacket(key, over_ex->net_buf); // ket가 보낸 패킷 처리
+
+			DWORD	flags = 0;
+			memset(&over_ex->overlapped, 0x00, sizeof(WSAOVERLAPPED)); // 0으로 초기화 후 재사용
+			WSARecv(client_s, over_ex->wsabuf, 1, 0, &flags, &over_ex->overlapped, 0);
+		}
+		else
+			delete over_ex;
 	}
 }
 
@@ -487,8 +506,9 @@ void iocp_server::error_display(const char * msg, int err_no)
 	WCHAR *lpMsgBuf;
 	FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, NULL, err_no,
 		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPTSTR)&lpMsgBuf, 0, NULL);
-	printf("[ %s ]", msg);
-	wprintf(L"에러 %s\n", lpMsgBuf);
+	cout << "[ " << msg << " ]";
+	wcout << L"에러 " << lpMsgBuf << endl;
+	while (true);
 	LocalFree(lpMsgBuf);
 }
 
