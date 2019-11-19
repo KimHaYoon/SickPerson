@@ -26,7 +26,10 @@ public:
 	void Do_WokerThread();
 	void Do_AcceptThread();
 	void Do_TimerThread();
-	void Do_DBThread();
+
+	int ConnectDB(int id);
+	int CreateDB(int id);
+	int SavePosDB(int id);
 
 	void ProcessPacket(const unsigned int& id, const char* buf);
 	void SendPacket(const unsigned int& id, const char* packet);

@@ -1,7 +1,5 @@
 #include "iocp_server.h"
 
-
-
 iocp_server::iocp_server()
 {
 	GetServerIpAddress();
@@ -11,7 +9,6 @@ iocp_server::iocp_server()
 
 	MakeThreads();
 }
-
 
 iocp_server::~iocp_server()
 {
@@ -60,7 +57,7 @@ void iocp_server::CheckThisCpuCount()
 {
 	SYSTEM_INFO	si;
 	GetSystemInfo(&si);
-	m_CpuCore = static_cast<int>(si.dwNumberOfProcessors) * 2;
+	m_CpuCore = static_cast<int>(static_cast<int>(si.dwNumberOfProcessors) * 1.5f);
 	cout << "CPU Core Count = " << m_CpuCore / 2 << "Thread = " << m_CpuCore << endl;
 }
 
@@ -78,9 +75,6 @@ void iocp_server::MakeThreads()
 
 	// timer_thread create
 	thread Timer_Thread{ &iocp_server::Do_TimerThread, this };
-
-	// database_thread create
-	thread DB_Thread{ &iocp_server::Do_DBThread, this };
 
 	// thread_delete
 	for (auto thread : m_WorkerThread) {
@@ -278,10 +272,168 @@ void iocp_server::Do_AcceptThread()
 
 void iocp_server::Do_TimerThread()
 {
+	
 }
 
-void iocp_server::Do_DBThread()
+int iocp_server::ConnectDB(int id)
 {
+	SQLHENV henv;
+	SQLHDBC hdbc;
+	SQLHSTMT hstmt = 0;
+	SQLRETURN retcode;
+
+	// Allocate environment handle  
+	retcode = SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &henv);
+
+	// Set the ODBC version environment attribute  
+	if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+		retcode = SQLSetEnvAttr(henv, SQL_ATTR_ODBC_VERSION, (SQLPOINTER*)SQL_OV_ODBC3, 0);
+
+		// Allocate connection handle  
+		if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+			retcode = SQLAllocHandle(SQL_HANDLE_DBC, henv, &hdbc);
+
+			// Set login timeout to 5 seconds  
+			if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+				SQLSetConnectAttr(hdbc, SQL_LOGIN_TIMEOUT, (SQLPOINTER)5, 0);
+				//Connect to data source  
+				retcode = SQLConnect(hdbc, (SQLWCHAR*)L"2015180031", SQL_NTS, (SQLWCHAR*)NULL, 0, NULL, 0);
+
+				//Allocate statement handle  
+				if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+					retcode = SQLAllocHandle(SQL_HANDLE_STMT, hdbc, &hstmt);
+
+					//printf("DB Access OK!!\n");
+					cout << "DB Access OK!!\n";
+
+					if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+						SQLCancel(hstmt);
+						SQLFreeHandle(SQL_HANDLE_STMT, hstmt);
+					}
+					SQLDisconnect(hdbc);
+				}
+				SQLFreeHandle(SQL_HANDLE_DBC, hdbc);
+			}
+		}
+		SQLFreeHandle(SQL_HANDLE_ENV, henv);
+	}
+	return 0;
+}
+
+int iocp_server::CreateDB(int id)
+{
+	SQLHENV henv;
+	SQLHDBC hdbc;
+	SQLHSTMT hstmt = 0;
+	SQLRETURN retcode;
+	SQLINTEGER sUserID, sUserMaxHp, sUserHp, sUserLevel, sUserMaxExp, sUserExp, sUserPosX, sUserPosY;
+	SQLLEN cbUserID = 0, cbMaxHp = 0, cbHp = 0, cbLevel = 0, cbMaxExp = 0, cbExp = 0, cbPosX = 0, cbPosY = 0; // callback
+
+	int client_id = id;
+	// Allocate environment handle  
+	retcode = SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &henv);
+
+	// Set the ODBC version environment attribute  
+	if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+		retcode = SQLSetEnvAttr(henv, SQL_ATTR_ODBC_VERSION, (SQLPOINTER*)SQL_OV_ODBC3, 0);
+
+		// Allocate connection handle  
+		if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+			retcode = SQLAllocHandle(SQL_HANDLE_DBC, henv, &hdbc);
+
+			// Set login timeout to 5 seconds  
+			if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+				SQLSetConnectAttr(hdbc, SQL_LOGIN_TIMEOUT, (SQLPOINTER)5, 0);
+				//Connect to data source  
+				retcode = SQLConnect(hdbc, (SQLWCHAR*)L"2015180031", SQL_NTS, (SQLWCHAR*)NULL, 0, NULL, 0);
+
+				//Allocate statement handle  
+				if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+					retcode = SQLAllocHandle(SQL_HANDLE_STMT, hdbc, &hstmt);
+
+					//printf("DB Access OK!!\n");
+					cout << "DB Access OK!!\n";
+					
+					
+					if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+
+					}
+
+					if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+						SQLCancel(hstmt);
+						SQLFreeHandle(SQL_HANDLE_STMT, hstmt);
+					}
+					SQLDisconnect(hdbc);
+				}
+				SQLFreeHandle(SQL_HANDLE_DBC, hdbc);
+			}
+		}
+		SQLFreeHandle(SQL_HANDLE_ENV, henv);
+	}
+	return 0;
+}
+
+int iocp_server::SavePosDB(int id)
+{
+	SQLHENV henv;
+	SQLHDBC hdbc;
+	SQLHSTMT hstmt = 0;
+	SQLRETURN retcode;
+	SQLINTEGER sUserID, sUserMaxHp, sUserHp, sUserLevel, sUserMaxExp, sUserExp, sUserPosX, sUserPosY;
+	SQLLEN cbUserID = 0, cbMaxHp = 0, cbHp = 0, cbLevel = 0, cbMaxExp = 0, cbExp = 0, cbPosX = 0, cbPosY = 0; // callback
+	// Allocate environment handle  
+	retcode = SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &henv);
+
+	// Set the ODBC version environment attribute  
+	if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+		retcode = SQLSetEnvAttr(henv, SQL_ATTR_ODBC_VERSION, (SQLPOINTER*)SQL_OV_ODBC3, 0);
+
+		// Allocate connection handle  
+		if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+			retcode = SQLAllocHandle(SQL_HANDLE_DBC, henv, &hdbc);
+
+			// Set login timeout to 5 seconds  
+			if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+				SQLSetConnectAttr(hdbc, SQL_LOGIN_TIMEOUT, (SQLPOINTER)5, 0);
+				//Connect to data source  
+				retcode = SQLConnect(hdbc, (SQLWCHAR*)L"2015180031", SQL_NTS, (SQLWCHAR*)NULL, 0, NULL, 0);
+
+				//Allocate statement handle  
+				if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+					retcode = SQLAllocHandle(SQL_HANDLE_STMT, hdbc, &hstmt);
+
+					//printf("DB Access OK!!\n");
+					if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+
+						//cout << "<SAVE> ID: " << id << "POS ( " << clients[id].x << ", " << clients[id].y << ")" << endl;
+						//// Bind columns 1, 2, and 3  
+						//retcode = SQLBindCol(hstmt, 1, SQL_C_LONG, &sUserID, 100, &cbUserID);
+						//retcode = SQLBindCol(hstmt, 2, SQL_C_LONG, &sUserPosX, 100, &cbPosX);
+						//retcode = SQLBindCol(hstmt, 3, SQL_C_LONG, &sUserPosY, 100, &cbPosY);
+
+						//retcode = SQLFetch(hstmt);
+						//if (retcode == SQL_ERROR || retcode == SQL_SUCCESS_WITH_INFO) {
+						//	show_error();
+						//}
+
+						////Fetch and print each row of data. On an error, display a message and exit.  
+						//if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO)
+						//{
+						//	cout << "<SAVE> ID: " << sUserID << "POS ( " << sUserPosX << ", " << sUserPosY << ")";
+						//}
+					}
+
+					if (retcode == SQL_SUCCESS || retcode == SQL_SUCCESS_WITH_INFO) {
+						SQLCancel(hstmt);
+						SQLFreeHandle(SQL_HANDLE_STMT, hstmt);
+					}
+					SQLDisconnect(hdbc);
+				}
+				SQLFreeHandle(SQL_HANDLE_DBC, hdbc);
+			}
+		}
+		SQLFreeHandle(SQL_HANDLE_ENV, henv);
+	}
 }
 
 void iocp_server::ProcessPacket(const unsigned int & id, const char * buf)

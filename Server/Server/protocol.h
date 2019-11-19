@@ -6,16 +6,6 @@ constexpr		int	MAX_STR_LEN = 50;
 constexpr		int	NPC_ID_START = 10000;
 constexpr		int	NUM_NPC = 10000;
 
-#define WORLD_WIDTH	300
-#define WORLD_HEIGHT	300
-#define VIEW_RADIUS		10
-#define CHASE_RADIUS	5
-
-#define		MONSTER1	2500
-#define		MONSTER2	5000
-#define		MONSTER3	7500
-#define		MONSTER4	10000
-
 #define SERVER_PORT 9000
 
 #define MAX_BUF_SIZE 1024
