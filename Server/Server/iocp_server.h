@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 
+class PacketMgr;
 class iocp_server
 {
 public:
@@ -18,7 +19,7 @@ private:
 
 public:
 	void GetServerIpAddress();
-	void Initialize();
+	bool Initialize();
 	void	CheckThisCpuCount();
 
 	void MakeThreads();
@@ -27,16 +28,18 @@ public:
 	void Do_AcceptThread();
 	void Do_TimerThread();
 
-	int ConnectDB(int id);
+	/*int ConnectDB(int id);
 	int CreateDB(int id);
-	int SavePosDB(int id);
+	int SavePosDB(int id);*/
 
 	void ProcessPacket(const unsigned int& id, const char* buf);
-	void SendPacket(const unsigned int& id, const char* packet);
 	
 	// 오류 출력
 	void error_display(const char* msg, int err_no);
 	void error_quit(const char* msg, int err_no);
+
+private:
+	PacketMgr*	m_pPacketMgr;
 
 private:
 	map<int, PLAYER_INFO*>	m_clients;

@@ -139,8 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="extern.h" />
     <ClInclude Include="iocp_server.h" />
+    <ClInclude Include="PacketMgr.h" />
     <ClInclude Include="protocol.h" />
+    <ClInclude Include="SingleTon.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="struct.h" />
     <ClInclude Include="types.h" />
@@ -148,6 +151,7 @@
   <ItemGroup>
     <ClCompile Include="iocp_server.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PacketMgr.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

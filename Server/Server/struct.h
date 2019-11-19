@@ -1,5 +1,20 @@
 #pragma once
 
+typedef struct Position2d {
+	short x;
+	short y;
+
+	Position2d(short _x, short _y) : x(_x), y(_y) {}
+}POS2D, PPOS2D;
+
+typedef struct Position3d {
+	short x;
+	short y;
+	short z;
+
+	Position3d(short _x, short _y, short _z) : x(_x), y(_y), z(_z) {}
+}POS3D, PPOS3D;
+
 struct OVER_EX {
 	WSAOVERLAPPED	overlapped;
 	WSABUF					wsabuf[1];
@@ -17,21 +32,6 @@ struct PLAYER_INFO {
 	set<unsigned int>near_id;
 	mutex					near_lock;
 };
-
-typedef struct Position2d{
-	short x;
-	short y;
-
-	Position2d(short _x, short _y) : x(_x), y(_y) {}
-}POS2D, PPOS2D;
-
-typedef struct Position3d {
-	short x;
-	short y;
-	short z;
-
-	Position3d(short _x, short _y, short _z) : x(_x), y(_y), z(_z) {}
-}POS3D, PPOS3D;
 
 struct T_EVENT {
 	int do_object;

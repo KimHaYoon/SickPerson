@@ -7,22 +7,22 @@
     <Filter Include="99.default">
       <UniqueIdentifier>{325c34ad-c0c7-45fc-b103-fe7f25e64602}</UniqueIdentifier>
     </Filter>
-    <Filter Include="98.header">
-      <UniqueIdentifier>{c9a7c892-f4cd-4711-afb6-7218bcb09cbd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="99.default\00_sources">
-      <UniqueIdentifier>{995e5a26-01dc-44e9-9f42-5c0c0488e640}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="99.default\01_header">
-      <UniqueIdentifier>{c672b47d-3472-456f-8bfe-df939fd55cd1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01.IOCP_Server">
       <UniqueIdentifier>{f6ac9f18-6d40-4727-9390-c5547a186473}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.default\00.sources">
+      <UniqueIdentifier>{995e5a26-01dc-44e9-9f42-5c0c0488e640}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.default\01.header">
+      <UniqueIdentifier>{c672b47d-3472-456f-8bfe-df939fd55cd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.IOCP_Server\00.PacketMgr">
+      <UniqueIdentifier>{c692f4a0-5c97-4cf9-a439-ad87e6273d91}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>99.default\00_sources</Filter>
+      <Filter>99.default\00.sources</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>00.Main</Filter>
@@ -30,22 +30,34 @@
     <ClCompile Include="iocp_server.cpp">
       <Filter>01.IOCP_Server</Filter>
     </ClCompile>
+    <ClCompile Include="PacketMgr.cpp">
+      <Filter>01.IOCP_Server\00.PacketMgr</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
-      <Filter>99.default\01_header</Filter>
+      <Filter>99.default\01.header</Filter>
     </ClInclude>
     <ClInclude Include="iocp_server.h">
       <Filter>01.IOCP_Server</Filter>
     </ClInclude>
-    <ClInclude Include="types.h">
-      <Filter>98.header</Filter>
+    <ClInclude Include="SingleTon.h">
+      <Filter>99.default\01.header</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketMgr.h">
+      <Filter>01.IOCP_Server\00.PacketMgr</Filter>
     </ClInclude>
     <ClInclude Include="protocol.h">
-      <Filter>98.header</Filter>
+      <Filter>99.default\01.header</Filter>
     </ClInclude>
     <ClInclude Include="struct.h">
-      <Filter>98.header</Filter>
+      <Filter>99.default\01.header</Filter>
+    </ClInclude>
+    <ClInclude Include="types.h">
+      <Filter>99.default\01.header</Filter>
+    </ClInclude>
+    <ClInclude Include="extern.h">
+      <Filter>99.default\01.header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
