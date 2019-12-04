@@ -33,7 +33,7 @@ public:
 	int SavePosDB(int id);*/
 
 	void ProcessPacket(const unsigned int& id, const char* buf);
-	
+
 	// 오류 출력
 	void error_display(const char* msg, int err_no);
 	void error_quit(const char* msg, int err_no);
