@@ -139,6 +139,9 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Input.h" />
+    <ClInclude Include="Core\Timer.h" />
+    <ClInclude Include="Core\TimerManager.h" />
     <ClInclude Include="EngineVector2.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="Device.h" />
@@ -149,15 +152,28 @@
     <ClInclude Include="EngineVector4.h" />
     <ClInclude Include="Flag.h" />
     <ClInclude Include="Macro.h" />
+    <ClInclude Include="Obj.h" />
+    <ClInclude Include="Scene\Layer.h" />
+    <ClInclude Include="Scene\Scene.h" />
+    <ClInclude Include="Scene\SceneManager.h" />
+    <ClInclude Include="Scene\SceneScript.h" />
     <ClInclude Include="Types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Core\Input.cpp" />
+    <ClCompile Include="Core\Timer.cpp" />
+    <ClCompile Include="Core\TimerManager.cpp" />
     <ClCompile Include="EngineVector2.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="EngineMatrix.cpp" />
     <ClCompile Include="EngineVector3.cpp" />
     <ClCompile Include="EngineVector4.cpp" />
+    <ClCompile Include="Obj.cpp" />
+    <ClCompile Include="Scene\Layer.cpp" />
+    <ClCompile Include="Scene\Scene.cpp" />
+    <ClCompile Include="Scene\SceneManager.cpp" />
+    <ClCompile Include="Scene\SceneScript.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

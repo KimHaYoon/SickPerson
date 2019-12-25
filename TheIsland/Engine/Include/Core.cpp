@@ -1,4 +1,7 @@
 #include "Core.h"
+#include "Core/Timer.h"
+#include "Core/TimerManager.h"
+#include "Core/Input.h"
 
 GAME_USING
 
@@ -139,7 +142,7 @@ ATOM CCore::WindowRegisterClass( TCHAR * pClass, int iIconID )
 	wcex.hCursor = LoadCursor( nullptr, IDC_ARROW );
 	wcex.hbrBackground = ( HBRUSH )( COLOR_WINDOW + 1 );
 	wcex.lpszMenuName = NULL;// MAKEINTRESOURCEW(IDC_MY170825);
-	wcex.lpszClassName = pClass;
+	wcex.lpszClassName = (LPCWSTR)pClass;
 	wcex.hIconSm = LoadIcon( wcex.hInstance, MAKEINTRESOURCE( iIconID ) );
 
 	return RegisterClassExW( &wcex );

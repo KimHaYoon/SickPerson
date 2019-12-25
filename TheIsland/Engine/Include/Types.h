@@ -8,6 +8,7 @@
 
 GAME_BEGIN
 
+// Resolution
 typedef struct GAME_DLL _tagResolution
 {
 	UINT	iWidth;
@@ -25,5 +26,16 @@ typedef struct GAME_DLL _tagResolution
 	{
 	}
 }RESOLUTION, *PRESOLUTION;
+
+// KeyInput
+typedef struct GAME_DLL _tagKeyInfo
+{
+	string	strName;
+	bool	bDown;
+	bool	bPush;
+	bool	bUp;
+	vector<DWORD>	vecKey;
+}KEYINFO, *PKEYINFO;
+
 
 GAME_END

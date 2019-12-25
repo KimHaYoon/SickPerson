@@ -25,6 +25,30 @@
     <Filter Include="01. Core\03. Timer">
       <UniqueIdentifier>{fb405d4f-cbd0-4213-9955-f27fdb927dd4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Core\04. Input">
+      <UniqueIdentifier>{258e2fdf-02ee-4d7b-83ef-c590976310d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Resources">
+      <UniqueIdentifier>{8d9d2a39-7c87-4f6b-9cf9-14fd74bbe430}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Rendering">
+      <UniqueIdentifier>{8e1676ab-3f41-4b8e-9fa4-37d10bfe4e58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Scene">
+      <UniqueIdentifier>{c12d0e7e-28b5-4bca-b5dc-8081ed61c4c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. GameObject">
+      <UniqueIdentifier>{0849d329-83c6-4bbb-aa13-1fb67fa64537}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Component">
+      <UniqueIdentifier>{5a737be2-ea95-4b44-b6b4-b5fa470d0d9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Scene\01. Layer">
+      <UniqueIdentifier>{45a0b80c-2a21-49e3-a3a1-12b6b2e847f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Scene\02. SceneScript">
+      <UniqueIdentifier>{1a703a3b-7a9c-4e74-916b-3582ed2db651}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -60,6 +84,30 @@
     <ClInclude Include="EngineVector4.h">
       <Filter>01. Core\02. Math</Filter>
     </ClInclude>
+    <ClInclude Include="Obj.h">
+      <Filter>01. Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Timer.h">
+      <Filter>01. Core\03. Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\TimerManager.h">
+      <Filter>01. Core\03. Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Input.h">
+      <Filter>01. Core\04. Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Scene.h">
+      <Filter>04. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneManager.h">
+      <Filter>04. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Layer.h">
+      <Filter>04. Scene\01. Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneScript.h">
+      <Filter>04. Scene\02. SceneScript</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp">
@@ -79,6 +127,30 @@
     </ClCompile>
     <ClCompile Include="EngineVector4.cpp">
       <Filter>01. Core\02. Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Obj.cpp">
+      <Filter>01. Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Timer.cpp">
+      <Filter>01. Core\03. Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\TimerManager.cpp">
+      <Filter>01. Core\03. Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Input.cpp">
+      <Filter>01. Core\04. Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Scene.cpp">
+      <Filter>04. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneManager.cpp">
+      <Filter>04. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Layer.cpp">
+      <Filter>04. Scene\01. Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneScript.cpp">
+      <Filter>04. Scene\02. SceneScript</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

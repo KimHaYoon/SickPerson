@@ -6,6 +6,8 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <conio.h>
+#include <algorithm>
 
 #include "Types.h"
 
