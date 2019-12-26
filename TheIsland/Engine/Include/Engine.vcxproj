@@ -139,8 +139,12 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Component\Camera.h" />
     <ClInclude Include="Component\Component.h" />
+    <ClInclude Include="Component\Material.h" />
+    <ClInclude Include="Component\Renderer.h" />
     <ClInclude Include="Component\Renderer2D.h" />
+    <ClInclude Include="Component\Script.h" />
     <ClInclude Include="Component\Transform.h" />
     <ClInclude Include="Core\Input.h" />
     <ClInclude Include="Core\PathManager.h" />
@@ -165,8 +169,12 @@
     <ClInclude Include="Types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Component\Camera.cpp" />
     <ClCompile Include="Component\Component.cpp" />
+    <ClCompile Include="Component\Material.cpp" />
+    <ClCompile Include="Component\Renderer.cpp" />
     <ClCompile Include="Component\Renderer2D.cpp" />
+    <ClCompile Include="Component\Script.cpp" />
     <ClCompile Include="Component\Transform.cpp" />
     <ClCompile Include="Core\Input.cpp" />
     <ClCompile Include="Core\PathManager.cpp" />

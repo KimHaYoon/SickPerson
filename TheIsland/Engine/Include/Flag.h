@@ -65,5 +65,11 @@ enum SHADER_CONSTANT_TYPE
 	SCT_PIXEL = 0x2
 };
 
+// Camera Type
+enum CAMERA_TYPE
+{
+	CT_PERSPECTIVE,
+	CT_ORTHO
+};
 
 GAME_END

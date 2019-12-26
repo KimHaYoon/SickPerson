@@ -58,6 +58,21 @@
     <Filter Include="06. Component\02. Renderer">
       <UniqueIdentifier>{e77ce399-4a01-4afb-a62d-f7b9a9b000ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="06. Component\03. Script">
+      <UniqueIdentifier>{964bdf5d-76bd-4100-8dc2-2c392d9e9616}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Component\04. Camera">
+      <UniqueIdentifier>{ae758dfd-25de-447b-8a93-e1d0d5ec6abd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Component\05. Material">
+      <UniqueIdentifier>{fe6b8557-56e1-4bda-9cd9-d429b0002d76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Component\06. Animation">
+      <UniqueIdentifier>{354ee849-d077-4c7d-be8a-b0ecc1c2681c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Component\07. Terrain">
+      <UniqueIdentifier>{5b1a6218-23f0-449d-974d-b9eb5aea249c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -126,11 +141,23 @@
     <ClInclude Include="Component\Transform.h">
       <Filter>06. Component\01. Transform</Filter>
     </ClInclude>
-    <ClInclude Include="Core\PathManager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Component\Renderer2D.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>06. Component\02. Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\PathManager.h">
+      <Filter>01. Core\05. Path</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Renderer.h">
+      <Filter>06. Component\02. Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Script.h">
+      <Filter>06. Component\03. Script</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Camera.h">
+      <Filter>06. Component\04. Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Material.h">
+      <Filter>06. Component\05. Material</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -185,11 +212,23 @@
     <ClCompile Include="Component\Transform.cpp">
       <Filter>06. Component\01. Transform</Filter>
     </ClCompile>
-    <ClCompile Include="Core\PathManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Component\Renderer2D.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>06. Component\02. Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\PathManager.cpp">
+      <Filter>01. Core\05. Path</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Renderer.cpp">
+      <Filter>06. Component\02. Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Script.cpp">
+      <Filter>06. Component\03. Script</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Camera.cpp">
+      <Filter>06. Component\04. Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Material.cpp">
+      <Filter>06. Component\05. Material</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -37,5 +37,29 @@ typedef struct GAME_DLL _tagKeyInfo
 	vector<DWORD>	vecKey;
 }KEYINFO, *PKEYINFO;
 
+typedef struct GAME_DLL _tagTransformCBuffer
+{
+	Matrix	matWorld;
+	Matrix	matView;
+	Matrix	matProj;
+	Matrix	matWV;
+	Matrix	matWVP;
+	Matrix	matWP;
+	Vector3	vPivot;
+	float	fEmpty;
+	Vector3	vLength;
+	float	fEmpty1;
+}TRANSFORMCBUFFER, *PTRANSFORMCBUFFER;
+
+// Animation2D
+typedef struct GAME_DLL _tagAnimation2DCBuffer
+{
+	int		iType;
+	int		iFrameX;
+	int		iFrameY;
+	int		iLengthX;
+	int		iLengthY;
+	Vector3	vEmpty;
+}ANIMATION2DBUFFER, *PANIMATION2DBUFFER;
 
 GAME_END
