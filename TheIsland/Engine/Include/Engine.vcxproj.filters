@@ -73,6 +73,24 @@
     <Filter Include="06. Component\07. Terrain">
       <UniqueIdentifier>{5b1a6218-23f0-449d-974d-b9eb5aea249c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. Resources\01. Mesh">
+      <UniqueIdentifier>{3561f0d8-9857-4cfc-9952-22c99968fd2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Resources\02. Texture">
+      <UniqueIdentifier>{ec138107-7e77-4edb-93b5-05a097e2b9b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Rendering\01. Shader">
+      <UniqueIdentifier>{d10aa87f-cfab-4b64-8604-d63f3ca79086}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Rendering\01. Shader\01. HLSL">
+      <UniqueIdentifier>{3f8cbbaf-a9f8-40bf-9f86-a6882b3569ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Rendering\02. RenderState">
+      <UniqueIdentifier>{75dacbe5-ba98-4f40-a9b1-8388175f40e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Component\08. Light">
+      <UniqueIdentifier>{82cd4239-a23b-4316-be99-53bd510be62f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -159,6 +177,57 @@
     <ClInclude Include="Component\Material.h">
       <Filter>06. Component\05. Material</Filter>
     </ClInclude>
+    <ClInclude Include="Component\Animation2D.h">
+      <Filter>06. Component\06. Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\DirectXTex.h">
+      <Filter>02. Resources\02. Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\Mesh.h">
+      <Filter>02. Resources\01. Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\Texture.h">
+      <Filter>02. Resources\02. Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\ResourcesManager.h">
+      <Filter>02. Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\Sampler.h">
+      <Filter>02. Resources\02. Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\BlendState.h">
+      <Filter>03. Rendering\02. RenderState</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\DepthStencilState.h">
+      <Filter>03. Rendering\02. RenderState</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\RasterizerState.h">
+      <Filter>03. Rendering\02. RenderState</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\RenderState.h">
+      <Filter>03. Rendering\02. RenderState</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Shader.h">
+      <Filter>03. Rendering\01. Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\ShaderManager.h">
+      <Filter>03. Rendering\01. Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\RenderManager.h">
+      <Filter>03. Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Light.h">
+      <Filter>06. Component\08. Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\LightDir.h">
+      <Filter>06. Component\08. Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\LightPoint.h">
+      <Filter>06. Component\08. Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\LightSpot.h">
+      <Filter>06. Component\08. Light</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp">
@@ -230,5 +299,69 @@
     <ClCompile Include="Component\Material.cpp">
       <Filter>06. Component\05. Material</Filter>
     </ClCompile>
+    <ClCompile Include="Component\Animation2D.cpp">
+      <Filter>06. Component\06. Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Resources\Mesh.cpp">
+      <Filter>02. Resources\01. Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Resources\Texture.cpp">
+      <Filter>02. Resources\02. Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Resources\ResourcesManager.cpp">
+      <Filter>02. Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Resources\Sampler.cpp">
+      <Filter>02. Resources\02. Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\BlendState.cpp">
+      <Filter>03. Rendering\02. RenderState</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\DepthStencilState.cpp">
+      <Filter>03. Rendering\02. RenderState</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\RasterizerState.cpp">
+      <Filter>03. Rendering\02. RenderState</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\RenderState.cpp">
+      <Filter>03. Rendering\02. RenderState</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Shader.cpp">
+      <Filter>03. Rendering\01. Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\ShaderManager.cpp">
+      <Filter>03. Rendering\01. Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\RenderManager.cpp">
+      <Filter>03. Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Light.cpp">
+      <Filter>06. Component\08. Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\LightDir.cpp">
+      <Filter>06. Component\08. Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\LightPoint.cpp">
+      <Filter>06. Component\08. Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\LightSpot.cpp">
+      <Filter>06. Component\08. Light</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DirectXTex.inl">
+      <Filter>02. Resources\02. Texture</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\Bin64_Debug\Shader\Share.fx">
+      <Filter>03. Rendering\01. Shader\01. HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin64_Debug\Shader\Standard.fx">
+      <Filter>03. Rendering\01. Shader\01. HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin64_Debug\Shader\Sky.fx">
+      <Filter>03. Rendering\01. Shader\01. HLSL</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

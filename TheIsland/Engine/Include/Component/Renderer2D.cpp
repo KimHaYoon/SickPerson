@@ -1,5 +1,14 @@
 #include "Renderer2D.h"
 #include "Transform.h"
+#include "Material.h"
+#include "Camera.h"
+#include "../Resources/Mesh.h"
+#include "../Resources/ResourcesManager.h"
+#include "../Rendering/Shader.h"
+#include "../Rendering/ShaderManager.h"
+#include "../Rendering/RenderState.h"
+#include "../Rendering/RenderManager.h"
+#include "../Scene/Scene.h"
 
 GAME_USING
 
@@ -408,10 +417,6 @@ void CRenderer2D::UpdateTransform()
 	TRANSFORMCBUFFER	tBuffer = {};
 
 	XMMATRIX	matView, matProj;
-	/*matView = XMMatrixLookAtLH(Vector3(0.f, 0.f, -5.f).Convert(),
-		Vector3::Zero.Convert(), Vector3::Axis[AXIS_Y].Convert());
-	matProj = XMMatrixPerspectiveFovLH(WTF_PI / 3.f, 1280.f / 720.f,
-		0.3f, 1000.f);*/
 	CCamera*	pCamera = m_pScene->GetMainCamera();
 
 	matView = pCamera->GetViewMatrix().mat;
@@ -438,13 +443,4 @@ void CRenderer2D::UpdateTransform()
 
 	GET_SINGLE( CShaderManager )->UpdateCBuffer( "Transform",
 		&tBuffer, SCT_VERTEX | SCT_PIXEL );
-}
-
-CRenderer2D::CRenderer2D()
-{
-}
-
-
-CRenderer2D::~CRenderer2D()
-{
 }

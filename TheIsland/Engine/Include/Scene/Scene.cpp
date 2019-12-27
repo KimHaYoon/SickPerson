@@ -5,11 +5,20 @@
 #include "../GameObject/GameObject.h"
 #include "../Component/Camera.h"
 #include "../Component/Transform.h"
+#include "../Component/Light.h"
+#include "../Component/LightDir.h"
+#include "../Component/LightPoint.h"
+#include "../Component/LightSpot.h"
+#include "../Component/Renderer.h"
+#include "../Component/Material.h"
 
 GAME_USING
 
 CScene::CScene() :
-	m_pMainCameraTr( NULL )
+	m_pMainCameraTr( NULL ),
+	m_pMainCameraObj( NULL ),
+	m_pMainCamera( NULL ),
+	m_pSkyObject( NULL )
 {
 	SetTag( "Scene" );
 	SetTypeName( "CScene" );
@@ -19,13 +28,17 @@ CScene::CScene() :
 
 CScene::~CScene()
 {
+	CGameObject::EraseObj( m_pSkyObject );
+	SAFE_RELEASE( m_pSkyObject );
+
 	CGameObject::EraseObj( m_pMainCameraObj );
 	SAFE_RELEASE( m_pMainCameraTr );
 	SAFE_RELEASE( m_pMainCamera );
 	SAFE_RELEASE( m_pMainCameraObj );
 	Safe_Release_Map( m_mapCamera );
-	//CGameObject::EraseObj();
+
 	CGameObject::ErasePrototype( this );
+	Safe_Release_VecList( m_LightList );
 	Safe_Release_VecList( m_vecSceneScript );
 	Safe_Release_VecList( m_vecLayer );
 }
@@ -122,6 +135,55 @@ CCamera * CScene::GetMainCamera() const
 	return m_pMainCamera;
 }
 
+CLight * CScene::CreateLight( const string & strTag, LIGHT_TYPE eType )
+{
+	CGameObject*	pLightObj = new CGameObject;
+
+	pLightObj->SetTag( strTag );
+
+	if ( !pLightObj->Init() )
+	{
+		SAFE_RELEASE( pLightObj );
+		return NULL;
+	}
+
+	CLight*	pLight = NULL;
+
+	switch ( eType )
+	{
+	case LT_DIR:
+		pLight = pLightObj->AddComponent<CLightDir>( strTag );
+		break;
+	case LT_POINT:
+		pLight = pLightObj->AddComponent<CLightPoint>( strTag );
+		break;
+	case LT_SPOT:
+		pLight = pLightObj->AddComponent<CLightSpot>( strTag );
+		break;
+	}
+
+	m_LightList.push_back( pLightObj );
+
+	return pLight;
+}
+
+CLight * CScene::GetGlobalLight( const string & strTag )
+{
+	list<CGameObject*>::iterator	iter;
+	list<CGameObject*>::iterator	iterEnd = m_LightList.end();
+
+	for ( iter = m_LightList.begin(); iter != iterEnd; ++iter )
+	{
+		if ( ( *iter )->GetTag() == strTag )
+		{
+			CLight*	pLight = ( *iter )->FindComponentFromType<CLight>( CT_LIGHT );
+			return pLight;
+		}
+	}
+
+	return NULL;
+}
+
 bool CScene::Init()
 {
 	CLayer*	pLayer = CreateLayer( "Default" );
@@ -134,10 +196,49 @@ bool CScene::Init()
 
 	// 메인 카메라 생성
 	m_pMainCameraObj = CreateCamera( "MainCamera",
-		Vector3( 0.f, 0.f, -5.f ), WTF_PI / 3.f,
+		Vector3( 0.f, 0.f, -5.f ), PI / 3.f,
 		DEVICE_RESOLUTION.iWidth / ( float )DEVICE_RESOLUTION.iHeight, 0.03f, 5000.f );
 	m_pMainCamera = m_pMainCameraObj->FindComponentFromTypeID<CCamera>();
 	m_pMainCameraTr = m_pMainCameraObj->GetTransform();
+
+
+	// 전역 조명
+	CLight*	pGlobalLight = CreateLight( "GlobalLight", LT_SPOT );
+	CTransform*	pLightTr = pGlobalLight->GetTransform();
+
+	pLightTr->SetWorldPos( 0.f, -1.f, 0.f );
+	pLightTr->SetWorldRot( PI / 2.f, 0.f, 0.f );
+
+	SAFE_RELEASE( pLightTr );
+	SAFE_RELEASE( pGlobalLight );
+
+	// SkyBox
+	m_pSkyObject = CGameObject::CreateObject( "Sky" );
+
+	m_pSkyObject->SetScene( this );
+
+	CTransform*	pSkyTr = m_pSkyObject->GetTransform();
+
+	pSkyTr->SetWorldScale( 50000.f, 50000.f, 50000.f );
+
+	SAFE_RELEASE( pSkyTr );
+
+	CRenderer*	pRenderer = m_pSkyObject->AddComponent<CRenderer>( "SkyRenderer" );
+
+	pRenderer->SetMesh( "Sphere" );
+	pRenderer->SetShader( SKY_SHADER );
+	pRenderer->SetInputLayout( "VertexPos" );
+
+	CMaterial*	pMaterial = pRenderer->CreateMaterial();
+
+	pMaterial->SetDiffuseTexInfo( SAMPLER_LINEAR, "Sky", 0, 0, L"Sky.dds" );
+
+	SAFE_RELEASE( pMaterial );
+
+	pRenderer->SetRenderState( CULLING_NONE );
+	pRenderer->SetRenderState( DEPTH_LESS_EQUAL );
+
+	SAFE_RELEASE( pRenderer );
 
 	return true;
 }
@@ -243,6 +344,32 @@ int CScene::Update( float fTime )
 
 	m_pMainCameraObj->Update( fTime );
 
+	// 조명 업데이트
+	list<CGameObject*>::iterator	iterL;
+	list<CGameObject*>::iterator	iterLEnd = m_LightList.end();
+
+	for ( iterL = m_LightList.begin(); iterL != iterLEnd;)
+	{
+		if ( !( *iterL )->GetAlive() )
+		{
+			SAFE_RELEASE( ( *iterL ) );
+			iterL = m_LightList.erase( iterL );
+			continue;
+		}
+
+		else if ( !( *iterL )->GetEnable() )
+		{
+			++iterL;
+			continue;
+		}
+
+		( *iterL )->Update( fTime );
+		++iterL;
+	}
+
+	// 스카이 박스 업데이트
+	m_pSkyObject->Update( fTime );
+
 	return 0;
 }
 
@@ -295,6 +422,32 @@ int CScene::LateUpdate( float fTime )
 	}
 
 	m_pMainCameraObj->LateUpdate( fTime );
+
+	// 조명 업데이트
+	list<CGameObject*>::iterator	iterL;
+	list<CGameObject*>::iterator	iterLEnd = m_LightList.end();
+
+	for ( iterL = m_LightList.begin(); iterL != iterLEnd;)
+	{
+		if ( !( *iterL )->GetAlive() )
+		{
+			SAFE_RELEASE( ( *iterL ) );
+			iterL = m_LightList.erase( iterL );
+			continue;
+		}
+
+		else if ( !( *iterL )->GetEnable() )
+		{
+			++iterL;
+			continue;
+		}
+
+		( *iterL )->LateUpdate( fTime );
+		++iterL;
+	}
+
+	// 스카이 박스 업데이트
+	m_pSkyObject->LateUpdate( fTime );
 
 	return 0;
 }
@@ -372,6 +525,9 @@ void CScene::Render( float fTime )
 		else
 			++iter1;
 	}
+
+	// 스카이 박스를 그리고 레이어 내에있는 오브젝트를 그린다.
+	m_pSkyObject->Render( fTime );
 
 	vector<CLayer*>::iterator	iter;
 	vector<CLayer*>::iterator	iterEnd = m_vecLayer.end();

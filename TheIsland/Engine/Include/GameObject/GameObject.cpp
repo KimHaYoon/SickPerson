@@ -1,15 +1,11 @@
 #include "GameObject.h"
 #include "../Scene/Layer.h"
-#include "../Component/Transform.h"
-#include "../Core/CollisionManager.h"
 #include "../Core/PathManager.h"
+#include "../Component/Transform.h"
 #include "../Component/Renderer2D.h"
 #include "../Component/Animation2D.h"
 #include "../Component/Camera.h"
-#include "../Component/ColliderPoint.h"
-#include "../Component/ColliderRect.h"
-#include "../Component/Terrain2D.h"
-#include "../Component/Tile.h"
+#include "../Component/Component.h"
 #include "../Scene/Scene.h"
 #include "../Scene/SceneManager.h"
 
@@ -399,7 +395,6 @@ void CGameObject::DeleteChild( const string & strTag )
 	}
 }
 
-// 호적파기
 void CGameObject::DeleteChild( CGameObject * pChild )
 {
 	list<CGameObject*>::iterator	iterC;
@@ -417,7 +412,6 @@ void CGameObject::DeleteChild( CGameObject * pChild )
 	}
 }
 
-// 부모버리기
 void CGameObject::DeleteParent()
 {
 	if ( m_pParent )
@@ -760,18 +754,6 @@ void CGameObject::Load( FILE * pFile )
 			break;
 		case CT_MATERIAL:
 			break;
-		case CT_ANIMATION2D:
-			pCom = new CAnimation2D;
-			break;
-		case CT_COLLIDER:
-			//pCom = new CRenderer2D;
-			break;
-		case CT_TERRAIN2D:
-			pCom = new CTerrain2D;
-			break;
-		case CT_TILE:
-			pCom = new CTile;
-			break;
 		}
 
 		AddComponent( pCom );
@@ -825,12 +807,6 @@ void CGameObject::LoadFromFullPath( const char * pFullPath )
 			break;
 		case CT_COLLIDER:
 			//pCom = new CRenderer2D;
-			break;
-		case CT_TERRAIN2D:
-			pCom = new CTerrain2D;
-			break;
-		case CT_TILE:
-			pCom = new CTile;
 			break;
 		}
 

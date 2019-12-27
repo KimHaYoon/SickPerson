@@ -1,5 +1,16 @@
 #include "Renderer.h"
 #include "Transform.h"
+#include "Camera.h"
+#include "Material.h"
+#include "Light.h"
+#include "../Device.h"
+#include "../Resources/Mesh.h"
+#include "../Resources/ResourcesManager.h"
+#include "../Rendering/Shader.h"
+#include "../Rendering/ShaderManager.h"
+#include "../Rendering/RenderState.h"
+#include "../Rendering/RenderManager.h"
+#include "../Scene/Scene.h"
 
 GAME_USING
 
@@ -12,6 +23,8 @@ CRenderer::CRenderer() :
 	SetTypeName( "CRenderer" );
 	SetTypeID<CRenderer>();
 	m_eType = CT_RENDERER;
+
+	memset( m_pRenderState, 0, sizeof( CRenderState* ) * RST_END );
 }
 
 CRenderer::CRenderer( const CRenderer & renderer ) :
@@ -24,12 +37,25 @@ CRenderer::CRenderer( const CRenderer & renderer ) :
 
 	if ( m_pShader )
 		m_pShader->AddRef();
+
+	for ( int i = 0; i < RST_END; ++i )
+	{
+		m_pRenderState[i] = renderer.m_pRenderState[i];
+		if ( m_pRenderState[i] )
+			m_pRenderState[i]->AddRef();
+	}
 }
 
 CRenderer::~CRenderer()
 {
+	SAFE_RELEASE( m_pMaterial );
 	SAFE_RELEASE( m_pMesh );
 	SAFE_RELEASE( m_pShader );
+
+	for ( int i = 0; i < RST_END; ++i )
+	{
+		SAFE_RELEASE( m_pRenderState[i] );
+	}
 }
 
 void CRenderer::SetMesh( const string & strKey )
@@ -68,6 +94,32 @@ void CRenderer::SetInputLayout( ID3D11InputLayout * pLayout )
 	m_pInputLayout = pLayout;
 }
 
+CMaterial * CRenderer::CreateMaterial()
+{
+	m_pMaterial = new CMaterial;
+	
+	if ( !m_pMaterial->Init() )
+	{
+		SAFE_RELEASE( m_pMaterial );
+		return NULL;
+	}
+
+	m_pMaterial->AddRef();
+
+	return m_pMaterial;
+}
+
+void CRenderer::SetRenderState( const string & strKey )
+{
+	CRenderState* pState = GET_SINGLE( CRenderManager )->FindRenderState( strKey );
+
+	if ( !pState )
+		return;
+
+	SAFE_RELEASE( m_pRenderState[pState->GetType()] );
+	m_pRenderState[pState->GetType()] = pState;
+}
+
 bool CRenderer::Init()
 {
 	return true;
@@ -95,11 +147,38 @@ void CRenderer::Render( float fTime )
 {
 	UpdateTransform();
 
+	CLight* pLight = m_pScene->GetGlobalLight();
+
+	if ( pLight )
+	{
+		pLight->SetShader();
+
+		SAFE_RELEASE( pLight );
+	}
+
+	// 렌더 상태 적용
+	for ( int i = 0; i < RST_END; ++i )
+	{
+		if ( m_pRenderState[i] )
+			m_pRenderState[i]->SetState();
+	}
+
+	// Material 적용
+	if ( m_pMaterial )
+		m_pMaterial->SetMaterial( SCT_VERTEX | SCT_PIXEL );
+
 	m_pShader->SetShader();
 
 	CONTEXT->IASetInputLayout( m_pInputLayout );
 
 	m_pMesh->Render( fTime );
+
+	// 그린 후 모든 RenderState들을 복원한다.
+	for ( int i = 0; i < RST_END; ++i )
+	{
+		if ( m_pRenderState[i] )
+			m_pRenderState[i]->ResetState();
+	}
 }
 
 CRenderer * CRenderer::Clone()
@@ -120,10 +199,7 @@ void CRenderer::UpdateTransform()
 	TRANSFORMCBUFFER	tBuffer = {};
 
 	XMMATRIX	matView, matProj;
-	/*matView = XMMatrixLookAtLH(Vector3(0.f, 0.f, -5.f).Convert(),
-	Vector3::Zero.Convert(), Vector3::Axis[AXIS_Y].Convert());
-	matProj = XMMatrixPerspectiveFovLH(WTF_PI / 3.f, 1280.f / 720.f,
-	0.3f, 1000.f);*/
+
 	CCamera*	pCamera = m_pScene->GetMainCamera();
 
 	matView = pCamera->GetViewMatrix().mat;

@@ -1,9 +1,15 @@
 #include "Core.h"
+#include "Device.h"
 #include "Core/Timer.h"
 #include "Core/TimerManager.h"
 #include "Core/Input.h"
+#include "Core/PathManager.h"
+#include "Scene/SceneManager.h"
+#include "Rendering/RenderManager.h"
+#include "Resources/ResourcesManager.h"
 
 GAME_USING
+DEFINITION_SINGLE( CCore )
 
 bool CCore::m_bLoop = true;
 
@@ -21,6 +27,13 @@ CCore::CCore()
 
 CCore::~CCore()
 {
+	DESTROY_SINGLE( CSceneManager );
+	DESTROY_SINGLE( CRenderManager );
+	DESTROY_SINGLE( CResourcesManager );
+	DESTROY_SINGLE( CInput );
+	DESTROY_SINGLE( CTimerManager );
+	DESTROY_SINGLE( CPathManager );
+	DESTROY_SINGLE( CDevice );
 #ifdef _DEBUG
 	FreeConsole();
 #endif // _DEBUG
@@ -51,6 +64,27 @@ bool CCore::Init( HINSTANCE hInst, HWND hWnd, UINT iWidth,
 	m_tResolution.iHeight = iHeight;
 	m_hInst = hInst;
 	m_hWnd = hWnd;
+
+	if ( !GET_SINGLE( CDevice )->Init( m_hWnd, iWidth, iHeight, bWindowMode ) )
+		return false;
+
+	if ( !GET_SINGLE( CPathManager )->Init() )
+		return false;
+
+	if ( !GET_SINGLE( CResourcesManager )->Init() )
+		return false;
+
+	if ( !GET_SINGLE( CRenderManager )->Init() )
+		return false;
+
+	if ( !GET_SINGLE( CInput )->Init( m_hWnd, bOnMouseRenderer ) )
+		return false;
+
+	if ( !GET_SINGLE( CTimerManager )->Init() )
+		return false;
+
+	if ( !GET_SINGLE( CSceneManager )->Init() )
+		return false;
 
 	return true;
 }
