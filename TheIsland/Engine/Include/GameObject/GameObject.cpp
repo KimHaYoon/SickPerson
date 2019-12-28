@@ -1,13 +1,13 @@
 #include "GameObject.h"
 #include "../Scene/Layer.h"
-#include "../Core/PathManager.h"
 #include "../Component/Transform.h"
+#include "../Core/PathManager.h"
 #include "../Component/Renderer2D.h"
 #include "../Component/Animation2D.h"
 #include "../Component/Camera.h"
-#include "../Component/Component.h"
 #include "../Scene/Scene.h"
 #include "../Scene/SceneManager.h"
+#include "../Component/Renderer.h"
 
 GAME_USING
 
@@ -85,6 +85,76 @@ CGameObject * CGameObject::CreateClone( const string & strKey, class CLayer* pLa
 	return pClone;
 }
 
+CGameObject * CGameObject::CreateObjectDontDestroy( const string & strTag,
+	CLayer * pLayer )
+{
+	CGameObject*	pObj = GET_SINGLE( CSceneManager )->FindDontDestroyObj( strTag );
+
+	if ( pObj )
+	{
+		pObj->SetLayer( pLayer );
+		pObj->SetScene( pLayer->GetScene() );
+
+		return pObj;
+	}
+
+	pObj = new CGameObject;
+
+	pObj->SetTag( strTag );
+
+	if ( pLayer )
+		pLayer->AddObject( pObj );
+
+	if ( !pObj->Init() )
+	{
+		if ( pLayer )
+			pLayer->EraseObject( pObj );
+
+		CGameObject::EraseObj( pObj );
+		SAFE_RELEASE( pObj );
+		return NULL;
+	}
+
+	CGameObject::AddObjList( pObj );
+
+	pObj->m_bDontDestroy = true;
+
+	GET_SINGLE( CSceneManager )->AddDontDestroyObj( pObj, pLayer->GetTag(),
+		pLayer->GetZOrder() );
+
+	return pObj;
+}
+
+CGameObject * CGameObject::CreatePrototypeDontDestroy( const string & strKey,
+	CScene * pScene )
+{
+	CGameObject*	pPrototype = GET_SINGLE( CSceneManager )->FindDontDestroyPrototype( strKey );
+
+	if ( pPrototype )
+		return pPrototype;
+
+	pPrototype = new CGameObject;
+
+	pPrototype->SetTag( strKey );
+
+	pPrototype->SetScene( pScene );
+
+	if ( !pPrototype->Init() )
+	{
+		SAFE_RELEASE( pPrototype );
+		return NULL;
+	}
+
+	pPrototype->m_bDontDestroy = true;
+
+	GET_SINGLE( CSceneManager )->AddDontDestroyPrototype( pPrototype, strKey );
+
+	pPrototype->AddRef();
+	m_mapPrototype.insert( make_pair( strKey, pPrototype ) );
+
+	return pPrototype;
+}
+
 void CGameObject::ChangePrototypeScene( const string & strKey,
 	CScene * pScene )
 {
@@ -94,6 +164,18 @@ void CGameObject::ChangePrototypeScene( const string & strKey,
 		return;
 
 	pProto->SetScene( pScene );
+}
+
+void CGameObject::AddPrototype( const string & strTag,
+	CGameObject * pPrototype )
+{
+	if ( FindPrototype( strTag ) )
+	{
+		assert( false );
+	}
+
+	pPrototype->AddRef();
+	m_mapPrototype.insert( make_pair( strTag, pPrototype ) );
 }
 
 void CGameObject::AddObjList( CGameObject * pObj )
@@ -292,7 +374,8 @@ CGameObject::CGameObject() :
 	m_pLayer( NULL ),
 	m_pTransform( NULL ),
 	m_pParent( NULL ),
-	m_bDontDestroy( false )
+	m_bDontDestroy( false ),
+	m_bCulling( false )
 {
 	SetTag( "GameObject" );
 	SetTypeName( "CGameObject" );
@@ -303,6 +386,8 @@ CGameObject::CGameObject( const CGameObject & obj )
 {
 	*this = obj;
 	m_iRefCount = 1;
+
+	m_bCulling = false;
 
 	m_pTransform = obj.m_pTransform->Clone();
 	m_pTransform->SetGameObject( this );
@@ -355,6 +440,16 @@ CGameObject::~CGameObject()
 	Safe_Release_VecList( m_ComList );
 }
 
+void CGameObject::SetCulling( bool bCulling )
+{
+	m_bCulling = bCulling;
+}
+
+bool CGameObject::GetCulling() const
+{
+	return m_bCulling;
+}
+
 void CGameObject::DontDestroyOnLoad( bool bDontDestroy )
 {
 	m_bDontDestroy = bDontDestroy;
@@ -368,14 +463,12 @@ bool CGameObject::IsDontDestroy() const
 void CGameObject::AddChild( CGameObject * pChild )
 {
 	pChild->m_pParent = this;
-	//pChild->SetScene(m_pScene);
-	//pChild->SetLayer(m_pLayer);
+	pChild->SetScene( m_pScene );
+	pChild->SetLayer( m_pLayer );
 	pChild->AddRef();
 	pChild->m_pTransform->m_pParent = m_pTransform;
 
 	m_ChildList.push_back( pChild );
-
-	m_pLayer->AddObject( pChild );
 }
 
 void CGameObject::DeleteChild( const string & strTag )
@@ -395,6 +488,7 @@ void CGameObject::DeleteChild( const string & strTag )
 	}
 }
 
+// 호적파기
 void CGameObject::DeleteChild( CGameObject * pChild )
 {
 	list<CGameObject*>::iterator	iterC;
@@ -412,6 +506,7 @@ void CGameObject::DeleteChild( CGameObject * pChild )
 	}
 }
 
+// 부모버리기
 void CGameObject::DeleteParent()
 {
 	if ( m_pParent )
@@ -539,6 +634,32 @@ void CGameObject::Input( float fTime )
 	}
 
 	m_pTransform->Input( fTime );
+
+	list<CGameObject*>::iterator	iterC;
+	list<CGameObject*>::iterator	iterCEnd = m_ChildList.end();
+
+	for ( iterC = m_ChildList.begin(); iterC != iterCEnd;)
+	{
+		if ( !( *iterC )->GetEnable() )
+		{
+			++iterC;
+			continue;
+		}
+
+		else if ( !( *iterC )->GetAlive() )
+		{
+			CGameObject::EraseObj( *iterC );
+			SAFE_RELEASE( ( *iterC ) );
+			iterC = m_ChildList.erase( iterC );
+			iterCEnd = m_ChildList.end();
+		}
+
+		else
+		{
+			( *iterC )->Input( fTime );
+			++iterC;
+		}
+	}
 }
 
 int CGameObject::Update( float fTime )
@@ -567,6 +688,32 @@ int CGameObject::Update( float fTime )
 	}
 
 	m_pTransform->Update( fTime );
+
+	list<CGameObject*>::iterator	iterC;
+	list<CGameObject*>::iterator	iterCEnd = m_ChildList.end();
+
+	for ( iterC = m_ChildList.begin(); iterC != iterCEnd;)
+	{
+		if ( !( *iterC )->GetEnable() )
+		{
+			++iterC;
+			continue;
+		}
+
+		else if ( !( *iterC )->GetAlive() )
+		{
+			CGameObject::EraseObj( *iterC );
+			SAFE_RELEASE( ( *iterC ) );
+			iterC = m_ChildList.erase( iterC );
+			iterCEnd = m_ChildList.end();
+		}
+
+		else
+		{
+			( *iterC )->Update( fTime );
+			++iterC;
+		}
+	}
 
 	return 0;
 }
@@ -598,11 +745,62 @@ int CGameObject::LateUpdate( float fTime )
 
 	m_pTransform->LateUpdate( fTime );
 
+	list<CGameObject*>::iterator	iterC;
+	list<CGameObject*>::iterator	iterCEnd = m_ChildList.end();
+
+	for ( iterC = m_ChildList.begin(); iterC != iterCEnd;)
+	{
+		if ( !( *iterC )->GetEnable() )
+		{
+			++iterC;
+			continue;
+		}
+
+		else if ( !( *iterC )->GetAlive() )
+		{
+			CGameObject::EraseObj( *iterC );
+			SAFE_RELEASE( ( *iterC ) );
+			iterC = m_ChildList.erase( iterC );
+			iterCEnd = m_ChildList.end();
+		}
+
+		else
+		{
+			( *iterC )->LateUpdate( fTime );
+			++iterC;
+		}
+	}
+
 	return 0;
 }
 
 void CGameObject::Collision( float fTime )
 {
+	list<CGameObject*>::iterator	iterC;
+	list<CGameObject*>::iterator	iterCEnd = m_ChildList.end();
+
+	for ( iterC = m_ChildList.begin(); iterC != iterCEnd;)
+	{
+		if ( !( *iterC )->GetEnable() )
+		{
+			++iterC;
+			continue;
+		}
+
+		else if ( !( *iterC )->GetAlive() )
+		{
+			CGameObject::EraseObj( *iterC );
+			SAFE_RELEASE( ( *iterC ) );
+			iterC = m_ChildList.erase( iterC );
+			iterCEnd = m_ChildList.end();
+		}
+
+		else
+		{
+			( *iterC )->Collision( fTime );
+			++iterC;
+		}
+	}
 }
 
 void CGameObject::Render( float fTime )
@@ -631,6 +829,47 @@ void CGameObject::Render( float fTime )
 	}
 
 	m_pTransform->Render( fTime );
+
+	list<CGameObject*>::iterator	iterC;
+	list<CGameObject*>::iterator	iterCEnd = m_ChildList.end();
+
+	for ( iterC = m_ChildList.begin(); iterC != iterCEnd;)
+	{
+		if ( !( *iterC )->GetEnable() )
+		{
+			++iterC;
+			continue;
+		}
+
+		else if ( !( *iterC )->GetAlive() )
+		{
+			CGameObject::EraseObj( *iterC );
+			SAFE_RELEASE( ( *iterC ) );
+			iterC = m_ChildList.erase( iterC );
+			iterCEnd = m_ChildList.end();
+		}
+
+		else
+		{
+			( *iterC )->Render( fTime );
+			++iterC;
+		}
+	}
+}
+
+void CGameObject::RenderShadowMap( float fTime )
+{
+	CRenderer*	pRenderer = FindComponentFromType<CRenderer>( CT_RENDERER );
+
+	if ( pRenderer )
+	{
+		if ( pRenderer->GetEnable() )
+		{
+			pRenderer->RenderShadowMap( fTime );
+
+			SAFE_RELEASE( pRenderer );
+		}
+	}
 }
 
 CGameObject * CGameObject::Clone()
@@ -754,6 +993,9 @@ void CGameObject::Load( FILE * pFile )
 			break;
 		case CT_MATERIAL:
 			break;
+		case CT_ANIMATION2D:
+			pCom = new CAnimation2D;
+			break;
 		}
 
 		AddComponent( pCom );
@@ -804,9 +1046,6 @@ void CGameObject::LoadFromFullPath( const char * pFullPath )
 			break;
 		case CT_ANIMATION2D:
 			pCom = new CAnimation2D;
-			break;
-		case CT_COLLIDER:
-			//pCom = new CRenderer2D;
 			break;
 		}
 

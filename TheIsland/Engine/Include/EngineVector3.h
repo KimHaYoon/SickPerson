@@ -152,6 +152,14 @@ typedef struct GAME_DLL _tagVector3 :
 
 	bool operator !=( int i[3] )	const;
 
+	bool operator < ( const _tagVector3& v )	const;
+
+	bool operator <= ( const _tagVector3& v )	const;
+
+	bool operator > ( const _tagVector3& v )	const;
+
+	bool operator >= ( const _tagVector3& v )	const;
+
 	XMVECTOR Convert()	const;
 
 	float Length()	const;

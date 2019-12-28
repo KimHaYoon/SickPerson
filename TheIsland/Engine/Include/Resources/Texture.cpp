@@ -4,7 +4,6 @@
 
 GAME_USING
 
-
 CTexture::CTexture() :
 	m_pSRView( NULL ),
 	m_bArray( false )
@@ -275,20 +274,56 @@ void CTexture::SetTexture( int iRegister, int iShaderConstantType )
 		CONTEXT->PSSetShaderResources( iRegister, 1, &m_pSRView );
 }
 
+void CTexture::SetTexturePathKey( const string & strPathKey )
+{
+	m_strPathKey = strPathKey;
+}
+
+void CTexture::ChangeTexturePath( const string & strPath )
+{
+	vector<string>	vecFullPath;
+
+	for ( size_t i = 0; i < m_vecFullPath.size(); ++i )
+	{
+		// 풀경로에서 파일 이름만 얻어온다.
+		char	strFileName[MAX_PATH] = {};
+		char	strExt[_MAX_EXT] = {};
+		_splitpath_s( m_vecFullPath[i].c_str(), 0, 0, 0, 0, strFileName, MAX_PATH,
+			strExt, _MAX_EXT );
+		strcat_s( strFileName, strExt );
+		string	strFullPath = strPath + strFileName;
+
+		vecFullPath.push_back( strFullPath );
+	}
+
+	m_vecFullPath.clear();
+	m_vecFullPath = vecFullPath;
+}
+
+void CTexture::SetShaderResourceView( ID3D11ShaderResourceView * pSRV )
+{
+	pSRV->AddRef();
+	m_pSRView = pSRV;
+}
+
 void CTexture::Save( FILE * pFile )
 {
 	int	iLength = m_strKey.length();
-	fwrite( &iLength, 4, 1, pFile );
-	fwrite( m_strKey.c_str(), 1, iLength, pFile );
+	fwrite( &iLength, sizeof( int ), 1, pFile );
+	fwrite( m_strKey.c_str(), sizeof( char ), iLength, pFile );
+
+	iLength = m_strPathKey.length();
+	fwrite( &iLength, sizeof( int ), 1, pFile );
+	fwrite( m_strPathKey.c_str(), sizeof( char ), iLength, pFile );
 
 	int	iCount = m_vecFullPath.size();
-	fwrite( &iCount, 4, 1, pFile );
+	fwrite( &iCount, sizeof( int ), 1, pFile );
 
 	for ( size_t i = 0; i < m_vecFullPath.size(); ++i )
 	{
 		iLength = m_vecFullPath[i].length();
-		fwrite( &iLength, 4, 1, pFile );
-		fwrite( m_vecFullPath[i].c_str(), 1, iLength, pFile );
+		fwrite( &iLength, sizeof( int ), 1, pFile );
+		fwrite( m_vecFullPath[i].c_str(), sizeof( char ), iLength, pFile );
 	}
 }
 

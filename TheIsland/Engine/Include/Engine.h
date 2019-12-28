@@ -16,35 +16,56 @@
 
 #define PI 3.141592f
 
-// Path Key
+// Path Key	
 #define	BASE_PATH		"BasePath"
 #define	SHADER_PATH		"ShaderPath"
 #define	TEXTURE_PATH	"TexturePath"
 #define	DATA_PATH		"DataPath"
 #define	SOUND_PATH		"SoundPath"
+#define	MESH_PATH		"MeshPath"
 
 // Sampler Key
 #define	SAMPLER_LINEAR	"Linear"
+#define	SAMPLER_POINT	"Point"
 
 // Shader Key
-#define STANDARD_COLOR_NORMAL_SHADER	"StandardColorNormalShader"
-#define	STANDARD_COLOR_SHADER	"StandardColorShader"
-#define	STANDARD_TEX_SHADER		"StandardTexShader"
-#define	COLLIDER_SHADER			"ColliderShader"
+#define	STANDARD_COLOR_SHADER								"StandardColorShader"
+#define	STANDARD_COLOR_NORMAL_SHADER						"StandardColorNormalShader"
+#define	STANDARD_TEX_SHADER									"StandardTexShader"
+#define	STANDARD_TEX_NORMAL_SHADER							"StandardTexNormalShader"
+#define	STANDARD_BUMP_SHADER								"StandardBumpShader"
+#define	STANDARD_TEX_NORMAL_ANIM_SHADER						"StandardTexNormalAnimShader"
+#define	STANDARD_BUMP_ANIM_SHADER							"StandardBumpAnimShader"
+#define	STANDARD_BUMP_ANIM_FORWARD_SHADER					"StandardBumpAnimForwardShader"
+#define	STANDARD_TEX_NORMAL_ANIM_FORWARD_SHADER				"StandardTexNormalAnimForwardShader"
 
-#define	UI_SHADER				"UIShader"
-#define	UI_COLOR_SHADER			"UIColorShader"
+#define	LIGHT_ACC_SHADER									"LightAccShader"
+#define	LIGHT_BLEND_SHADER									"LightBlendShader"
+#define	DEFERRED_SHADER										"DeferredShader"
 
-#define SKY_SHADER				"SkyShader"
+#define	LANDSCAPE_SHADER									"LandScapeShader"
+
+#define	COLLIDER_SHADER										"ColliderShader"
+
+#define	UI_SHADER											"UIShader"
+#define	UI_MULTITEXTURE_SHADER								"UIMultiTextureShader"
+#define	UI_COLOR_SHADER										"UIColorShader"
+
+#define	SKY_SHADER											"SkyShader"
+
+#define	EFFECT_SHADER										"EffectShader"
+#define	DECAL_SHADER										"DecalShader"
+#define SKY_SHADER											"SkyShader"
 
 // RenderState Key
-#define	ALPHA_BLEND			"AlphaBlend"
+#define	ALPHA_BLEND											"AlphaBlend"
+#define	ONE_BLEND											"OneBlend"
 
-#define	DEPTH_DISABLE		"DepthDisable"
-#define DEPTH_LESS_EQUAL	"DepthLessEqual"
+#define	DEPTH_DISABLE										"DepthDisable"
+#define DEPTH_LESS_EQUAL									"DepthLessEqual"
 
-#define	WIRE_FRAME			"WireFrame"
-#define	CULLING_NONE		"CullNone"
+#define	WIRE_FRAME											"WireFrame"
+#define	CULLING_NONE										"CullNone"
 
 template <typename T>
 void Safe_Release_VecList( T& p )

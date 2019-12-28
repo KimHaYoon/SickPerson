@@ -10,6 +10,7 @@ _tagVector4 _tagVector4::Yellow = _tagVector4( 1.f, 1.f, 0.f, 1.f );
 _tagVector4 _tagVector4::Magenta = _tagVector4( 1.f, 0.f, 1.f, 1.f );
 _tagVector4 _tagVector4::White = _tagVector4( 1.f, 1.f, 1.f, 1.f );
 _tagVector4 _tagVector4::Black = _tagVector4( 0.f, 0.f, 0.f, 1.f );
+_tagVector4 _tagVector4::Zero = _tagVector4( 0.f, 0.f, 0.f, 0.f );
 
 _tagVector4::_tagVector4()
 {
@@ -22,6 +23,11 @@ _tagVector4::_tagVector4( const _tagVector4& v )
 	y = v.y;
 	z = v.z;
 	w = v.w;
+}
+
+_tagVector4::_tagVector4( const XMVECTOR & v )
+{
+	XMStoreFloat4( this, v );
 }
 
 _tagVector4::_tagVector4( float _x, float _y, float _z, float _w )
@@ -598,6 +604,22 @@ bool _tagVector4::operator !=( float f[4] )	const
 bool _tagVector4::operator !=( int i[4] )	const
 {
 	return x != i[0] || y != i[1] || z != i[2] || w != i[3];
+}
+
+float _tagVector4::operator[]( int idx )	const
+{
+	switch ( idx )
+	{
+	case 0:
+		return x;
+	case 1:
+		return y;
+	case 2:
+		return z;
+	case 3:
+		return w;
+	}
+	return 0.f;
 }
 
 XMVECTOR _tagVector4::Convert()	const

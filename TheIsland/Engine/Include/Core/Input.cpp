@@ -2,7 +2,6 @@
 
 GAME_USING
 
-
 DEFINITION_SINGLE( CInput )
 
 CInput::CInput()

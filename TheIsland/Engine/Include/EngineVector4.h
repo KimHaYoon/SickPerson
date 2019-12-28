@@ -10,6 +10,7 @@ typedef struct GAME_DLL _tagVector4 :
 	_tagVector4();
 
 	_tagVector4( const _tagVector4& v );
+	_tagVector4( const XMVECTOR& v );
 
 	_tagVector4( float _x, float _y, float _z, float _w );
 
@@ -151,6 +152,8 @@ typedef struct GAME_DLL _tagVector4 :
 
 	bool operator !=( int i[4] )	const;
 
+	float operator []( int idx )	const;
+
 	XMVECTOR Convert()	const;
 	float Length()	const;
 	_tagVector4 Normalize()	const;
@@ -162,6 +165,7 @@ typedef struct GAME_DLL _tagVector4 :
 	static _tagVector4 Magenta;
 	static _tagVector4 White;
 	static _tagVector4 Black;
+	static _tagVector4 Zero;
 }Vector4, *PVector4;
 
 GAME_END

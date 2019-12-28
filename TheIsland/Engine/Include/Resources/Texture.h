@@ -9,6 +9,7 @@ class GAME_DLL CTexture :
 {
 private:
 	friend class CResourcesManager;
+	friend class CMaterial;
 
 private:
 	CTexture();
@@ -20,6 +21,7 @@ private:
 	string		m_strKey;
 	bool		m_bArray;
 	vector<string>	m_vecFullPath;
+	string		m_strPathKey;
 
 public:
 	bool LoadTexture( const string& strKey, const wchar_t* pFileName,
@@ -31,6 +33,9 @@ public:
 	bool LoadTextureFromFullPath( const string& strKey, const char* pFullPath );
 	bool LoadTextureFromFullPath( const string& strKey, const vector<string>& vecFullPath );
 	void SetTexture( int iRegister, int iShaderConstantType );
+	void SetTexturePathKey( const string& strPathKey );
+	void ChangeTexturePath( const string& strPath );
+	void SetShaderResourceView( ID3D11ShaderResourceView* pSRV );
 
 public:
 	void Save( FILE* pFile );

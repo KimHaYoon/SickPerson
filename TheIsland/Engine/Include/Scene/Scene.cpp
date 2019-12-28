@@ -1,23 +1,26 @@
 #include "Scene.h"
 #include "Layer.h"
-#include "SceneScript.h"
-#include "../Device.h"
 #include "../GameObject/GameObject.h"
+#include "SceneScript.h"
 #include "../Component/Camera.h"
 #include "../Component/Transform.h"
-#include "../Component/Light.h"
+#include "../Device.h"
 #include "../Component/LightDir.h"
 #include "../Component/LightPoint.h"
 #include "../Component/LightSpot.h"
 #include "../Component/Renderer.h"
 #include "../Component/Material.h"
+#include "../Core/Input.h"
 
 GAME_USING
 
 CScene::CScene() :
-	m_pMainCameraTr( NULL ),
 	m_pMainCameraObj( NULL ),
 	m_pMainCamera( NULL ),
+	m_pMainCameraTr( NULL ),
+	m_pUICameraObj( NULL ),
+	m_pUICamera( NULL ),
+	m_pUICameraTr( NULL ),
 	m_pSkyObject( NULL )
 {
 	SetTag( "Scene" );
@@ -30,15 +33,27 @@ CScene::~CScene()
 {
 	CGameObject::EraseObj( m_pSkyObject );
 	SAFE_RELEASE( m_pSkyObject );
-
-	CGameObject::EraseObj( m_pMainCameraObj );
+	Safe_Release_VecList( m_LightList );
+	//CGameObject::EraseObj(m_pMainCameraObj);
+	//CGameObject::EraseObj(m_pUICameraObj);
 	SAFE_RELEASE( m_pMainCameraTr );
 	SAFE_RELEASE( m_pMainCamera );
 	SAFE_RELEASE( m_pMainCameraObj );
-	Safe_Release_Map( m_mapCamera );
+	SAFE_RELEASE( m_pUICameraTr );
+	SAFE_RELEASE( m_pUICamera );
+	SAFE_RELEASE( m_pUICameraObj );
 
+	unordered_map<string, CGameObject*>::iterator	iter;
+	unordered_map<string, CGameObject*>::iterator	iterEnd = m_mapCamera.end();
+
+	for ( iter = m_mapCamera.begin(); iter != iterEnd; ++iter )
+	{
+		CGameObject::EraseObj( iter->second );
+	}
+
+	Safe_Release_Map( m_mapCamera );
+	//CGameObject::EraseObj();
 	CGameObject::ErasePrototype( this );
-	Safe_Release_VecList( m_LightList );
 	Safe_Release_VecList( m_vecSceneScript );
 	Safe_Release_VecList( m_vecLayer );
 }
@@ -68,8 +83,11 @@ CGameObject * CScene::CreateCamera( const string & strKey,
 	CCamera* pCamera = pCameraObj->AddComponent<CCamera>( "Camera" );
 
 	pCamera->SetPerspectiveProj( fViewAngle, fAspect, fNear, fFar );
+	pCamera->SetShadowPerspectiveProj( fViewAngle, fAspect, fNear, fFar );
 
 	SAFE_RELEASE( pCamera );
+
+	pCameraObj->SetScene( this );
 
 	pCameraObj->AddRef();
 	m_mapCamera.insert( make_pair( strKey, pCameraObj ) );
@@ -105,6 +123,17 @@ CGameObject * CScene::CreateOrthoCamera( const string & strKey,
 	return pCameraObj;
 }
 
+void CScene::ChangeMainCamera( const string & strKey )
+{
+	SAFE_RELEASE( m_pMainCameraObj );
+	SAFE_RELEASE( m_pMainCamera );
+	SAFE_RELEASE( m_pMainCameraTr );
+
+	m_pMainCameraObj = FindCamera( strKey );
+	m_pMainCameraTr = m_pMainCameraObj->GetTransform();
+	m_pMainCamera = m_pMainCameraObj->FindComponentFromType<CCamera>( CT_CAMERA );
+}
+
 CGameObject * CScene::FindCamera( const string & strKey )
 {
 	unordered_map<string, CGameObject*>::iterator	iter = m_mapCamera.find( strKey );
@@ -133,6 +162,24 @@ CCamera * CScene::GetMainCamera() const
 {
 	m_pMainCamera->AddRef();
 	return m_pMainCamera;
+}
+
+CGameObject * CScene::GetUICameraObj() const
+{
+	m_pUICameraObj->AddRef();
+	return m_pUICameraObj;
+}
+
+CTransform * CScene::GetUICameraTr() const
+{
+	m_pUICameraTr->AddRef();
+	return m_pUICameraTr;
+}
+
+CCamera * CScene::GetUICamera() const
+{
+	m_pUICamera->AddRef();
+	return m_pUICamera;
 }
 
 CLight * CScene::CreateLight( const string & strTag, LIGHT_TYPE eType )
@@ -184,6 +231,27 @@ CLight * CScene::GetGlobalLight( const string & strTag )
 	return NULL;
 }
 
+CTransform * CScene::GetGlobalLightTransform( const string & strTag )
+{
+	list<CGameObject*>::iterator	iter;
+	list<CGameObject*>::iterator	iterEnd = m_LightList.end();
+
+	for ( iter = m_LightList.begin(); iter != iterEnd; ++iter )
+	{
+		if ( ( *iter )->GetTag() == strTag )
+		{
+			return ( *iter )->GetTransform();
+		}
+	}
+
+	return NULL;
+}
+
+const list<class CGameObject*>* CScene::GetLightList()
+{
+	return &m_LightList;
+}
+
 bool CScene::Init()
 {
 	CLayer*	pLayer = CreateLayer( "Default" );
@@ -196,23 +264,33 @@ bool CScene::Init()
 
 	// 메인 카메라 생성
 	m_pMainCameraObj = CreateCamera( "MainCamera",
-		Vector3( 0.f, 0.f, -5.f ), PI / 3.f,
+		Vector3( 0.f, 0.f, -5.f ), PI / 2.f,
 		DEVICE_RESOLUTION.iWidth / ( float )DEVICE_RESOLUTION.iHeight, 0.03f, 5000.f );
 	m_pMainCamera = m_pMainCameraObj->FindComponentFromTypeID<CCamera>();
 	m_pMainCameraTr = m_pMainCameraObj->GetTransform();
 
+	// UI 카메라 생성
+	m_pUICameraObj = CreateOrthoCamera( "UICamera",
+		Vector3( 0.f, 0.f, 0.f ), DEVICE_RESOLUTION, 0.f, 5000.f );
+	m_pUICamera = m_pUICameraObj->FindComponentFromTypeID<CCamera>();
+	m_pUICameraTr = m_pUICameraObj->GetTransform();
+	//m_pMainCameraTr->SetWorldRotX(GAME_PI / -2.f);
 
-	// 전역 조명
-	CLight*	pGlobalLight = CreateLight( "GlobalLight", LT_SPOT );
+
+	CLight*	pGlobalLight = CreateLight( "GlobalLight", LT_POINT );
+
+	pGlobalLight->SetLightRange( 1000000.f );
+	/*pGlobalLight->SetLightColor(Vector4(0.2f, 0.2f, 0.2f, 1.f), Vector4(0.1f, 0.1f, 0.1f, 1.f),
+		Vector4(0.f, 0.f, 0.f, 1.f));*/
+
 	CTransform*	pLightTr = pGlobalLight->GetTransform();
 
-	pLightTr->SetWorldPos( 0.f, -1.f, 0.f );
-	pLightTr->SetWorldRot( PI / 2.f, 0.f, 0.f );
+	pLightTr->SetWorldPos( -50000.f, 50000.f, 0.f );
 
 	SAFE_RELEASE( pLightTr );
-	SAFE_RELEASE( pGlobalLight );
 
-	// SkyBox
+	SAFE_RELEASE( pGlobalLight );
+	
 	m_pSkyObject = CGameObject::CreateObject( "Sky" );
 
 	m_pSkyObject->SetScene( this );
@@ -367,8 +445,8 @@ int CScene::Update( float fTime )
 		++iterL;
 	}
 
-	// 스카이 박스 업데이트
-	m_pSkyObject->Update( fTime );
+	if ( m_pSkyObject )
+		m_pSkyObject->Update( fTime );
 
 	return 0;
 }
@@ -446,8 +524,8 @@ int CScene::LateUpdate( float fTime )
 		++iterL;
 	}
 
-	// 스카이 박스 업데이트
-	m_pSkyObject->LateUpdate( fTime );
+	if ( m_pSkyObject )
+		m_pSkyObject->LateUpdate( fTime );
 
 	return 0;
 }
@@ -526,8 +604,8 @@ void CScene::Render( float fTime )
 			++iter1;
 	}
 
-	// 스카이 박스를 그리고 레이어 내에있는 오브젝트를 그린다.
-	m_pSkyObject->Render( fTime );
+	if ( m_pSkyObject )
+		m_pSkyObject->Render( fTime );
 
 	vector<CLayer*>::iterator	iter;
 	vector<CLayer*>::iterator	iterEnd = m_vecLayer.end();
@@ -551,6 +629,30 @@ void CScene::Render( float fTime )
 		else
 			++iter;
 	}
+}
+
+void CScene::Save( char * pFileName, const string & strPathKey )
+{
+}
+
+void CScene::Save( FILE * pFile )
+{
+}
+
+void CScene::SaveFromFullPath( const char * pFullPath )
+{
+}
+
+void CScene::Load( char * pFileName, const string & strPathKey )
+{
+}
+
+void CScene::Load( FILE * pFile )
+{
+}
+
+void CScene::LoadFromFullPath( const char * pFullPath )
+{
 }
 
 CLayer * CScene::CreateLayer( const string & strTag, int iZOrder )

@@ -4,6 +4,15 @@
 
 GAME_BEGIN
 
+typedef struct GAME_DLL _tagKeyInfo
+{
+	string	strName;
+	bool	bDown;
+	bool	bPush;
+	bool	bUp;
+	vector<DWORD>	vecKey;
+}KEYINFO, *PKEYINFO;
+
 class GAME_DLL CInput
 {
 private:

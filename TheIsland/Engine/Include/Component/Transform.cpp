@@ -21,9 +21,8 @@ CTransform::CTransform() :
 	m_matWorld( NULL ),
 	m_pParent( NULL ),
 	m_eOriginAxis( AXIS_Z ),
-	m_bMove( false ),
 	m_bUpdate( true ),
-	m_iParentModify( PMT_ALL )
+	m_iParentModify( PMT_NONE )
 {
 	SetTag( "Transform" );
 	SetTypeName( "CTransform" );
@@ -35,8 +34,6 @@ CTransform::CTransform( const CTransform & transform ) :
 	CComponent( transform )
 {
 	*this = transform;
-
-	m_bMove = false;
 
 	m_matLocalScale = new Matrix;
 	m_matLocalRotX = new Matrix;
@@ -334,11 +331,6 @@ void CTransform::SetLocalPos( const XMVECTOR & v )
 	UpdateHierarchy();
 }
 
-bool CTransform::GetMoveEnable() const
-{
-	return m_bMove;
-}
-
 Vector3 CTransform::GetWorldScale() const
 {
 	return m_vWorldScale;
@@ -351,12 +343,43 @@ Vector3 CTransform::GetWorldRot() const
 
 Vector3 CTransform::GetWorldPos() const
 {
-	return m_vWorldHierarchyPos;
+	return m_vWorldPos;
 }
 
 Vector3 CTransform::GetWorldAxis( AXIS axis ) const
 {
 	return m_vWorldAxis[axis];
+}
+
+
+Vector3 CTransform::GetParentScale()	const
+{
+	Vector3	vScale = m_vWorldRelativeScale;
+
+	if ( m_pParent && m_iParentModify & PMT_SCALE )
+		vScale *= m_pParent->GetParentScale();
+
+	return vScale;
+}
+
+Vector3 CTransform::GetParentRot()	const
+{
+	Vector3	vRot = m_vWorldRelativeRot;
+
+	if ( m_pParent && m_iParentModify & PMT_ROT )
+		vRot += m_pParent->GetParentRot();
+
+	return vRot;
+}
+
+Vector3	CTransform::GetParentPos()	const
+{
+	Vector3	vPos = m_vWorldRelativePos;
+
+	if ( m_pParent && m_iParentModify & PMT_POS )
+		vPos += m_pParent->GetParentPos();
+
+	return vPos;
 }
 
 Matrix CTransform::GetWorldScaleMatrix() const
@@ -415,7 +438,13 @@ void CTransform::SetOriginAxis( AXIS eAxis )
 
 void CTransform::SetWorldScale( float x, float y, float z )
 {
-	m_vWorldScale = Vector3( x, y, z );
+	m_vWorldRelativeScale = Vector3( x, y, z );
+
+	if ( m_pParent && m_iParentModify & PMT_SCALE )
+		m_vWorldScale = m_vWorldRelativeScale * m_pParent->GetParentScale();
+
+	else
+		m_vWorldScale = m_vWorldRelativeScale;
 
 	*m_matWorldScale = XMMatrixScaling( m_vWorldScale.x,
 		m_vWorldScale.y, m_vWorldScale.z );
@@ -425,7 +454,13 @@ void CTransform::SetWorldScale( float x, float y, float z )
 
 void CTransform::SetWorldScale( float f[3] )
 {
-	m_vWorldScale = Vector3( f[0], f[1], f[2] );
+	m_vWorldRelativeScale = Vector3( f[0], f[1], f[2] );
+
+	if ( m_pParent && m_iParentModify & PMT_SCALE )
+		m_vWorldScale = m_vWorldRelativeScale * m_pParent->GetParentScale();
+
+	else
+		m_vWorldScale = m_vWorldRelativeScale;
 
 	*m_matWorldScale = XMMatrixScaling( m_vWorldScale.x,
 		m_vWorldScale.y, m_vWorldScale.z );
@@ -435,7 +470,13 @@ void CTransform::SetWorldScale( float f[3] )
 
 void CTransform::SetWorldScale( const Vector3 & v )
 {
-	m_vWorldScale = v;
+	m_vWorldRelativeScale = v;
+
+	if ( m_pParent && m_iParentModify & PMT_SCALE )
+		m_vWorldScale = m_vWorldRelativeScale * m_pParent->GetParentScale();
+
+	else
+		m_vWorldScale = m_vWorldRelativeScale;
 
 	*m_matWorldScale = XMMatrixScaling( m_vWorldScale.x,
 		m_vWorldScale.y, m_vWorldScale.z );
@@ -445,7 +486,13 @@ void CTransform::SetWorldScale( const Vector3 & v )
 
 void CTransform::SetWorldScale( const XMVECTOR & v )
 {
-	m_vWorldScale = v;
+	m_vWorldRelativeScale = v;
+
+	if ( m_pParent && m_iParentModify & PMT_SCALE )
+		m_vWorldScale = m_vWorldRelativeScale * m_pParent->GetParentScale();
+
+	else
+		m_vWorldScale = m_vWorldRelativeScale;
 
 	*m_matWorldScale = XMMatrixScaling( m_vWorldScale.x,
 		m_vWorldScale.y, m_vWorldScale.z );
@@ -455,7 +502,13 @@ void CTransform::SetWorldScale( const XMVECTOR & v )
 
 void CTransform::SetWorldRot( float x, float y, float z )
 {
-	m_vWorldRot = Vector3( x, y, z );
+	m_vWorldRelativeRot = Vector3( x, y, z );
+
+	if ( m_pParent && m_iParentModify & PMT_ROT )
+		m_vWorldRot = m_vWorldRelativeRot + m_pParent->GetParentRot();
+
+	else
+		m_vWorldRot = m_vWorldRelativeRot;
 
 	*m_matWorldRotX = XMMatrixRotationX( m_vWorldRot.x );
 	*m_matWorldRotY = XMMatrixRotationY( m_vWorldRot.y );
@@ -467,7 +520,13 @@ void CTransform::SetWorldRot( float x, float y, float z )
 
 void CTransform::SetWorldRot( float f[3] )
 {
-	m_vWorldRot = Vector3( f[0], f[1], f[2] );
+	m_vWorldRelativeRot = Vector3( f[0], f[1], f[2] );
+
+	if ( m_pParent && m_iParentModify & PMT_ROT )
+		m_vWorldRot = m_vWorldRelativeRot + m_pParent->GetParentRot();
+
+	else
+		m_vWorldRot = m_vWorldRelativeRot;
 
 	*m_matWorldRotX = XMMatrixRotationX( m_vWorldRot.x );
 	*m_matWorldRotY = XMMatrixRotationY( m_vWorldRot.y );
@@ -479,7 +538,13 @@ void CTransform::SetWorldRot( float f[3] )
 
 void CTransform::SetWorldRot( const Vector3 & v )
 {
-	m_vWorldRot = v;
+	m_vWorldRelativeRot = v;
+
+	if ( m_pParent && m_iParentModify & PMT_ROT )
+		m_vWorldRot = m_vWorldRelativeRot + m_pParent->GetParentRot();
+
+	else
+		m_vWorldRot = m_vWorldRelativeRot;
 
 	*m_matWorldRotX = XMMatrixRotationX( m_vWorldRot.x );
 	*m_matWorldRotY = XMMatrixRotationY( m_vWorldRot.y );
@@ -491,7 +556,13 @@ void CTransform::SetWorldRot( const Vector3 & v )
 
 void CTransform::SetWorldRot( const XMVECTOR & v )
 {
-	m_vWorldRot = v;
+	m_vWorldRelativeRot = v;
+
+	if ( m_pParent && m_iParentModify & PMT_ROT )
+		m_vWorldRot = m_vWorldRelativeRot + m_pParent->GetParentRot();
+
+	else
+		m_vWorldRot = m_vWorldRelativeRot;
 
 	*m_matWorldRotX = XMMatrixRotationX( m_vWorldRot.x );
 	*m_matWorldRotY = XMMatrixRotationY( m_vWorldRot.y );
@@ -503,7 +574,13 @@ void CTransform::SetWorldRot( const XMVECTOR & v )
 
 void CTransform::SetWorldRotX( float x )
 {
-	m_vWorldRot.x = x;
+	m_vWorldRelativeRot.x = x;
+
+	if ( m_pParent && m_iParentModify & PMT_ROT )
+		m_vWorldRot = m_vWorldRelativeRot + m_pParent->GetParentRot();
+
+	else
+		m_vWorldRot = m_vWorldRelativeRot;
 
 	*m_matWorldRotX = XMMatrixRotationX( m_vWorldRot.x );
 	*m_matWorldRot = *m_matWorldRotX * *m_matWorldRotY * *m_matWorldRotZ;
@@ -513,7 +590,13 @@ void CTransform::SetWorldRotX( float x )
 
 void CTransform::SetWorldRotY( float y )
 {
-	m_vWorldRot.y = y;
+	m_vWorldRelativeRot.y = y;
+
+	if ( m_pParent && m_iParentModify & PMT_ROT )
+		m_vWorldRot = m_vWorldRelativeRot + m_pParent->GetParentRot();
+
+	else
+		m_vWorldRot = m_vWorldRelativeRot;
 
 	*m_matWorldRotY = XMMatrixRotationY( m_vWorldRot.y );
 	*m_matWorldRot = *m_matWorldRotX * *m_matWorldRotY * *m_matWorldRotZ;
@@ -523,7 +606,13 @@ void CTransform::SetWorldRotY( float y )
 
 void CTransform::SetWorldRotZ( float z )
 {
-	m_vWorldRot.z = z;
+	m_vWorldRelativeRot.z = z;
+
+	if ( m_pParent && m_iParentModify & PMT_ROT )
+		m_vWorldRot = m_vWorldRelativeRot + m_pParent->GetParentRot();
+
+	else
+		m_vWorldRot = m_vWorldRelativeRot;
 
 	*m_matWorldRotZ = XMMatrixRotationZ( m_vWorldRot.z );
 	*m_matWorldRot = *m_matWorldRotX * *m_matWorldRotY * *m_matWorldRotZ;
@@ -531,44 +620,241 @@ void CTransform::SetWorldRotZ( float z )
 	UpdateHierarchy();
 }
 
-void CTransform::SetWorldPos( float x, float y, float z )
+void CTransform::SetWorldPos( float x, float y, float z, bool bSelf )
 {
-	m_vWorldPos = Vector3( x, y, z );
+	m_vWorldRelativePos = Vector3( x, y, z );
+
+	Matrix	matScale, matRot, matPos;
+
+	if ( m_pParent && m_iParentModify & PMT_SCALE )
+	{
+		Vector3	vScale = m_pParent->GetParentScale();
+		matScale = XMMatrixScaling( vScale.x, vScale.y, vScale.z );
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_ROT )
+	{
+		Vector3	vRot = m_pParent->GetParentRot();
+		Matrix	matRotX = XMMatrixRotationX( vRot.x );
+		Matrix	matRotY = XMMatrixRotationY( vRot.y );
+		Matrix	matRotZ = XMMatrixRotationZ( vRot.z );
+
+		matRot = matRotX * matRotY * matRotZ;
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_POS )
+	{
+		Vector3	vPos = m_pParent->GetParentPos();
+		matPos = XMMatrixTranslation( vPos.x, vPos.y, vPos.z );
+	}
+
+	Matrix		matParent = matScale * matRot * matPos;
+
+	m_vWorldPos = m_vWorldRelativePos.TransformCoord( matParent.mat );
 
 	*m_matWorldPos = XMMatrixTranslation( m_vWorldPos.x,
 		m_vWorldPos.y, m_vWorldPos.z );
 
-	UpdateHierarchy();
+	if ( !bSelf )
+		UpdateHierarchy();
+
+	else
+		m_bUpdate = true;
 }
 
-void CTransform::SetWorldPos( float f[3] )
+void CTransform::SetWorldPos( float f[3], bool bSelf )
 {
-	m_vWorldPos = Vector3( f[0], f[1], f[2] );
+	m_vWorldRelativePos = Vector3( f[0], f[1], f[2] );
+
+	Matrix	matScale, matRot, matPos;
+
+	if ( m_pParent && m_iParentModify & PMT_SCALE )
+	{
+		Vector3	vScale = m_pParent->GetParentScale();
+		matScale = XMMatrixScaling( vScale.x, vScale.y, vScale.z );
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_ROT )
+	{
+		Vector3	vRot = m_pParent->GetParentRot();
+		Matrix	matRotX = XMMatrixRotationX( vRot.x );
+		Matrix	matRotY = XMMatrixRotationY( vRot.y );
+		Matrix	matRotZ = XMMatrixRotationZ( vRot.z );
+
+		matRot = matRotX * matRotY * matRotZ;
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_POS )
+	{
+		Vector3	vPos = m_pParent->GetParentPos();
+		matPos = XMMatrixTranslation( vPos.x, vPos.y, vPos.z );
+	}
+
+	Matrix		matParent = matScale * matRot * matPos;
+
+	m_vWorldPos = m_vWorldRelativePos.TransformCoord( matParent.mat );
 
 	*m_matWorldPos = XMMatrixTranslation( m_vWorldPos.x,
 		m_vWorldPos.y, m_vWorldPos.z );
 
-	UpdateHierarchy();
+	if ( !bSelf )
+		UpdateHierarchy();
+
+	else
+		m_bUpdate = true;
 }
 
-void CTransform::SetWorldPos( const Vector3 & v )
+void CTransform::SetWorldPos( const Vector3 & v, bool bSelf )
 {
-	m_vWorldPos = v;
+	m_vWorldRelativePos = v;
+
+	Matrix	matScale, matRot, matPos;
+
+	if ( m_pParent && m_iParentModify & PMT_SCALE )
+	{
+		Vector3	vScale = m_pParent->GetParentScale();
+		matScale = XMMatrixScaling( vScale.x, vScale.y, vScale.z );
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_ROT )
+	{
+		Vector3	vRot = m_pParent->GetParentRot();
+		Matrix	matRotX = XMMatrixRotationX( vRot.x );
+		Matrix	matRotY = XMMatrixRotationY( vRot.y );
+		Matrix	matRotZ = XMMatrixRotationZ( vRot.z );
+
+		matRot = matRotX * matRotY * matRotZ;
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_POS )
+	{
+		Vector3	vPos = m_pParent->GetParentPos();
+		matPos = XMMatrixTranslation( vPos.x, vPos.y, vPos.z );
+	}
+
+	Matrix		matParent = matScale * matRot * matPos;
+
+	m_vWorldPos = m_vWorldRelativePos.TransformCoord( matParent.mat );
 
 	*m_matWorldPos = XMMatrixTranslation( m_vWorldPos.x,
 		m_vWorldPos.y, m_vWorldPos.z );
 
-	UpdateHierarchy();
+	if ( !bSelf )
+		UpdateHierarchy();
+
+	else
+		m_bUpdate = true;
 }
 
-void CTransform::SetWorldPos( const XMVECTOR & v )
+void CTransform::SetWorldPos( const XMVECTOR & v, bool bSelf )
 {
-	m_vWorldPos = v;
+	m_vWorldRelativePos = v;
+
+	Matrix	matScale, matRot, matPos;
+
+	if ( m_pParent && m_iParentModify & PMT_SCALE )
+	{
+		Vector3	vScale = m_pParent->GetParentScale();
+		matScale = XMMatrixScaling( vScale.x, vScale.y, vScale.z );
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_ROT )
+	{
+		Vector3	vRot = m_pParent->GetParentRot();
+		Matrix	matRotX = XMMatrixRotationX( vRot.x );
+		Matrix	matRotY = XMMatrixRotationY( vRot.y );
+		Matrix	matRotZ = XMMatrixRotationZ( vRot.z );
+
+		matRot = matRotX * matRotY * matRotZ;
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_POS )
+	{
+		Vector3	vPos = m_pParent->GetParentPos();
+		matPos = XMMatrixTranslation( vPos.x, vPos.y, vPos.z );
+	}
+
+	Matrix		matParent = matScale * matRot * matPos;
+
+	m_vWorldPos = m_vWorldRelativePos.TransformCoord( matParent.mat );
 
 	*m_matWorldPos = XMMatrixTranslation( m_vWorldPos.x,
 		m_vWorldPos.y, m_vWorldPos.z );
 
-	UpdateHierarchy();
+	if ( !bSelf )
+		UpdateHierarchy();
+
+	else
+		m_bUpdate = true;
+}
+
+void CTransform::SetWorldPosY( float y, bool bSelf )
+{
+	m_vWorldRelativePos.y = y;
+
+	Matrix	matScale, matRot, matPos;
+
+	if ( m_pParent && m_iParentModify & PMT_SCALE )
+	{
+		Vector3	vScale = m_pParent->GetParentScale();
+		matScale = XMMatrixScaling( vScale.x, vScale.y, vScale.z );
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_ROT )
+	{
+		Vector3	vRot = m_pParent->GetParentRot();
+		Matrix	matRotX = XMMatrixRotationX( vRot.x );
+		Matrix	matRotY = XMMatrixRotationY( vRot.y );
+		Matrix	matRotZ = XMMatrixRotationZ( vRot.z );
+
+		matRot = matRotX * matRotY * matRotZ;
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_POS )
+	{
+		Vector3	vPos = m_pParent->GetParentPos();
+		matPos = XMMatrixTranslation( vPos.x, vPos.y, vPos.z );
+	}
+
+	Matrix		matParent = matScale * matRot * matPos;
+
+	m_vWorldPos = m_vWorldRelativePos.TransformCoord( matParent.mat );
+
+	*m_matWorldPos = XMMatrixTranslation( m_vWorldPos.x,
+		m_vWorldPos.y, m_vWorldPos.z );
+
+	if ( !bSelf )
+		UpdateHierarchy();
+
+	else
+		m_bUpdate = true;
+}
+
+void CTransform::SetWorldAxis( const Vector3 & vAxis, AXIS eAxis )
+{
+	m_vWorldAxis[eAxis] = vAxis;
+}
+
+void CTransform::SetParentMatrix( const Matrix & matParent )
+{
+	*m_matParent = matParent;
+
+	m_bUpdate = true;
+}
+
+void CTransform::SetWorldMatrix( const Matrix & matWorld )
+{
+	*m_matParent = matWorld;
+}
+
+void CTransform::ComputeWorldRotationMatrix( Vector3 vAxis[AXIS_END] )
+{
+	*m_matWorldRot = XMMatrixIdentity();
+
+	for ( int i = 0; i < AXIS_END; ++i )
+	{
+		memcpy( &m_matWorldRot->m[i][0], &vAxis[i], sizeof( Vector3 ) );
+	}
 }
 
 void CTransform::MoveLocal( const Vector3 & vMove )
@@ -623,57 +909,192 @@ void CTransform::MoveLocal( AXIS axis, float fSpeed, float fTime )
 
 void CTransform::MoveWorld( const Vector3 & vMove )
 {
-	m_vWorldPos += vMove;
+	m_vWorldRelativePos += vMove;
+
+	Matrix	matScale, matRot, matPos;
+
+	if ( m_pParent && m_iParentModify & PMT_SCALE )
+	{
+		Vector3	vScale = m_pParent->GetParentScale();
+		matScale = XMMatrixScaling( vScale.x, vScale.y, vScale.z );
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_ROT )
+	{
+		Vector3	vRot = m_pParent->GetParentRot();
+		Matrix	matRotX = XMMatrixRotationX( vRot.x );
+		Matrix	matRotY = XMMatrixRotationY( vRot.y );
+		Matrix	matRotZ = XMMatrixRotationZ( vRot.z );
+
+		matRot = matRotX * matRotY * matRotZ;
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_POS )
+	{
+		Vector3	vPos = m_pParent->GetParentPos();
+		matPos = XMMatrixTranslation( vPos.x, vPos.y, vPos.z );
+	}
+
+	Matrix		matParent = matScale * matRot * matPos;
+
+	m_vWorldPos = m_vWorldRelativePos.TransformCoord( matParent.mat );
 
 	*m_matWorldPos = XMMatrixTranslation( m_vWorldPos.x,
 		m_vWorldPos.y, m_vWorldPos.z );
 
 	UpdateHierarchy();
-	m_bMove = true;
 }
 
 void CTransform::MoveWorld( const Vector3 & vDir, float fDist )
 {
-	m_vWorldPos += vDir * fDist;
+	m_vWorldRelativePos += vDir * fDist;
+
+	Matrix	matScale, matRot, matPos;
+
+	if ( m_pParent && m_iParentModify & PMT_SCALE )
+	{
+		Vector3	vScale = m_pParent->GetParentScale();
+		matScale = XMMatrixScaling( vScale.x, vScale.y, vScale.z );
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_ROT )
+	{
+		Vector3	vRot = m_pParent->GetParentRot();
+		Matrix	matRotX = XMMatrixRotationX( vRot.x );
+		Matrix	matRotY = XMMatrixRotationY( vRot.y );
+		Matrix	matRotZ = XMMatrixRotationZ( vRot.z );
+
+		matRot = matRotX * matRotY * matRotZ;
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_POS )
+	{
+		Vector3	vPos = m_pParent->GetParentPos();
+		matPos = XMMatrixTranslation( vPos.x, vPos.y, vPos.z );
+	}
+
+	Matrix		matParent = matScale * matRot * matPos;
+
+	m_vWorldPos = m_vWorldRelativePos.TransformCoord( matParent.mat );
 
 	*m_matWorldPos = XMMatrixTranslation( m_vWorldPos.x,
 		m_vWorldPos.y, m_vWorldPos.z );
 
 	UpdateHierarchy();
-	m_bMove = true;
 }
 
 void CTransform::MoveWorld( const Vector3 & vDir, float fSpeed, float fTime )
 {
-	m_vWorldPos += vDir * fSpeed * fTime;
+	m_vWorldRelativePos += vDir * fSpeed * fTime;
+
+	Matrix	matScale, matRot, matPos;
+
+	if ( m_pParent && m_iParentModify & PMT_SCALE )
+	{
+		Vector3	vScale = m_pParent->GetParentScale();
+		matScale = XMMatrixScaling( vScale.x, vScale.y, vScale.z );
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_ROT )
+	{
+		Vector3	vRot = m_pParent->GetParentRot();
+		Matrix	matRotX = XMMatrixRotationX( vRot.x );
+		Matrix	matRotY = XMMatrixRotationY( vRot.y );
+		Matrix	matRotZ = XMMatrixRotationZ( vRot.z );
+
+		matRot = matRotX * matRotY * matRotZ;
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_POS )
+	{
+		Vector3	vPos = m_pParent->GetParentPos();
+		matPos = XMMatrixTranslation( vPos.x, vPos.y, vPos.z );
+	}
+
+	Matrix		matParent = matScale * matRot * matPos;
+
+	m_vWorldPos = m_vWorldRelativePos.TransformCoord( matParent.mat );
 
 	*m_matWorldPos = XMMatrixTranslation( m_vWorldPos.x,
 		m_vWorldPos.y, m_vWorldPos.z );
 
 	UpdateHierarchy();
-	m_bMove = true;
 }
 
 void CTransform::MoveWorld( AXIS axis, float fDist )
 {
-	m_vWorldPos += m_vWorldAxis[axis] * fDist;
+	m_vWorldRelativePos += m_vWorldAxis[axis] * fDist;
+
+	Matrix	matScale, matRot, matPos;
+
+	if ( m_pParent && m_iParentModify & PMT_SCALE )
+	{
+		Vector3	vScale = m_pParent->GetParentScale();
+		matScale = XMMatrixScaling( vScale.x, vScale.y, vScale.z );
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_ROT )
+	{
+		Vector3	vRot = m_pParent->GetParentRot();
+		Matrix	matRotX = XMMatrixRotationX( vRot.x );
+		Matrix	matRotY = XMMatrixRotationY( vRot.y );
+		Matrix	matRotZ = XMMatrixRotationZ( vRot.z );
+
+		matRot = matRotX * matRotY * matRotZ;
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_POS )
+	{
+		Vector3	vPos = m_pParent->GetParentPos();
+		matPos = XMMatrixTranslation( vPos.x, vPos.y, vPos.z );
+	}
+
+	Matrix		matParent = matScale * matRot * matPos;
+
+	m_vWorldPos = m_vWorldRelativePos.TransformCoord( matParent.mat );
 
 	*m_matWorldPos = XMMatrixTranslation( m_vWorldPos.x,
 		m_vWorldPos.y, m_vWorldPos.z );
 
 	UpdateHierarchy();
-	m_bMove = true;
 }
 
 void CTransform::MoveWorld( AXIS axis, float fSpeed, float fTime )
 {
-	m_vWorldPos += m_vWorldAxis[axis] * fSpeed * fTime;
+	m_vWorldRelativePos += m_vWorldAxis[axis] * fSpeed * fTime;
+
+	Matrix	matScale, matRot, matPos;
+
+	if ( m_pParent && m_iParentModify & PMT_SCALE )
+	{
+		Vector3	vScale = m_pParent->GetParentScale();
+		matScale = XMMatrixScaling( vScale.x, vScale.y, vScale.z );
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_ROT )
+	{
+		Vector3	vRot = m_pParent->GetParentRot();
+		Matrix	matRotX = XMMatrixRotationX( vRot.x );
+		Matrix	matRotY = XMMatrixRotationY( vRot.y );
+		Matrix	matRotZ = XMMatrixRotationZ( vRot.z );
+
+		matRot = matRotX * matRotY * matRotZ;
+	}
+
+	if ( m_pParent && m_iParentModify & PMT_POS )
+	{
+		Vector3	vPos = m_pParent->GetParentPos();
+		matPos = XMMatrixTranslation( vPos.x, vPos.y, vPos.z );
+	}
+
+	Matrix		matParent = matScale * matRot * matPos;
+
+	m_vWorldPos = m_vWorldRelativePos.TransformCoord( matParent.mat );
 
 	*m_matWorldPos = XMMatrixTranslation( m_vWorldPos.x,
 		m_vWorldPos.y, m_vWorldPos.z );
 
 	UpdateHierarchy();
-	m_bMove = true;
 }
 
 void CTransform::RotateLocal( const Vector3 & vRot )
@@ -762,7 +1183,13 @@ void CTransform::RotateLocalZ( float fZ, float fTime )
 
 void CTransform::RotateWorld( const Vector3 & vRot )
 {
-	m_vWorldRot += vRot;
+	m_vWorldRelativeRot += vRot;
+
+	if ( m_iParentModify & PMT_ROT )
+		m_vWorldRot = m_vWorldRelativeRot + m_pParent->GetParentRot();
+
+	else
+		m_vWorldRot = m_vWorldRelativeRot;
 
 	*m_matWorldRotX = XMMatrixRotationX( m_vWorldRot.x );
 	*m_matWorldRotY = XMMatrixRotationY( m_vWorldRot.y );
@@ -774,7 +1201,13 @@ void CTransform::RotateWorld( const Vector3 & vRot )
 
 void CTransform::RotateWorld( const Vector3 & vRot, float fTime )
 {
-	m_vWorldRot += vRot * fTime;
+	m_vWorldRelativeRot += vRot * fTime;
+
+	if ( m_iParentModify & PMT_ROT )
+		m_vWorldRot = m_vWorldRelativeRot + m_pParent->GetParentRot();
+
+	else
+		m_vWorldRot = m_vWorldRelativeRot;
 
 	*m_matWorldRotX = XMMatrixRotationX( m_vWorldRot.x );
 	*m_matWorldRotY = XMMatrixRotationY( m_vWorldRot.y );
@@ -786,7 +1219,13 @@ void CTransform::RotateWorld( const Vector3 & vRot, float fTime )
 
 void CTransform::RotateWorldX( float fX )
 {
-	m_vWorldRot.x += fX;
+	m_vWorldRelativeRot.x += fX;
+
+	if ( m_iParentModify & PMT_ROT )
+		m_vWorldRot = m_vWorldRelativeRot + m_pParent->GetParentRot();
+
+	else
+		m_vWorldRot = m_vWorldRelativeRot;
 
 	*m_matWorldRotX = XMMatrixRotationX( m_vWorldRot.x );
 	*m_matWorldRot = *m_matWorldRotX * *m_matWorldRotY * *m_matWorldRotZ;
@@ -796,7 +1235,13 @@ void CTransform::RotateWorldX( float fX )
 
 void CTransform::RotateWorldX( float fX, float fTime )
 {
-	m_vWorldRot.x += fX * fTime;
+	m_vWorldRelativeRot.x += fX * fTime;
+
+	if ( m_iParentModify & PMT_ROT )
+		m_vWorldRot = m_vWorldRelativeRot + m_pParent->GetParentRot();
+
+	else
+		m_vWorldRot = m_vWorldRelativeRot;
 
 	*m_matWorldRotX = XMMatrixRotationX( m_vWorldRot.x );
 	*m_matWorldRot = *m_matWorldRotX * *m_matWorldRotY * *m_matWorldRotZ;
@@ -806,7 +1251,13 @@ void CTransform::RotateWorldX( float fX, float fTime )
 
 void CTransform::RotateWorldY( float fY )
 {
-	m_vWorldRot.y += fY;
+	m_vWorldRelativeRot.y += fY;
+
+	if ( m_iParentModify & PMT_ROT )
+		m_vWorldRot = m_vWorldRelativeRot + m_pParent->GetParentRot();
+
+	else
+		m_vWorldRot = m_vWorldRelativeRot;
 
 	*m_matWorldRotY = XMMatrixRotationY( m_vWorldRot.y );
 	*m_matWorldRot = *m_matWorldRotX * *m_matWorldRotY * *m_matWorldRotZ;
@@ -816,7 +1267,13 @@ void CTransform::RotateWorldY( float fY )
 
 void CTransform::RotateWorldY( float fY, float fTime )
 {
-	m_vWorldRot.y += fY * fTime;
+	m_vWorldRelativeRot.y += fY * fTime;
+
+	if ( m_iParentModify & PMT_ROT )
+		m_vWorldRot = m_vWorldRelativeRot + m_pParent->GetParentRot();
+
+	else
+		m_vWorldRot = m_vWorldRelativeRot;
 
 	*m_matWorldRotY = XMMatrixRotationY( m_vWorldRot.y );
 	*m_matWorldRot = *m_matWorldRotX * *m_matWorldRotY * *m_matWorldRotZ;
@@ -826,7 +1283,13 @@ void CTransform::RotateWorldY( float fY, float fTime )
 
 void CTransform::RotateWorldZ( float fZ )
 {
-	m_vWorldRot.z += fZ;
+	m_vWorldRelativeRot.z += fZ;
+
+	if ( m_iParentModify & PMT_ROT )
+		m_vWorldRot = m_vWorldRelativeRot + m_pParent->GetParentRot();
+
+	else
+		m_vWorldRot = m_vWorldRelativeRot;
 
 	*m_matWorldRotZ = XMMatrixRotationZ( m_vWorldRot.z );
 	*m_matWorldRot = *m_matWorldRotX * *m_matWorldRotY * *m_matWorldRotZ;
@@ -836,7 +1299,13 @@ void CTransform::RotateWorldZ( float fZ )
 
 void CTransform::RotateWorldZ( float fZ, float fTime )
 {
-	m_vWorldRot.z += fZ * fTime;
+	m_vWorldRelativeRot.z += fZ * fTime;
+
+	if ( m_iParentModify & PMT_ROT )
+		m_vWorldRot = m_vWorldRelativeRot + m_pParent->GetParentRot();
+
+	else
+		m_vWorldRot = m_vWorldRelativeRot;
 
 	*m_matWorldRotZ = XMMatrixRotationZ( m_vWorldRot.z );
 	*m_matWorldRot = *m_matWorldRotX * *m_matWorldRotY * *m_matWorldRotZ;
@@ -858,6 +1327,15 @@ void CTransform::ComputeWorldAxis()
 	for ( int i = 0; i < AXIS_END; ++i )
 	{
 		m_vWorldAxis[i] = Vector3::Axis[i].TransformNormal( m_matWorld->mat );
+		m_vWorldAxis[i] = m_vWorldAxis[i].Normalize();
+	}
+}
+
+void CTransform::ComputeWorldAxisRot()
+{
+	for ( int i = 0; i < AXIS_END; ++i )
+	{
+		m_vWorldAxis[i] = Vector3::Axis[i].TransformNormal( m_matWorldRot->mat );
 		m_vWorldAxis[i] = m_vWorldAxis[i].Normalize();
 	}
 }
@@ -888,8 +1366,35 @@ void CTransform::LookAt( const Vector3 & vPos )
 	// 회전 축을 구한다. 2D의 경우 Z, -Z 축으로 나오게 된다.
 	Vector3	vAxis = Vector3::Axis[m_eOriginAxis].Cross( vDir );
 
+	if ( vAxis == Vector3::Zero )
+		return;
+
 	// 임의의 축을 이용한 회전 행렬을 구한다.
 	*m_matWorldRot = XMMatrixRotationAxis( vAxis.Convert(), fAngle );
+
+	UpdateHierarchy();
+}
+
+void CTransform::LookAtY( Vector3 vPos )
+{
+	vPos.y = 0.f;
+	Vector3	vWorldPos = m_vWorldPos;
+	vWorldPos.y = 0.f;
+	Vector3	vDir = vPos - m_vWorldPos;
+	vDir = vDir.Normalize();
+
+	// 원본 축 벡터와 바라볼 벡터간 각도를 구해준다.
+	// 이 각도를 이용해서 회전한다.
+	float	fAngle = vDir.Angle( Vector3::Axis[m_eOriginAxis] );
+
+	// 회전 축을 구한다. 2D의 경우 Z, -Z 축으로 나오게 된다.
+	Vector3	vAxis = Vector3::Axis[m_eOriginAxis].Cross( vDir );
+
+	if ( vAxis == Vector3::Zero )
+		return;
+
+	// 임의의 축을 이용한 회전 행렬을 구한다.
+	*m_matWorldRot = XMMatrixRotationY( fAngle );
 
 	UpdateHierarchy();
 }
@@ -1024,6 +1529,7 @@ bool CTransform::Init()
 	memcpy( m_vLocalAxis, Vector3::Axis, sizeof( Vector3 ) * AXIS_END );
 
 	m_vWorldScale = Vector3::One;
+	m_vWorldRelativeScale = Vector3::One;
 	memcpy( m_vWorldAxis, Vector3::Axis, sizeof( Vector3 ) * AXIS_END );
 
 	m_bUpdate = true;
@@ -1046,29 +1552,65 @@ int CTransform::Update( float fTime )
 
 	if ( m_pParent )
 	{
-		*m_matParent = GetParentMatrix();
-
-		/*if (m_iParentModify & PMT_SCALE)
+		if ( m_iParentModify & PMT_SCALE )
 		{
-			*m_matParent *= m_pParent->GetWorldScaleMatrix();
+			m_vWorldScale = m_vWorldRelativeScale * m_pParent->GetParentScale();
+
+			*m_matWorldScale = XMMatrixScaling( m_vWorldScale.x, m_vWorldScale.y,
+				m_vWorldScale.z );
 		}
 
-		if (m_iParentModify & PMT_ROT)
+		if ( m_iParentModify & PMT_ROT )
 		{
-			*m_matParent *= m_pParent->GetWorldRotMatrix();
+			m_vWorldRot = m_vWorldRelativeRot + m_pParent->GetParentRot();
+
+			*m_matWorldRotX = XMMatrixRotationX( m_vWorldRot.x );
+			*m_matWorldRotY = XMMatrixRotationY( m_vWorldRot.y );
+			*m_matWorldRotZ = XMMatrixRotationZ( m_vWorldRot.z );
+
+			*m_matWorldRot = *m_matWorldRotX * *m_matWorldRotY * *m_matWorldRotZ;
 		}
 
-		if (m_iParentModify & PMT_POS)
+		if ( m_iParentModify & PMT_POS )
 		{
-			*m_matParent *= m_pParent->GetWorldPosMatrix();
-		}*/
+			Matrix	matScale, matRot, matPos;
+
+			if ( m_iParentModify & PMT_SCALE )
+			{
+				Vector3	vScale = m_pParent->GetParentScale();
+				matScale = XMMatrixScaling( vScale.x, vScale.y, vScale.z );
+			}
+
+			if ( m_iParentModify & PMT_ROT )
+			{
+				Vector3	vRot = m_pParent->GetParentRot();
+				Matrix	matRotX = XMMatrixRotationX( vRot.x );
+				Matrix	matRotY = XMMatrixRotationY( vRot.y );
+				Matrix	matRotZ = XMMatrixRotationZ( vRot.z );
+
+				matRot = matRotX * matRotY * matRotZ;
+			}
+
+			if ( m_iParentModify & PMT_POS )
+			{
+				Vector3	vPos = m_pParent->GetWorldPos();
+				matPos = XMMatrixTranslation( vPos.x, vPos.y, vPos.z );
+			}
+
+			Matrix		matParent = matScale * matRot * matPos;
+
+			Vector3	vWorldPos = m_vWorldRelativePos.TransformCoord( matParent.mat );
+
+			*m_matWorldPos = XMMatrixTranslation( vWorldPos.x, vWorldPos.y,
+				vWorldPos.z );
+
+			m_vWorldPos = vWorldPos;
+		}
 	}
 
 	*m_matLocal = *m_matLocalScale * *m_matLocalRot * *m_matLocalPos;
 	*m_matWorld = *m_matWorldScale * *m_matWorldRot * *m_matWorldPos *
 		*m_matParent;
-
-	m_vWorldHierarchyPos = m_vWorldPos.TransformCoord( m_matParent->mat );
 
 	m_bUpdate = false;
 
@@ -1088,29 +1630,65 @@ int CTransform::LateUpdate( float fTime )
 
 	if ( m_pParent )
 	{
-		*m_matParent = GetParentMatrix();
-
-		/*if (m_iParentModify & PMT_SCALE)
+		if ( m_iParentModify & PMT_SCALE )
 		{
-			*m_matParent *= m_pParent->GetWorldScaleMatrix();
+			m_vWorldScale = m_vWorldRelativeScale * m_pParent->GetParentScale();
+
+			*m_matWorldScale = XMMatrixScaling( m_vWorldScale.x, m_vWorldScale.y,
+				m_vWorldScale.z );
 		}
 
-		if (m_iParentModify & PMT_ROT)
+		if ( m_iParentModify & PMT_ROT )
 		{
-			*m_matParent *= m_pParent->GetWorldRotMatrix();
+			m_vWorldRot = m_vWorldRelativeRot + m_pParent->GetParentRot();
+
+			*m_matWorldRotX = XMMatrixRotationX( m_vWorldRot.x );
+			*m_matWorldRotY = XMMatrixRotationY( m_vWorldRot.y );
+			*m_matWorldRotZ = XMMatrixRotationZ( m_vWorldRot.z );
+
+			*m_matWorldRot = *m_matWorldRotX * *m_matWorldRotY * *m_matWorldRotZ;
 		}
 
-		if (m_iParentModify & PMT_POS)
+		if ( m_iParentModify & PMT_POS )
 		{
-			*m_matParent *= m_pParent->GetWorldPosMatrix();
-		}*/
+			Matrix	matScale, matRot, matPos;
+
+			if ( m_iParentModify & PMT_SCALE )
+			{
+				Vector3	vScale = m_pParent->GetParentScale();
+				matScale = XMMatrixScaling( vScale.x, vScale.y, vScale.z );
+			}
+
+			if ( m_iParentModify & PMT_ROT )
+			{
+				Vector3	vRot = m_pParent->GetParentRot();
+				Matrix	matRotX = XMMatrixRotationX( vRot.x );
+				Matrix	matRotY = XMMatrixRotationY( vRot.y );
+				Matrix	matRotZ = XMMatrixRotationZ( vRot.z );
+
+				matRot = matRotX * matRotY * matRotZ;
+			}
+
+			if ( m_iParentModify & PMT_POS )
+			{
+				Vector3	vPos = m_pParent->GetWorldPos();
+				matPos = XMMatrixTranslation( vPos.x, vPos.y, vPos.z );
+			}
+
+			Matrix		matParent = matScale * matRot * matPos;
+
+			Vector3	vWorldPos = m_vWorldRelativePos.TransformCoord( matParent.mat );
+
+			*m_matWorldPos = XMMatrixTranslation( vWorldPos.x, vWorldPos.y,
+				vWorldPos.z );
+
+			m_vWorldPos = vWorldPos;
+		}
 	}
 
 	*m_matLocal = *m_matLocalScale * *m_matLocalRot * *m_matLocalPos;
 	*m_matWorld = *m_matWorldScale * *m_matWorldRot * *m_matWorldPos *
 		*m_matParent;
-
-	m_vWorldHierarchyPos = m_vWorldPos.TransformCoord( m_matParent->mat );
 
 	m_bUpdate = false;
 
@@ -1126,7 +1704,6 @@ void CTransform::Collision( float fTime )
 
 void CTransform::Render( float fTime )
 {
-	m_bMove = false;
 }
 
 CTransform * CTransform::Clone()

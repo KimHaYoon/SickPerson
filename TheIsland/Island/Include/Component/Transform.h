@@ -3,7 +3,8 @@
 
 GAME_BEGIN
 
-class GAME_DLL CTransform :	public CComponent
+class GAME_DLL CTransform :
+	public CComponent
 {
 private:
 	friend class CGameObject;
@@ -73,12 +74,13 @@ public:
 	// ============= World Area =================
 private:
 	Vector3		m_vWorldScale;
+	Vector3		m_vWorldRelativeScale;
 	Vector3		m_vWorldRot;
+	Vector3		m_vWorldRelativeRot;
 	Vector3		m_vWorldPos;
-	Vector3		m_vWorldHierarchyPos;
+	Vector3		m_vWorldRelativePos;
 	Vector3		m_vWorldAxis[AXIS_END];	// รเ
 	AXIS		m_eOriginAxis;
-	bool		m_bMove;
 
 	PMatrix		m_matWorldScale;
 	PMatrix		m_matWorldRotX;
@@ -90,11 +92,13 @@ private:
 	PMatrix		m_matWorld;
 
 public:
-	bool GetMoveEnable()	const;
 	Vector3 GetWorldScale()	const;
 	Vector3 GetWorldRot()	const;
 	Vector3 GetWorldPos()	const;
 	Vector3 GetWorldAxis( AXIS axis )	const;
+	Vector3 GetParentScale()	const;
+	Vector3 GetParentRot()	const;
+	Vector3	GetParentPos()	const;
 
 	Matrix GetWorldScaleMatrix()	const;
 	Matrix GetWorldRotMatrix()	const;
@@ -115,10 +119,15 @@ public:
 	void SetWorldRotX( float x );
 	void SetWorldRotY( float y );
 	void SetWorldRotZ( float z );
-	void SetWorldPos( float x, float y, float z );
-	void SetWorldPos( float f[3] );
-	void SetWorldPos( const Vector3& v );
-	void SetWorldPos( const XMVECTOR& v );
+	void SetWorldPos( float x, float y, float z, bool bSelf = false );
+	void SetWorldPos( float f[3], bool bSelf = false );
+	void SetWorldPos( const Vector3& v, bool bSelf = false );
+	void SetWorldPos( const XMVECTOR& v, bool bSelf = false );
+	void SetWorldPosY( float y, bool bSelf = false );
+	void SetWorldAxis( const Vector3& vAxis, AXIS eAxis );
+	void SetParentMatrix( const Matrix& matParent );
+	void SetWorldMatrix( const Matrix& matWorld );
+	void ComputeWorldRotationMatrix( Vector3 vAxis[AXIS_END] );
 
 public:
 	void MoveLocal( const Vector3& vMove );
@@ -155,9 +164,11 @@ public:
 public:
 	void ComputeLocalAxis();
 	void ComputeWorldAxis();
+	void ComputeWorldAxisRot();
 	void LookAt( class CGameObject* pObj );
 	void LookAt( CTransform* pTransform );
 	void LookAt( const Vector3& vPos );
+	void LookAtY( Vector3 vPos );
 	void Save( FILE* pFile );
 	void Load( FILE* pFile );
 

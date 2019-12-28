@@ -1,4 +1,9 @@
 
+struct VS_INPUT_POS
+{
+	float3	vPos	: POSITION;
+};
+
 // 정점버퍼에서 넘어오는 정점정보를 받아오기 위한 구조체
 struct VS_INPUT_COLOR
 {
@@ -17,6 +22,8 @@ struct VS_OUTPUT_COLOR
 	// 이 레지스터에 넣어주면 우리가 다시 사용할 수 없다.
 	float4	vPos	: SV_POSITION;
 	float4	vColor	: COLOR;
+	int		iDecal : DECAL;
+	float4	vProjPos	: POSITION1;
 };
 
 struct VS_INPUT_COLOR_NORMAL
@@ -34,6 +41,8 @@ struct VS_OUTPUT_COLOR_NORMAL
 	float3	vNormal	: NORMAL;
 	float4	vColor	: COLOR;
 	float3	vViewPos	: POSITION;
+	float4	vProjPos	: POSITION1;
+	int		iDecal : DECAL;
 };
 
 struct VS_INPUT_TEX
@@ -46,16 +55,84 @@ struct VS_OUTPUT_TEX
 {
 	float4	vPos	: SV_POSITION;
 	float2	vUV		: TEXCOORD;
+	float4	vProjPos	: POSITION1;
+	int		iDecal : DECAL;
+};
+
+struct VS_INPUT_TEX_NORMAL
+{
+	float3	vPos	: POSITION;
+	float3	vNormal	: NORMAL;
+	float2	vUV		: TEXCOORD;
+};
+
+struct VS_OUTPUT_TEX_NORMAL
+{
+	float4	vPos	: SV_POSITION;
+	float3	vNormal	: NORMAL;
+	float2	vUV		: TEXCOORD;
+	float3	vViewPos	: POSITION;
+	float4	vProjPos	: POSITION1;
+	int		iDecal : DECAL;
+};
+
+struct VS_INPUT_BUMP
+{
+	float3	vPos	: POSITION;
+	float3	vNormal	: NORMAL;
+	float2	vUV		: TEXCOORD;
+	float3	vTangent	: TANGENT;
+	float3	vBinormal	: BINORMAL;
+};
+
+struct VS_INPUT_ANIM
+{
+	float3	vPos	: POSITION;
+	float3	vNormal	: NORMAL;
+	float2	vUV		: TEXCOORD;
+	float4	vWeights	: BLENDWEIGHTS;
+	float4	vIndices	: BLENDINDICES;
+};
+
+struct VS_INPUT_BUMP_ANIM
+{
+	float3	vPos	: POSITION;
+	float3	vNormal	: NORMAL;
+	float2	vUV		: TEXCOORD;
+	float3	vTangent	: TANGENT;
+	float3	vBinormal	: BINORMAL;
+	float4	vWeights	: BLENDWEIGHTS;
+	float4	vIndices	: BLENDINDICES;
+};
+
+struct VS_OUTPUT_BUMP
+{
+	float4	vPos	: SV_POSITION;
+	float3	vNormal	: NORMAL;
+	float2	vUV		: TEXCOORD;
+	float3	vTangent	: TANGENT;
+	float3	vBinormal	: BINORMAL;
+	float3	vViewPos	: POSITION;
+	float4	vProjPos	: POSITION1;
+	int		iDecal : DECAL;
 };
 
 struct PS_OUTPUT
 {
 	float4	vColor	: SV_Target;
-	//float4	vColor1	: SV_Target1;
+	float4	vColor1	: SV_Target1;
+	float4	vColor2	: SV_Target2;
+	float4	vColor3	: SV_Target3;
+	float4	vColor4	: SV_Target4;
+	float4	vColor5	: SV_Target5;
 };
 
 Texture2D		g_DifTex	: register(t0);
+Texture2D		g_NormalTex	: register(t1);
+Texture2D		g_SpecularTex	: register(t2);
 SamplerState	g_DifSmp	: register(s0);
+
+Texture2D		g_BoneTex	: register(t7);
 
 Texture2DArray	g_DifArrTex	: register(t10);
 
@@ -67,6 +144,9 @@ cbuffer Transform	: register(b0)
 	matrix	g_matWV;
 	matrix	g_matWVP;
 	matrix	g_matWP;
+	matrix	g_matVP;
+	matrix	g_matInvProj;
+	matrix	g_matInvWVP;
 	float3	g_vPivot;
 	float	g_fTrEmpty;
 	float3	g_vTrLength;
@@ -124,7 +204,8 @@ struct _tagLightInfo
 	float4	vSpc;
 };
 
-_tagLightInfo ComputeLight(float3 vViewPos, float3 vViewNormal)
+_tagLightInfo ComputeLight(float3 vViewPos, float3 vViewNormal,
+	float2 vUV)
 {
 	_tagLightInfo	tInfo = (_tagLightInfo)0;
 
@@ -252,9 +333,22 @@ _tagLightInfo ComputeLight(float3 vViewPos, float3 vViewNormal)
 	float3	vR = 2.f * vViewNormal * dot(vViewNormal, vLightDir) - vLightDir;
 	float3	vView = -normalize(vViewPos);
 
-	float4	vMtrlSpc = float4(g_vMtrlSpecular.xyz, 1.f);
+	float	fPower = g_vMtrlSpecular.w;
+	float4	vMtrlSpc;
+
+	if (g_vMtrlAmbient.w == 1)
+	{
+		vMtrlSpc = g_SpecularTex.Sample(g_DifSmp, vUV);
+		//vMtrlSpc = float4(g_vMtrlSpecular.xyz, 1.f);
+	}
+
+	else
+	{
+		vMtrlSpc = float4(g_vMtrlSpecular.xyz, 1.f);
+	}
+
 	tInfo.vSpc = g_vLightSpecular * vMtrlSpc *
-		pow(max(0, dot(vR, vView)), g_vMtrlSpecular.w) * fLightIntensity;
+		pow(max(0, dot(vR, vView)), fPower) * fLightIntensity;
 
 	//tInfo.vDif.xyz = float3(1.f, 1.f, 1.f);
 	//tInfo.vSpc.xyz = float3(0.f, 0.f, 0.f);
@@ -264,4 +358,77 @@ _tagLightInfo ComputeLight(float3 vViewPos, float3 vViewNormal)
 	tInfo.vSpc.w = 1.f;
 
 	return tInfo;
+}
+
+struct _tagSkinning
+{
+	float3	vPos;
+	float3	vNormal;
+	float3	vTangent;
+	float3	vBinormal;
+};
+
+matrix GetBoneMatrix(int idx)
+{
+	matrix	matBone =
+	{
+		g_BoneTex.Load(int3(idx * 4, 0, 0)),
+		g_BoneTex.Load(int3(idx * 4 + 1, 0, 0)),
+		g_BoneTex.Load(int3(idx * 4 + 2, 0, 0)),
+		g_BoneTex.Load(int3(idx * 4 + 3, 0, 0))
+	};
+
+	return matBone;
+}
+
+_tagSkinning Skinning(float3 vPos, float3 vNormal, float3 vTangent,
+	float3 vBinormal, float4 vWeights, float4 vIndices)
+{
+	_tagSkinning	tSkinning = (_tagSkinning)0;
+
+	float	fWeights[4];
+	fWeights[0] = vWeights.x;
+	fWeights[1] = vWeights.y;
+	fWeights[2] = vWeights.z;
+	fWeights[3] = 1.f - vWeights.x - vWeights.y - vWeights.z;
+
+	for (int i = 0; i < 4; ++i)
+	{
+		matrix	matBone = GetBoneMatrix((int)vIndices[i]);
+
+		tSkinning.vPos += fWeights[i] * mul(float4(vPos, 1.f), matBone).xyz;
+		tSkinning.vNormal += fWeights[i] * mul(float4(vNormal, 0.f), matBone).xyz;
+		tSkinning.vTangent += fWeights[i] * mul(float4(vTangent, 0.f), matBone).xyz;
+		tSkinning.vBinormal += fWeights[i] * mul(float4(vBinormal, 0.f), matBone).xyz;
+	}
+
+	tSkinning.vNormal = normalize(tSkinning.vNormal);
+	tSkinning.vTangent = normalize(tSkinning.vTangent);
+	tSkinning.vBinormal = normalize(tSkinning.vBinormal);
+
+	return tSkinning;
+}
+
+_tagSkinning Skinning(float3 vPos, float3 vNormal, float4 vWeights,
+	float4 vIndices)
+{
+	_tagSkinning	tSkinning = (_tagSkinning)0;
+
+	float	fWeights[4];
+	fWeights[0] = vWeights.x;
+	fWeights[1] = vWeights.y;
+	fWeights[2] = vWeights.z;
+	fWeights[3] = 1.f - vWeights.x - vWeights.y - vWeights.z;
+
+	for (int i = 0; i < 4; ++i)
+	{
+		matrix	matBone = GetBoneMatrix((int)vIndices[i]);
+
+		tSkinning.vPos += fWeights[i] * mul(float4(vPos, 1.f), matBone).xyz;
+		tSkinning.vNormal += fWeights[i] * mul(float4(vNormal, 0.f), matBone).xyz;
+	}
+
+	tSkinning.vNormal = normalize(tSkinning.vNormal);
+
+	return tSkinning;
 }

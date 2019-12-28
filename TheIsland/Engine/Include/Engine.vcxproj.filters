@@ -91,6 +91,24 @@
     <Filter Include="06. Component\08. Light">
       <UniqueIdentifier>{82cd4239-a23b-4316-be99-53bd510be62f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="06. Component\09. Navigation">
+      <UniqueIdentifier>{f54e363b-fdaa-4a62-913b-c983fb63a087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Core\06. Navigation">
+      <UniqueIdentifier>{f5e15a9d-1675-4ffa-bce8-49422d578760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Resources\03. Fbx">
+      <UniqueIdentifier>{804ac01b-3ff5-43ea-9802-933b8492c41a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Component\06. Animation\01. 2D">
+      <UniqueIdentifier>{b6564321-33fc-4aaf-9a41-abf865426e32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Component\06. Animation\02. 3D">
+      <UniqueIdentifier>{dc272b61-b905-459c-a4ab-6d81fb818c8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Rendering\03. RenderTarget">
+      <UniqueIdentifier>{2ed1a2f7-cbdd-41ae-b020-8c9e481561c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -177,9 +195,6 @@
     <ClInclude Include="Component\Material.h">
       <Filter>06. Component\05. Material</Filter>
     </ClInclude>
-    <ClInclude Include="Component\Animation2D.h">
-      <Filter>06. Component\06. Animation</Filter>
-    </ClInclude>
     <ClInclude Include="Resources\DirectXTex.h">
       <Filter>02. Resources\02. Texture</Filter>
     </ClInclude>
@@ -227,6 +242,39 @@
     </ClInclude>
     <ClInclude Include="Component\LightSpot.h">
       <Filter>06. Component\08. Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\LandScape.h">
+      <Filter>06. Component\07. Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Navigation3D.h">
+      <Filter>06. Component\09. Navigation</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\NavigationMesh.h">
+      <Filter>01. Core\06. Navigation</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\NavigationManager.h">
+      <Filter>01. Core\06. Navigation</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\FbxLoader.h">
+      <Filter>02. Resources\03. Fbx</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Animation2D.h">
+      <Filter>06. Component\06. Animation\01. 2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Animation.h">
+      <Filter>06. Component\06. Animation\02. 3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\AnimationClip.h">
+      <Filter>06. Component\06. Animation\02. 3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\BoneSocket.h">
+      <Filter>06. Component\06. Animation\02. 3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Frustum.h">
+      <Filter>06. Component\04. Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\RenderingTarget.h">
+      <Filter>03. Rendering\03. RenderTarget</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -299,9 +347,6 @@
     <ClCompile Include="Component\Material.cpp">
       <Filter>06. Component\05. Material</Filter>
     </ClCompile>
-    <ClCompile Include="Component\Animation2D.cpp">
-      <Filter>06. Component\06. Animation</Filter>
-    </ClCompile>
     <ClCompile Include="Resources\Mesh.cpp">
       <Filter>02. Resources\01. Mesh</Filter>
     </ClCompile>
@@ -347,6 +392,39 @@
     <ClCompile Include="Component\LightSpot.cpp">
       <Filter>06. Component\08. Light</Filter>
     </ClCompile>
+    <ClCompile Include="Component\LandScape.cpp">
+      <Filter>06. Component\07. Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Navigation3D.cpp">
+      <Filter>06. Component\09. Navigation</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\NavigationMesh.cpp">
+      <Filter>01. Core\06. Navigation</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\NavigationManager.cpp">
+      <Filter>01. Core\06. Navigation</Filter>
+    </ClCompile>
+    <ClCompile Include="Resources\FbxLoader.cpp">
+      <Filter>02. Resources\03. Fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Animation2D.cpp">
+      <Filter>06. Component\06. Animation\01. 2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Animation.cpp">
+      <Filter>06. Component\06. Animation\02. 3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\AnimationClip.cpp">
+      <Filter>06. Component\06. Animation\02. 3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\BoneSocket.cpp">
+      <Filter>06. Component\06. Animation\02. 3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Frustum.cpp">
+      <Filter>06. Component\04. Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\RenderingTarget.cpp">
+      <Filter>03. Rendering\03. RenderTarget</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DirectXTex.inl">
@@ -361,6 +439,21 @@
       <Filter>03. Rendering\01. Shader\01. HLSL</Filter>
     </FxCompile>
     <FxCompile Include="..\Bin64_Debug\Shader\Sky.fx">
+      <Filter>03. Rendering\01. Shader\01. HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin64_Debug\Shader\Effect.fx">
+      <Filter>03. Rendering\01. Shader\01. HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin64_Debug\Shader\LandScape.fx">
+      <Filter>03. Rendering\01. Shader\01. HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin64_Debug\Shader\Light.fx">
+      <Filter>03. Rendering\01. Shader\01. HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin64_Debug\Shader\UI.fx">
+      <Filter>03. Rendering\01. Shader\01. HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin64_Debug\Shader\Collider.fx">
       <Filter>03. Rendering\01. Shader\01. HLSL</Filter>
     </FxCompile>
   </ItemGroup>

@@ -31,10 +31,13 @@ typedef union GAME_DLL _tagMatrix
 	void* operator new( size_t size );
 	void operator delete( void* pAddr );
 	operator _tagMatrix ();
-	_tagMatrix operator *( const _tagMatrix& _m );
-	_tagMatrix operator *( const XMMATRIX& _m );
+	_tagMatrix operator *( const _tagMatrix& _m )	const;
+	_tagMatrix operator *( const XMMATRIX& _m )	const;
 	void operator *=( const XMMATRIX& _m );
 	void operator *=( const _tagMatrix& _m );
+
+	_tagMatrix Transpose()	const;
+
 }Matrix, *PMatrix;
 
 GAME_END

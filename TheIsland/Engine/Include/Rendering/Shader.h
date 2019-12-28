@@ -20,6 +20,9 @@ private:
 	ID3D11PixelShader*		m_pPS;
 	ID3DBlob*	m_pPSBlob;
 
+	ID3D11GeometryShader*	m_pGS;
+	ID3DBlob*	m_pGSBlob;
+
 	string		m_strKey;
 
 public:
@@ -36,7 +39,10 @@ public:
 		const string& strPathKey = SHADER_PATH);
 	bool LoadPixelShader(const string& strKey, TCHAR* pFileName,
 		char* pEntry,
-		const string& strPathKey = SHADER_PATH);
+		const string& strPathKey = SHADER_PATH );
+	bool LoadGeometryShader( const string& strKey, TCHAR* pFileName,
+		char* pEntry,
+		const string& strPathKey = SHADER_PATH );
 
 public:
 	void SetShader();

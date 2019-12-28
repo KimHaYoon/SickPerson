@@ -18,7 +18,12 @@ public:
 	static CGameObject* CreateObject( const string& strTag, class CLayer* pLayer = NULL );
 	static CGameObject* CreatePrototype( const string& strKey, class CScene* pScene = NULL );
 	static CGameObject* CreateClone( const string& strKey, class CLayer* pLayer = NULL );
+	static CGameObject* CreateObjectDontDestroy( const string& strTag,
+		class CLayer* pLayer );
+	static CGameObject* CreatePrototypeDontDestroy( const string& strKey,
+		class CScene* pScene );
 	static void ChangePrototypeScene( const string& strKey, class CScene* pScene );
+	static void AddPrototype( const string& strTag, CGameObject* pPrototype );
 	static void AddObjList( CGameObject* pObj );
 	static void ChangeLayer( const string& strTag, class CLayer* pLayer );
 	static void DontDestroy( const string& strTag, bool bDontDesetroy = true );
@@ -50,8 +55,11 @@ private:
 	list<CGameObject*>		m_ChildList;
 	CGameObject*			m_pParent;
 	bool					m_bDontDestroy;
+	bool	m_bCulling;
 
 public:
+	void SetCulling( bool bCulling );
+	bool GetCulling()	const;
 	void DontDestroyOnLoad( bool bDontDestroy = true );
 	bool IsDontDestroy()	const;
 	void AddChild( CGameObject* pChild );
@@ -75,6 +83,7 @@ public:
 	int LateUpdate( float fTime );
 	void Collision( float fTime );
 	void Render( float fTime );
+	void RenderShadowMap( float fTime );
 	CGameObject* Clone();
 	void Save( char* pFileName, const string& strPathKey = DATA_PATH );
 	void Save( FILE* pFile );
@@ -218,7 +227,17 @@ public:
 	template <typename T>
 	T* AddComponent( const string& strTag )
 	{
-		T*	pCom = new T;
+		T*	pCom = NULL;
+
+		if ( m_bDontDestroy )
+		{
+			pCom = FindComponentFromTag<T>( strTag );
+
+			if ( pCom )
+				return pCom;
+		}
+
+		pCom = new T;
 
 		pCom->SetTag( strTag );
 		pCom->SetScene( m_pScene );

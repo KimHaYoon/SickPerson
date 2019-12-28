@@ -3,15 +3,6 @@
 
 GAME_BEGIN
 
-typedef struct GAME_DLL _tagRendererCBuffer
-{
-	string	strName;
-	int		iRegister;
-	int		iSize;
-	int		iShaderType;
-	void*	pData;
-}RENDERERCBUFFER, *PRENDERERCBUFFER;
-
 class GAME_DLL CRenderer2D :
 	public CComponent
 {

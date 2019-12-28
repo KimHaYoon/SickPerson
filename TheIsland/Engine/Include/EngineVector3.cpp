@@ -552,6 +552,26 @@ bool _tagVector3::operator !=( int i[3] )	const
 	return x != i[0] || y != i[1] || z != i[2];
 }
 
+bool _tagVector3::operator<( const _tagVector3 & v ) const
+{
+	return x < v.x && y < v.y && z < v.z;
+}
+
+bool _tagVector3::operator<=( const _tagVector3 & v ) const
+{
+	return x <= v.x && y <= v.y && z <= v.z;
+}
+
+bool _tagVector3::operator>( const _tagVector3 & v ) const
+{
+	return x > v.x && y > v.y && z > v.z;
+}
+
+bool _tagVector3::operator>=( const _tagVector3 & v ) const
+{
+	return x >= v.x && y >= v.y && z >= v.z;
+}
+
 XMVECTOR _tagVector3::Convert()	const
 {
 	return XMLoadFloat3( this );
@@ -561,6 +581,9 @@ float _tagVector3::Length()	const
 {
 	_tagVector3 v;
 	XMStoreFloat3( &v, XMVector3Length( Convert() ) );
+	if ( isnan( v.x ) )
+		v.x = 0.f;
+
 	return v.x;
 }
 

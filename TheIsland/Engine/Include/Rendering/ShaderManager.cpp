@@ -28,7 +28,8 @@ CShaderManager::~CShaderManager()
 
 bool CShaderManager::Init()
 {
-	char*	pEntry[ST_MAX] = { "StandardColorVS", "StandardColorPS" };
+
+	char*	pEntry[ST_MAX] = { "StandardColorVS", "StandardColorPS", NULL };
 	CShader*	pShader = LoadShader( STANDARD_COLOR_SHADER, L"Standard.fx",
 		pEntry );
 
@@ -36,6 +37,7 @@ bool CShaderManager::Init()
 
 	pEntry[ST_VERTEX] = "StandardColorNormalVS";
 	pEntry[ST_PIXEL] = "StandardColorNormalPS";
+	pEntry[ST_GEOMETRY] = NULL;
 	pShader = LoadShader( STANDARD_COLOR_NORMAL_SHADER, L"Standard.fx",
 		pEntry );
 
@@ -43,13 +45,23 @@ bool CShaderManager::Init()
 
 	pEntry[ST_VERTEX] = "StandardTexVS";
 	pEntry[ST_PIXEL] = "StandardTexPS";
+	pEntry[ST_GEOMETRY] = NULL;
 	pShader = LoadShader( STANDARD_TEX_SHADER, L"Standard.fx",
+		pEntry );
+
+	SAFE_RELEASE( pShader );
+
+	pEntry[ST_VERTEX] = "StandardTexNormalVS";
+	pEntry[ST_PIXEL] = "StandardTexNormalPS";
+	pEntry[ST_GEOMETRY] = NULL;
+	pShader = LoadShader( STANDARD_TEX_NORMAL_SHADER, L"Standard.fx",
 		pEntry );
 
 	SAFE_RELEASE( pShader );
 
 	pEntry[ST_VERTEX] = "ColliderVS";
 	pEntry[ST_PIXEL] = "ColliderPS";
+	pEntry[ST_GEOMETRY] = NULL;
 	pShader = LoadShader( COLLIDER_SHADER, L"Collider.fx",
 		pEntry );
 
@@ -57,13 +69,23 @@ bool CShaderManager::Init()
 
 	pEntry[ST_VERTEX] = "UIVS";
 	pEntry[ST_PIXEL] = "UIPS";
+	pEntry[ST_GEOMETRY] = NULL;
 	pShader = LoadShader( UI_SHADER, L"UI.fx",
 		pEntry );
 
 	SAFE_RELEASE( pShader );
 
 	pEntry[ST_VERTEX] = "UIVS";
+	pEntry[ST_PIXEL] = "UIMultiTexturePS";
+	pEntry[ST_GEOMETRY] = NULL;
+	pShader = LoadShader( UI_MULTITEXTURE_SHADER, L"UI.fx",
+		pEntry );
+
+	SAFE_RELEASE( pShader );
+
+	pEntry[ST_VERTEX] = "UIVS";
 	pEntry[ST_PIXEL] = "UIColorPS";
+	pEntry[ST_GEOMETRY] = NULL;
 	pShader = LoadShader( UI_COLOR_SHADER, L"UI.fx",
 		pEntry );
 
@@ -71,8 +93,93 @@ bool CShaderManager::Init()
 
 	pEntry[ST_VERTEX] = "SkyVS";
 	pEntry[ST_PIXEL] = "SkyPS";
+	pEntry[ST_GEOMETRY] = NULL;
 	pShader = LoadShader( SKY_SHADER, L"Sky.fx",
 		pEntry );
+
+	SAFE_RELEASE( pShader );
+
+	pEntry[ST_VERTEX] = "EffectVS";
+	pEntry[ST_PIXEL] = "EffectPS";
+	pEntry[ST_GEOMETRY] = "EffectGS";
+	pShader = LoadShader( EFFECT_SHADER, L"Effect.fx",
+		pEntry );
+
+	SAFE_RELEASE( pShader );
+
+	pEntry[ST_VERTEX] = "LandScapeVS";
+	pEntry[ST_PIXEL] = "LandScapePS";
+	pEntry[ST_GEOMETRY] = NULL;
+	pShader = LoadShader( LANDSCAPE_SHADER, L"LandScape.fx",
+		pEntry );
+
+	SAFE_RELEASE( pShader );
+
+	pEntry[ST_VERTEX] = "StandardBumpVS";
+	pEntry[ST_PIXEL] = "StandardBumpPS";
+	pEntry[ST_GEOMETRY] = NULL;
+	pShader = LoadShader( STANDARD_BUMP_SHADER, L"Standard.fx",
+		pEntry );
+
+	SAFE_RELEASE( pShader );
+
+	pEntry[ST_VERTEX] = "StandardTexNormalAnimVS";
+	pEntry[ST_PIXEL] = "StandardTexNormalPS";
+	pEntry[ST_GEOMETRY] = NULL;
+	pShader = LoadShader( STANDARD_TEX_NORMAL_ANIM_SHADER, L"Standard.fx",
+		pEntry );
+
+	SAFE_RELEASE( pShader );
+
+	pEntry[ST_VERTEX] = "StandardBumpAnimVS";
+	pEntry[ST_PIXEL] = "StandardBumpPS";
+	pEntry[ST_GEOMETRY] = NULL;
+	pShader = LoadShader( STANDARD_BUMP_ANIM_SHADER, L"Standard.fx",
+		pEntry );
+
+	SAFE_RELEASE( pShader );
+
+	pEntry[ST_VERTEX] = "StandardBumpAnimVS";
+	pEntry[ST_PIXEL] = "StandardBumpForwardPS";
+	pEntry[ST_GEOMETRY] = NULL;
+	pShader = LoadShader( STANDARD_BUMP_ANIM_FORWARD_SHADER, L"Standard.fx",
+		pEntry );
+
+	SAFE_RELEASE( pShader );
+
+	pEntry[ST_VERTEX] = "StandardTexNormalAnimVS";
+	pEntry[ST_PIXEL] = "StandardTexNormalForwardPS";
+	pEntry[ST_GEOMETRY] = NULL;
+	pShader = LoadShader( STANDARD_TEX_NORMAL_ANIM_FORWARD_SHADER, L"Standard.fx",
+		pEntry );
+
+	SAFE_RELEASE( pShader );
+
+	pEntry[ST_VERTEX] = "LightVS";
+	pEntry[ST_PIXEL] = "LightAccPS";
+	pEntry[ST_GEOMETRY] = NULL;
+	pShader = LoadShader( LIGHT_ACC_SHADER, L"Light.fx", pEntry );
+
+	SAFE_RELEASE( pShader );
+
+	pEntry[ST_VERTEX] = "LightVS";
+	pEntry[ST_PIXEL] = "LightBlendPS";
+	pEntry[ST_GEOMETRY] = NULL;
+	pShader = LoadShader( LIGHT_BLEND_SHADER, L"Light.fx", pEntry );
+
+	SAFE_RELEASE( pShader );
+
+	pEntry[ST_VERTEX] = "LightVS";
+	pEntry[ST_PIXEL] = "DeferredPS";
+	pEntry[ST_GEOMETRY] = NULL;
+	pShader = LoadShader( DEFERRED_SHADER, L"Light.fx", pEntry );
+
+	SAFE_RELEASE( pShader );
+
+	pEntry[ST_VERTEX] = "ScreenSpaceDecalVS";
+	pEntry[ST_PIXEL] = "ScreenSpaceDecalPS";
+	pEntry[ST_GEOMETRY] = NULL;
+	pShader = LoadShader( DECAL_SHADER, L"Effect.fx", pEntry );
 
 	SAFE_RELEASE( pShader );
 
@@ -104,6 +211,58 @@ bool CShaderManager::Init()
 
 	CreateInputLayout( "VertexTex", STANDARD_TEX_SHADER );
 
+	AddInputDesc( "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
+		12, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+	AddInputDesc( "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
+		12, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+	AddInputDesc( "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0,
+		8, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+
+	CreateInputLayout( "VertexTexNormal", STANDARD_TEX_NORMAL_SHADER );
+
+	AddInputDesc( "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
+		12, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+	AddInputDesc( "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
+		12, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+	AddInputDesc( "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0,
+		8, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+	AddInputDesc( "TANGENT", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
+		12, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+	AddInputDesc( "BINORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
+		12, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+
+	CreateInputLayout( "Bump", LANDSCAPE_SHADER );
+
+	AddInputDesc( "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
+		12, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+	AddInputDesc( "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
+		12, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+	AddInputDesc( "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0,
+		8, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+	AddInputDesc( "BLENDWEIGHTS", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0,
+		16, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+	AddInputDesc( "BLENDINDICES", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0,
+		16, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+
+	CreateInputLayout( "VertexAnim", STANDARD_TEX_NORMAL_ANIM_SHADER );
+
+	AddInputDesc( "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
+		12, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+	AddInputDesc( "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
+		12, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+	AddInputDesc( "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0,
+		8, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+	AddInputDesc( "TANGENT", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
+		12, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+	AddInputDesc( "BINORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
+		12, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+	AddInputDesc( "BLENDWEIGHTS", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0,
+		16, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+	AddInputDesc( "BLENDINDICES", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0,
+		16, D3D11_INPUT_PER_VERTEX_DATA, 0 );
+
+	CreateInputLayout( "BumpAnim", STANDARD_BUMP_ANIM_SHADER );
+
 	CreateCBuffer( "Transform", 0, sizeof( TRANSFORMCBUFFER ) );
 	CreateCBuffer( "Material", 1, sizeof( MATERIAL ) );
 	CreateCBuffer( "Light", 2, sizeof( LIGHT ) );
@@ -113,6 +272,13 @@ bool CShaderManager::Init()
 	CreateCBuffer( "ColliderColor", 13, sizeof( Vector4 ) );
 
 	CreateCBuffer( "Button", 11, sizeof( BUTTONCBUFFER ) );
+
+	CreateCBuffer( "Particle", 11, sizeof( PARTICLECBUFFER ) );
+
+	CreateCBuffer( "LandScape", 12, sizeof( LANDSCAPECBUFFER ) );
+
+	CreateCBuffer( "MultiTexture", 12, sizeof( MULTITEXTURECBUFFER ) );
+
 	return true;
 }
 
@@ -263,7 +429,10 @@ void CShaderManager::UpdateCBuffer(const string & strKey, void * pData,
 		CONTEXT->VSSetConstantBuffers(pBuffer->iRegister, 1, &pBuffer->pBuffer);
 
 	if (iShaderConstantType & SCT_PIXEL)
-		CONTEXT->PSSetConstantBuffers(pBuffer->iRegister, 1, &pBuffer->pBuffer);
+		CONTEXT->PSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
+
+	if ( iShaderConstantType & SCT_GEOMETRY )
+		CONTEXT->GSSetConstantBuffers( pBuffer->iRegister, 1, &pBuffer->pBuffer );
 }
 
 PCONSTANTBUFFER CShaderManager::FindCBuffer(const string & strKey)

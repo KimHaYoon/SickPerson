@@ -63,14 +63,14 @@ _tagMatrix::operator _tagMatrix()
 	return mat;
 }
 
-_tagMatrix _tagMatrix::operator*( const _tagMatrix & _m )
+_tagMatrix _tagMatrix::operator*( const _tagMatrix & _m )	const
 {
 	_tagMatrix	matrix;
 	matrix.mat = mat * _m.mat;
 	return matrix;
 }
 
-_tagMatrix _tagMatrix::operator*( const XMMATRIX & _m )
+_tagMatrix _tagMatrix::operator*( const XMMATRIX & _m )	const
 {
 	_tagMatrix	matrix;
 	matrix.mat = mat * _m;
@@ -85,4 +85,10 @@ void _tagMatrix::operator*=( const XMMATRIX & _m )
 void _tagMatrix::operator*=( const _tagMatrix & _m )
 {
 	mat *= _m.mat;
+}
+
+_tagMatrix _tagMatrix::Transpose() const
+{
+	_tagMatrix	matrix = XMMatrixTranspose( mat );
+	return matrix;
 }

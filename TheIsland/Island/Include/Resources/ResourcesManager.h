@@ -6,7 +6,6 @@ GAME_BEGIN
 
 class GAME_DLL CResourcesManager
 {
-
 private:
 	unordered_map<string, class CMesh*>	m_mapMesh;
 	unordered_map<string, class CTexture*>	m_mapTexture;
@@ -20,6 +19,15 @@ public:
 		D3D11_USAGE eIdxUsage = D3D11_USAGE_DEFAULT,
 		DXGI_FORMAT eFmt = DXGI_FORMAT_R32_UINT,
 		void* pIdxData = NULL );
+	class CMesh* CreateSphere( const string& strKey, float radius, UINT numSubdivisions );
+	class CMesh* LoadMesh( const string& strKey, const wchar_t* pFileName,
+		const string& strPathKey );
+	class CMesh* LoadMesh( const string& strKey, const char* pFileName,
+		const string& strPathKey );
+	class CMesh* LoadMeshFromFullPath( const string& strKey,
+		const wchar_t* pFullPath );
+	class CMesh* LoadMeshFromFullPath( const string& strKey,
+		const char* pFullPath );
 
 	class CMesh* FindMesh( const string& strKey );
 
@@ -42,9 +50,6 @@ public:
 		D3D11_TEXTURE_ADDRESS_MODE eAddrW = D3D11_TEXTURE_ADDRESS_WRAP );
 
 	class CSampler* FindSampler( const string& strKey );
-
-	class CMesh* CreateSphere( const string& strKey, float radius, UINT numSubdivisions );
-
 
 	DECLARE_SINGLE( CResourcesManager )
 };
