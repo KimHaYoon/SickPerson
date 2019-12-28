@@ -1,16 +1,3 @@
-cd..
-cd..
-
-xcopy /s /y /d .\Engine\Include\*.h .\Island\Include\
-xcopy /s /y /d .\Engine\Include\*.inl .\Island\Include\
-
-xcopy /s /y /d /exclude:Out.txt .\Engine\Bin64_Debug\Shader\*.* .\Engine\Bin64\Shader\
-xcopy /s /y /d /exclude:Out.txt .\Engine\Bin64\Shader\*.* .\Island\Bin64\Shader\
-xcopy /s /y /d /exclude:Out.txt .\Engine\Bin64_Debug\Shader\*.* .\Island\Bin64_Debug\Shader\
-
-
-xcopy /s /y /d /exclude:Out.txt .\Engine\Bin64_Debug\*.* .\Island\Bin64_Debug\
-xcopy /s /y /d /exclude:Out.txt .\Engine\Bin64\*.* .\Island\Bin64\
-
-xcopy /s /y /d .\Island\Bin64\*.* .\Client\Bin64\
-xcopy /s /y /d .\Island\Bin64_Debug\*.* .\Client\Bin64_Debug\
+version https://git-lfs.github.com/spec/v1
+oid sha256:446f187456acfbd7c02b6eb87b9d0545ae64d8fe4279f370c3484742c857bf17
+size 660

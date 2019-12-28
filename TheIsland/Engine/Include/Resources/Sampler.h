@@ -1,31 +1,3 @@
-#pragma once
-#include "../Obj.h"
-
-GAME_BEGIN
-
-class GAME_DLL CSampler :
-	public CObj
-{
-private:
-	friend class CResourcesManager;
-
-private:
-	CSampler();
-	~CSampler();
-
-private:
-	ID3D11SamplerState*		m_pSampler;
-	string					m_strKey;
-
-public:
-	string GetKey()	const;
-
-public:
-	bool CreateSampler( const string& strKey, D3D11_FILTER eFilter = D3D11_FILTER_MIN_MAG_MIP_LINEAR,
-		D3D11_TEXTURE_ADDRESS_MODE eAddrU = D3D11_TEXTURE_ADDRESS_WRAP,
-		D3D11_TEXTURE_ADDRESS_MODE eAddrV = D3D11_TEXTURE_ADDRESS_WRAP,
-		D3D11_TEXTURE_ADDRESS_MODE eAddrW = D3D11_TEXTURE_ADDRESS_WRAP );
-	void SetSampler( int iRegister,	int iShaderConstantType );
-};
-
-GAME_END
+version https://git-lfs.github.com/spec/v1
+oid sha256:db47033f4245aca303d449fd08bb4421260282f3ca53eb36b007be082e8faed2
+size 675

@@ -1,23 +1,3 @@
-#pragma once
-
-#include "../Engine.h"
-
-GAME_BEGIN
-
-class GAME_DLL CPathManager
-{
-private:
-	unordered_map<string, wstring>	m_mapPath;
-	string		m_strFindPath;
-
-public:
-	bool Init();
-	bool AddPath( const string& strKey, TCHAR* pPath,
-		const string& strBaseKey = BASE_PATH );
-	const wchar_t* FindPath( const string& strKey );
-	const char* FindPathToMultiByte( const string& strKey );
-
-	DECLARE_SINGLE( CPathManager )
-};
-
-GAME_END
+version https://git-lfs.github.com/spec/v1
+oid sha256:2ede508aa508b6f5835a8c242428f69286d954624b5c491bd28145872eb63a72
+size 447

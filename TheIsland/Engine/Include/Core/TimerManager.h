@@ -1,20 +1,3 @@
-#pragma once
-
-#include "../Engine.h"
-
-GAME_BEGIN
-
-class GAME_DLL CTimerManager
-{
-private:
-	unordered_map<string, class CTimer*>	m_mapTimer;
-
-public:
-	bool Init();
-	class CTimer* CreateTimer( const string& strKey );
-	class CTimer* FindTimer( const string& strKey );
-
-	DECLARE_SINGLE( CTimerManager )
-};
-
-GAME_END
+version https://git-lfs.github.com/spec/v1
+oid sha256:a947e85ecf133592d67580f54d6c6e08bcd97f973decdb1b1d956930f165aee2
+size 330

@@ -1,29 +1,3 @@
-#pragma once
-#include "RenderState.h"
-
-GAME_BEGIN
-
-class GAME_DLL CRasterizerState :
-	public CRenderState
-{
-private:
-	friend class CRenderManager;
-
-private:
-	CRasterizerState();
-	~CRasterizerState();
-
-public:
-	bool CreateRasterizerState(const string& strKey, D3D11_FILL_MODE eFill = D3D11_FILL_SOLID,
-		D3D11_CULL_MODE eCull = D3D11_CULL_BACK,
-		bool bClockWise = false, int iDepthBias = 0, float fDepthBiasClamp = 0.f,
-		float fSlopeScale = 0.f, bool bDepthClipEnable = true,
-		bool bScissorEnable = false, bool bMultisampleEnable = false,
-		bool bAntialisedLineEnable = false);
-
-public:
-	virtual void SetState();
-	virtual void ResetState();
-};
-
-GAME_END
+version https://git-lfs.github.com/spec/v1
+oid sha256:a99baa91149686f9f7296581289b4745b24793ea3ca00410cf568a1ede01c827
+size 685

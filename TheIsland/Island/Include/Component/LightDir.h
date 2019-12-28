@@ -1,27 +1,3 @@
-#pragma once
-#include "Light.h"
-
-GAME_BEGIN
-
-class GAME_DLL CLightDir :
-	public CLight
-{
-protected:
-	friend class CGameObject;
-
-protected:
-	CLightDir();
-	CLightDir(const CLightDir& light);
-	~CLightDir();
-
-public:
-	virtual bool Init();
-	virtual void Input(float fTime);
-	virtual int Update(float fTime);
-	virtual int LateUpdate(float fTime);
-	virtual void Collision(float fTime);
-	virtual void Render(float fTime);
-	virtual CLightDir* Clone();
-};
-
-GAME_END
+version https://git-lfs.github.com/spec/v1
+oid sha256:e1ab52a1d25d0b00dcef6f3e86aee13b5a211810a358cc828d4fc74b96da84e4
+size 483

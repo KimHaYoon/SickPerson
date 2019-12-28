@@ -1,35 +1,3 @@
-#pragma once
-
-#include "../Obj.h"
-
-GAME_BEGIN
-
-class GAME_DLL CTimer : public CObj
-{
-private:
-	friend class CTimerManager;
-
-private:
-	CTimer();
-	~CTimer();
-
-private:
-	LARGE_INTEGER	m_tTime;
-	LARGE_INTEGER	m_tSecond;
-	float	m_fDeltaTime;
-
-	float	m_fFPS;
-	float	m_fFPSTime;
-	int		m_iFrame;
-	int		m_iFrameMax;
-
-public:
-	float GetDeltaTime()	const;
-	float GetFPS()	const;
-
-public:
-	bool Init();
-	void Update();
-};
-
-GAME_END
+version https://git-lfs.github.com/spec/v1
+oid sha256:084368479b4a714426112afb512700efebfcbead829ea2e62f727fada0f00edc
+size 453

@@ -1,33 +1,3 @@
-#pragma once
-#include "Component.h"
-
-GAME_BEGIN
-
-class GAME_DLL CScript :
-	public CComponent
-{
-protected:
-	friend class CGameObject;
-
-protected:
-	CScript();
-	CScript( const CScript& script );
-	virtual ~CScript();
-
-public:
-	virtual bool Init() = 0;
-	virtual void Input( float fTime );
-	virtual int Update( float fTime );
-	virtual int LateUpdate( float fTime );
-	virtual void Collision( float fTime );
-	virtual void Render( float fTime );
-	virtual CScript* Clone() = 0;
-	virtual void OnCollisionEnter( class CCollider* pSrc, class CCollider* pDest,
-		float fTime );
-	virtual void OnCollision( class CCollider* pSrc, class CCollider* pDest,
-		float fTime );
-	virtual void OnCollisionLeave( class CCollider* pSrc, class CCollider* pDest,
-		float fTime );
-};
-
-GAME_END
+version https://git-lfs.github.com/spec/v1
+oid sha256:5cc776a42458403097f9059827c3e80777ca1d526d3c9361beadf344d39df904
+size 795

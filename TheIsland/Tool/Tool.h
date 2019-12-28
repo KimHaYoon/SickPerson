@@ -1,32 +1,3 @@
-﻿
-// Tool.h: PROJECT_NAME 응용 프로그램에 대한 주 헤더 파일입니다.
-//
-
-#pragma once
-
-#ifndef __AFXWIN_H__
-	#error "PCH에 대해 이 파일을 포함하기 전에 'stdafx.h'를 포함합니다."
-#endif
-
-#include "resource.h"		// 주 기호입니다.
-
-
-// CToolApp:
-// 이 클래스의 구현에 대해서는 Tool.cpp을(를) 참조하세요.
-//
-
-class CToolApp : public CWinApp
-{
-public:
-	CToolApp();
-
-// 재정의입니다.
-public:
-	virtual BOOL InitInstance();
-
-// 구현입니다.
-
-	DECLARE_MESSAGE_MAP()
-};
-
-extern CToolApp theApp;
+version https://git-lfs.github.com/spec/v1
+oid sha256:b2113ea10f0abc93e00a05b4c23602f94b56b6287256d307f69af88d2529098a
+size 587

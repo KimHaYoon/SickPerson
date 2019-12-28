@@ -1,27 +1,3 @@
-#pragma once
-#include "Light.h"
-
-GAME_BEGIN
-
-class GAME_DLL CLightSpot :
-	public CLight
-{
-protected:
-	friend class CGameObject;
-
-protected:
-	CLightSpot();
-	CLightSpot(const CLightSpot& light);
-	~CLightSpot();
-
-public:
-	virtual bool Init();
-	virtual void Input(float fTime);
-	virtual int Update(float fTime);
-	virtual int LateUpdate(float fTime);
-	virtual void Collision(float fTime);
-	virtual void Render(float fTime);
-	virtual CLightSpot* Clone();
-};
-
-GAME_END
+version https://git-lfs.github.com/spec/v1
+oid sha256:8812e925837f00a6b78e3725cca7a467d068bf09a144a58760ff90f5d745ea29
+size 487

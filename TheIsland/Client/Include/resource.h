@@ -1,16 +1,3 @@
-//{{NO_DEPENDENCIES}}
-// Microsoft Visual C++에서 생성한 포함 파일입니다.
-// Client.rc에서 사용되고 있습니다.
-//
-#define IDI_ICON1                       101
-
-// Next default values for new objects
-// 
-#ifdef APSTUDIO_INVOKED
-#ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        102
-#define _APS_NEXT_COMMAND_VALUE         40001
-#define _APS_NEXT_CONTROL_VALUE         1001
-#define _APS_NEXT_SYMED_VALUE           101
-#endif
-#endif
+version https://git-lfs.github.com/spec/v1
+oid sha256:66856bbacfc8db4bf6ac781b24a175f53421ce21881e01a60e452a6548d2ff5b
+size 468

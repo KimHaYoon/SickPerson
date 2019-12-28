@@ -1,8 +1,3 @@
-﻿
-// stdafx.cpp : 표준 포함 파일만 들어 있는 소스 파일입니다.
-// Tool.pch는 미리 컴파일된 헤더가 됩니다.
-// stdafx.obj에는 미리 컴파일된 형식 정보가 포함됩니다.
-
-#include "stdafx.h"
-
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:d24c26f2ceb321de49c6755d08b72c330b40ad1a780b0369fd4c2932f7a9932f
+size 243

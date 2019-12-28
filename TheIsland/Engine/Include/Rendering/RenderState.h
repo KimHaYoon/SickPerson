@@ -1,31 +1,3 @@
-#pragma once
-#include "../Obj.h"
-
-GAME_BEGIN
-
-class GAME_DLL CRenderState :
-	public CObj
-{
-protected:
-	friend class CRenderManager;
-
-protected:
-	CRenderState();
-	virtual ~CRenderState();
-
-protected:
-	ID3D11DeviceChild*	m_pState;
-	ID3D11DeviceChild*	m_pOldState;
-	RENDERSTATE_TYPE	m_eType;
-	string				m_strKey;
-
-public:
-	RENDERSTATE_TYPE GetType()	const;
-	string GetKey()	const;
-
-public:
-	virtual void SetState() = 0;
-	virtual void ResetState() = 0;
-};
-
-GAME_END
+version https://git-lfs.github.com/spec/v1
+oid sha256:187d20255bec30e04a49e05e97135139f40ce4c05d65c6a5ec6205c9dd9f8a85
+size 493

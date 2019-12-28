@@ -1,27 +1,3 @@
-#pragma once
-#include "../Obj.h"
-
-GAME_BEGIN
-
-class GAME_DLL CBoneSocket :
-	public CObj
-{
-	friend class CAnimation;
-
-private:
-	CBoneSocket();
-	CBoneSocket(const CBoneSocket& socket);
-	~CBoneSocket();
-
-private:
-	Vector3		m_vOffset;
-	class CGameObject*	m_pTarget;
-	class CTransform*	m_pTargetTr;
-
-public:
-	void SetTarget(class CGameObject* pTarget);
-	void Update(const Matrix& matWorld, const Matrix& matBone);
-	CBoneSocket* Clone()	const;
-};
-
-GAME_END
+version https://git-lfs.github.com/spec/v1
+oid sha256:2101eacca1be5114b06335bdd6062e6de8823cf86469e5990a2fd4a269f07e1e
+size 478

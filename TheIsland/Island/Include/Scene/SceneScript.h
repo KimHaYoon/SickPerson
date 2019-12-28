@@ -1,30 +1,3 @@
-#pragma once
-#include "../Obj.h"
-
-GAME_BEGIN
-
-class GAME_DLL CSceneScript : public CObj
-{
-protected:
-	friend class CScene;
-
-protected:
-	CSceneScript();
-	virtual ~CSceneScript();
-
-protected:
-	class CScene*	m_pScene;
-
-public:
-	void SetScene( class CScene* pScene );
-
-public:
-	virtual bool Init() = 0;
-	virtual void Input( float fTime );
-	virtual int Update( float fTime );
-	virtual int LateUpdate( float fTime );
-	virtual void Collision( float fTime );
-	virtual void Render( float fTime );
-};
-
-GAME_END
+version https://git-lfs.github.com/spec/v1
+oid sha256:961d99203948f8df36a9c004148fc9aae086031ea6f6c08684e03f0e061cb05e
+size 529
