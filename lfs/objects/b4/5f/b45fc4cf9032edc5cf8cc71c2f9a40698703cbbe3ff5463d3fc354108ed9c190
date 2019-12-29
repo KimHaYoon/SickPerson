@@ -1,0 +1,94 @@
+#include "Player.h"
+#include "Core/Input.h"
+#include "Component/Transform.h"
+#include "Component/Navigation3D.h"
+#include "Component/Renderer.h"
+#include "Component/Transform.h"
+#include "Component/ThirdCamera.h"
+#include "Component/Arm.h"
+#include "GameObject/GameObject.h"
+#include "Scene/Scene.h"
+#include "Scene/Layer.h"
+
+CPlayer::CPlayer()
+{
+	SetTag( "Player" );
+	SetTypeName( "CPlayer" );
+	SetTypeID<CPlayer>();
+}
+
+CPlayer::CPlayer( const CPlayer & player ) :
+	CScript( player )
+{
+	m_fMoveSpeed = player.m_fMoveSpeed;
+	m_fRotSpeed = player.m_fRotSpeed;
+}
+
+CPlayer::~CPlayer()
+{
+}
+
+bool CPlayer::Init()
+{
+	m_fMoveSpeed = 10.f;
+	m_fRotSpeed = PI;
+
+	m_pTransform->SetWorldPos( 10.f, 10.f, 0.f );
+
+	// 플레이어 카메라
+	CGameObject*	pCameraObj = m_pScene->GetMainCameraObj();
+	CThirdCamera*	pThirdCamera = pCameraObj->AddComponent<CThirdCamera>( "PlayerCamera" );
+	SAFE_RELEASE( pThirdCamera );
+	CArm* pArm = pCameraObj->AddComponent<CArm>( "Arm" );
+	pArm->SetTarget( m_pGameObject );
+	pArm->SetLookAtDist( Vector3( 0.f, 1.f, 0.f ) );
+
+	SAFE_RELEASE( pArm );
+	SAFE_RELEASE( pCameraObj );
+
+	// 지형을 타기위한 Navigation Component 추가
+	CNavigation3D* pNavigation3D = m_pGameObject->AddComponent<CNavigation3D>( "Navigation" );
+	SAFE_RELEASE( pNavigation3D );
+
+	return true;
+}
+
+void CPlayer::Input( float fTime )
+{
+	CTransform* pCameraTr = m_pScene->GetMainCameraTr();
+	if ( KEYPUSH( "MoveFront" ) )
+	{
+		m_pTransform->MoveWorld( pCameraTr->GetWorldAxis( AXIS_Z ), m_fMoveSpeed, fTime );
+	}
+
+	if ( KEYPUSH( "MoveBack" ) )
+	{
+		m_pTransform->MoveWorld( pCameraTr->GetWorldAxis(AXIS_Z), -m_fMoveSpeed, fTime );
+	}
+	SAFE_RELEASE( pCameraTr );
+
+	if ( KEYPUSH( "RotY" ) )
+	{
+		m_pTransform->RotateWorldY( m_fRotSpeed, fTime );
+	}
+
+	if ( KEYPUSH( "RotInvY" ) )
+	{
+		m_pTransform->RotateWorldY( -m_fRotSpeed, fTime );
+	}
+}
+
+int CPlayer::Update( float fTime )
+{
+	return 0;
+}
+
+int CPlayer::LateUpdate( float fTime )
+{
+	return 0;
+}
+
+CPlayer * CPlayer::Clone()
+{
+	return new CPlayer( *this );
+}
